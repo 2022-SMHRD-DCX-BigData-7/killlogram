@@ -16,7 +16,7 @@
 
 
 
-/* .button{
+ .button1{
 	position: relative;
 	top: -200px;
 	right: 380px;
@@ -182,7 +182,7 @@
  
  
  
-  */
+  
  
 
 
@@ -221,71 +221,7 @@
 	margin-left: 50px;
 } */
 
-.kcal{
-	position: relative;
-    top: -80px;
-    right: -400px;
-    font-weight: bold;
-}
-.mid_wrapper{
-	position: relative;
-    margin-top: -80px;
-    margin-left: -102px;
-    left: 500px;
-}
-.line{
-	
-	border-left: thick solid #e7eae8;
-    height: 98%;
-    position: absolute;
-    margin: -141px 350px;
-}
-.day{
-	position: absolute;
-    margin: 25px -415px;
-	font-weight: bold;
-	font-size: x-large;
-}
-.total{
-	position: relative;
-	margin-left: -415px;
-	margin-top: 500px;
-}
-.btn1{
-	
-	position: absolute;
-    padding: 20px 95px;
-    margin: -94px -416px;
-}
-.btn2{
-	
-	position: absolute;
-    padding: 20px 110px;
-    margin: -94px -114px;
-}
-.btn3{
-	position: absolute;
-    padding: 20px 92px;
-	margin: -29px -417px;
-}
-.btn4{
-	position: absolute;
-    padding: 20px 92px;
-	margin: -29px -204px;
-}
-.btn5{
-	position: absolute;
-    padding: 20px 92px;
-	margin: -29px 10px;
-}
-.res1{
-	position: relative;
-	left: 410px;
-}
-.del{
-	position: relative;
-	left: 480px;
-}
+
 
 .ex1{
 	font-size: 25px;

@@ -51,33 +51,49 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-3 col-12-medium">
-								<div class="sidebar">
-
+                                <p class="weight1"> 몸무게 :</p>
+                                <input type="text"  class="hweight" placeholder="내용을 입력해주세요" 
+                                onfocus="this.placeholder=''" onblur="this.placeholder='내용을 입력해주세요'" name="weight">
+                                <p class="time">시간 :</p>
+                                <input type="text"  class="htime" placeholder="내용을 입력해주세요" 
+                                onfocus="this.placeholder=''" onblur="this.placeholder='내용을 입력해주세요'" name="time1">
+								<p class="exer">강도 :</p>
+                                <select style="width: 120px;" class="exercise">
+                                    <option value="fastwalk">속보</option>
+                                    <option value="badminton">배드민턴</option>
+                                    <option value="dance">댄스</option>
+                                    <option value="wtraining">웨이트</option>
+                                    <option value="tennis">테니스</option>
+                                    <option value="swim">수영</option>
+                                    <option value="stairs">계단 오르기</option>
+                                </select>
+                                <div class="sidebar">
+                                    
 									<!-- Sidebar -->
 								</div>
 							</div>
 							<div class="col-9 col-12-medium imp-medium">
-    <div class="content">
-        <a href="kcal(left).html" class="button">식단 칼로리</a>
-        <a href="kcal(hweek).html"  class="button">운동 칼로리</a>
-        <button type="button" onclick="location.href='kcal(left).html'"  class="btn3">일</button>
-        <button type="button" onclick="location.href='kcal(week).html'"  class="btn4">주</button>
-        <button type="button" onclick="location.href='kcal(month).html'"  class="btn5">월</button>
-
-        <span class="kcal">칼로리 검색</span>
-        <div class="line"></div>
-        <div class="search_wrapper">
-            <div class="mid_wrapper">
-                <input type="text" class="search1" autocomplete="off">
-                <input type="button" class="sbtn" value="검색"><br>
-            </div>
-        </div>
-        <span class="day">하루 총 섭취량</span>
-        <h4 class="total">총 열량 :</h4>
-        <input type="submit" class="res1" value="등록">
-        <input type="submit" class="del" value="삭제">
-    </div>
-</div>
+								<div class="content">
+									<a href="kcal(left).html" class="button">식단 칼로리</a>
+									<a href="kcal(hweek).html"  class="button">운동 칼로리</a>
+									
+									<button type="button" onclick="location.href='kcal(hweek).html'"  class="hbtn4">주</button>
+									<button type="button" onclick="location.href='kcal(hmonth).html'"  class="hbtn5">월</button>
+                                   
+									<span class="kcal"></span>
+									<div class="line"></div>
+									<div class="search_wrapper">
+										<div class="mid_wrapper">
+										
+										</div>
+									</div>
+									<span class="day"></span>
+									<h4 class="total">총 열량 :</h4>
+									<input type="submit" class="hres1" value="등록">
+									<input type="submit" class="hdel" value="삭제">
+								</div>
+							</div>
+							
 
 								
 								<!-- Features

@@ -1,6 +1,180 @@
 @import url("fontawesome-all.min.css");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic|Open+Sans+Condensed:700");
 
+.button{
+	position: relative;
+	top: -200px;
+	right: 380px;
+	height: 60px;
+	width: 40%;
+	
+}
+.kcal{
+	position: relative;
+    bottom: 177px;
+    left: -240px;
+    font-weight: bold;
+    font-size: x-large;
+}
+.daykcal{
+	
+		position: relative;
+		bottom: 180px;
+		left: 420px;
+		font-weight: bold;
+	
+}
+.mid_wrapper{
+	position: relative;
+    bottom: 180px;
+    left: 420px;
+}
+.line{
+	
+	border-left: thick solid #e7eae8;
+    height: 100%;
+    position: absolute;
+    margin: -264px 403px;
+}
+.day{
+	position: absolute;
+    margin: -147px -415px;
+	font-weight: bold;
+	font-size: x-large;
+}
+.week{
+	position: absolute;
+    margin: -88px -415px;
+	font-weight: bold;
+	font-size: x-large;
+}
+.total{
+	position: relative;
+	margin-left: -415px;
+	margin-top: 400px;
+}
+
+.btn3{
+	position: absolute;
+    padding: 20px 92px;
+	margin: -135px -1045px;
+	
+}
+.btn4{
+	position: absolute;
+    padding: 20px 92px;
+	margin: -135px -820px;
+	
+}
+.btn5{
+	position: absolute;
+    padding: 20px 92px;
+	margin: -135px -590px;
+	
+}
+.hbtn4{
+	position: relative;
+	top: -190px;
+	right: 380px;
+	height: 60px;
+	width: 40%;
+}
+.hbtn5{
+	position: relative;
+	top: -190px;
+	right: 380px;
+	height: 60px;
+	width: 40%;
+}
+.hweight{
+	position: relative;
+	top: -153px;
+	left: 850px;
+	padding: -1px 40px;
+	text-align: left; 
+}
+.weight1{
+	position: relative;
+	top: -45px;
+	left: 750px;
+	font-size: x-large;
+}
+.time{
+	position: relative;
+	top: -115px;
+	left: 750px;
+	font-size: x-large;
+}
+.htime{
+	position: relative;
+	top: -223px;
+	left: 850px;
+	padding: -1px 40px;
+	text-align: left; 
+}
+.exer{
+	position: relative;
+	top: -175px;
+	left: 750px;
+	font-size: x-large;
+}
+.exercise{
+	position: relative;
+	top: -280px;
+	left: 850px;
+	padding: -1px 40px;
+	text-align: left; 
+}
+.hres1{
+	position: relative;
+	left: 460px;
+	bottom: 250px;
+}
+.hdel{
+	position: relative;
+	left: 480px;
+	bottom: 250px;
+}
+.res1{
+	position: relative;
+	left: 410px;
+	bottom: 300px;
+}
+.del{
+	position: relative;
+	left: 480px;
+	bottom: 300px;
+}
+.hselect{
+	position: relative;
+    bottom: 180px;
+    left: 420px;
+    font-weight: bold;
+	font-size: x-large;
+}
+.aerobic{
+	position: relative;
+    bottom: 650px;
+    right: -460px;
+	padding: 25px 200px;
+}
+.muscle{
+	position: relative;
+    bottom: 600px;
+    right: -460px;
+	padding: 25px 212px;
+} 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
 .chat_wrap .header { font-size: 14px; padding: 15px 0; background: #F18C7E; color: white; text-align: center;  }
  
@@ -32,71 +206,7 @@
 	margin-left: 50px;
 } */
 
-.kcal{
-	position: relative;
-    top: -80px;
-    right: -400px;
-    font-weight: bold;
-}
-.mid_wrapper{
-	position: relative;
-    margin-top: -80px;
-    margin-left: -102px;
-    left: 500px;
-}
-.line{
-	
-	border-left: thick solid #e7eae8;
-    height: 98%;
-    position: absolute;
-    margin: -141px 350px;
-}
-.day{
-	position: absolute;
-    margin: 25px -415px;
-	font-weight: bold;
-	font-size: x-large;
-}
-.total{
-	position: relative;
-	margin-left: -415px;
-	margin-top: 500px;
-}
-.btn1{
-	
-	position: absolute;
-    padding: 20px 95px;
-    margin: -94px -416px;
-}
-.btn2{
-	
-	position: absolute;
-    padding: 20px 110px;
-    margin: -94px -114px;
-}
-.btn3{
-	position: absolute;
-    padding: 20px 92px;
-	margin: -29px -417px;
-}
-.btn4{
-	position: absolute;
-    padding: 20px 92px;
-	margin: -29px -204px;
-}
-.btn5{
-	position: absolute;
-    padding: 20px 92px;
-	margin: -29px 10px;
-}
-.res1{
-	position: relative;
-	left: 410px;
-}
-.del{
-	position: relative;
-	left: 480px;
-}
+
 
 .ex1{
 	font-size: 25px;
@@ -390,7 +500,7 @@ input, select, textarea {
 		/*kcal*/
 
 		.search1{
-			width: 60%;
+			width: 30%;
 		}
 
 		.res1{

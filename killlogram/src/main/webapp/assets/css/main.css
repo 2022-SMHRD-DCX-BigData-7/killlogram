@@ -1,7 +1,7 @@
 @import url("fontawesome-all.min.css");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic|Open+Sans+Condensed:700");
 
-.button{
+/* .button{
 	position: relative;
 	top: -200px;
 	right: 380px;
@@ -167,16 +167,17 @@
  
  
  
+  */
  
- 
- 
- 
- 
- 
- 
- 
- 
-.chat_wrap .header { font-size: 14px; padding: 15px 0; background: #F18C7E; color: white; text-align: center;  }
+
+
+
+
+
+
+
+
+.chat_wrap .header { font-size: 14px; padding: 15px 0; color: white; text-align: center;  }
  
 .chat_wrap .chat { padding-bottom: 80px; }
 .chat_wrap .chat ul { width: 100%; list-style: none; }
@@ -206,7 +207,71 @@
 	margin-left: 50px;
 } */
 
-
+.kcal{
+	position: relative;
+    top: -80px;
+    right: -400px;
+    font-weight: bold;
+}
+.mid_wrapper{
+	position: relative;
+    margin-top: -80px;
+    margin-left: -102px;
+    left: 500px;
+}
+.line{
+	
+	border-left: thick solid #e7eae8;
+    height: 98%;
+    position: absolute;
+    margin: -141px 350px;
+}
+.day{
+	position: absolute;
+    margin: 25px -415px;
+	font-weight: bold;
+	font-size: x-large;
+}
+.total{
+	position: relative;
+	margin-left: -415px;
+	margin-top: 500px;
+}
+.btn1{
+	
+	position: absolute;
+    padding: 20px 95px;
+    margin: -94px -416px;
+}
+.btn2{
+	
+	position: absolute;
+    padding: 20px 110px;
+    margin: -94px -114px;
+}
+.btn3{
+	position: absolute;
+    padding: 20px 92px;
+	margin: -29px -417px;
+}
+.btn4{
+	position: absolute;
+    padding: 20px 92px;
+	margin: -29px -204px;
+}
+.btn5{
+	position: absolute;
+    padding: 20px 92px;
+	margin: -29px 10px;
+}
+.res1{
+	position: relative;
+	left: 410px;
+}
+.del{
+	position: relative;
+	left: 480px;
+}
 
 .ex1{
 	font-size: 25px;
@@ -500,7 +565,7 @@ input, select, textarea {
 		/*kcal*/
 
 		.search1{
-			width: 30%;
+			width: 60%;
 		}
 
 		.res1{
@@ -2422,18 +2487,6 @@ input, select, textarea {
 		border-radius:5px; 
 		font-size: 80%;
 
-	}
-
-	.text_name{
-		width: 90%;
-		border-radius:5px; 
-		font-size: 80%;
-	}
-
-	.text_nick{
-		width: 90%;
-		border-radius:5px; 
-		font-size: 80%;
 	}
 
 	form textarea {

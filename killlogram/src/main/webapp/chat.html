@@ -23,14 +23,14 @@
 		<div id="page-wrapper">
 
 			<!-- Header -->
-				<header id="header">
-					<div class="logo container">
-						<div>
-							<h1><a href="index.html" id="logo">Killlogram</a></h1>
-							<!-- <p>A responsive site template by HTML5 UP</p> -->
-						</div>
+			<header id="header">
+				<div class="logo container">
+					<div>
+						<h1><a href="index.html" id="logo">Killlogram</a></h1>
+						<!-- <p>A responsive site template by HTML5 UP</p> -->
 					</div>
-				</header>
+				</div>
+			</header>
 
 			<!-- Nav -->
 			<nav id="nav1">
@@ -61,8 +61,8 @@
 							<div class="content">
 
 								<!-- Content -->
-
-									<article class="box page-content">
+									<div class="chat_wrap">
+									<article class="box page-content"></article>
 
 										<header>
 											<h2>채팅</h2>
@@ -75,16 +75,27 @@
 												<li><a href="group.html" class="button alt large">오픈채팅</a></li>
 											</ul>
 										</div>
-									
-											
+										<!-- 수신받을 메시지가 노출될 div -->
+										<div id="messages"></div>
+										<!-- 메시지 폼 -->
+										<div class="input-div">
+											<form name="publish">
+											  <textarea placeholder="Press Enter for send message." name="message"></textarea>
+											  <input type="submit" value="전송">
+											</form>
 										</div>
+										
+										
+	                                   
+									    
 									</div>
-								</section>
-
+							</div>
 						</div>
 					</div>
-				</div>
+				</div>	
 			</section>
+
+		</div>
 
 	
 
@@ -128,31 +139,26 @@
                                 
                                 
 							<!-- </div> -->
-							<div class="col-12">
-
-								
-							</div>
-						</div>
-					</div>
-				</section>
-
-			
-
-					
-		
-
-		</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
 
 	</body>
-</html>
-</body>
+	<script>
+		let socket = new WebSocket("wss://javascript.info/article/websocket/chat/ws");
+	
+		// 폼에 있는 메시지를 전송합니다.
+		document.forms.publish.onsubmit = function() {
+		  let outgoingMessage = this.message.value;
+	
+		  socket.send(outgoingMessage);
+		  return false;
+		};
+	
+		// 메시지를 수신하고, 수신한 메시지를 div#messages에 보여줍니다.
+		socket.onmessage = function(event) {
+		  let message = event.data;
+	
+		  let messageElem = document.createElement('div');
+		  messageElem.textContent = message;
+		  document.getElementById('messages').prepend(messageElem);
+		}
+	</script>
 </html>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!-- ctrl+space => mybatis에서 제공하는 자동완성 사용 가능 -->
+<!-- properties 바로 태그 닫기: 어떤 위치에 하나 파일 만들어서
+	url, 유저네임, 패스워드 다 정리할거에요~-->
+<!--DB연결 정보가 담겨 있는 파일(db.properties) 연결하는 태그
+	유저네임이나 패스워드 등...
+	db.propertiesdpsms 주석이나 띄어쓰기 없이 작성되어야함  -->
+<properties resource="com/smhrd/database/db.properties"/>
+
+
+  <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+        <property name="driver" value="${driver}"/>
+        <property name="url" value="${url}"/>
+        <property name="username" value="${username}"/>
+        <property name="password" value="${password}"/>
+      </dataSource>
+    </environment>
+  </environments>
+  <mappers>
+    <mapper resource="com/smhrd/database/MemberMapper.xml"/>
+   
+  </mappers>
+</configuration>

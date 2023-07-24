@@ -8,9 +8,9 @@
   <artifactId>Killlogram</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   
-  <!-- 오류라 주석처리
+  
     <packaging>war</packaging>
-  -->
+ 
 
 
   <name>Killlogram Maven Webapp</name>
@@ -44,6 +44,8 @@
 	<artifactId>aether-api</artifactId>
 	<version>1.7</version>
 	</dependency>
+	
+	
 	
 	<!--JDBC  사용할 수 있기 위한 라이브러리-->
 	    <!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc6 -->
@@ -86,6 +88,7 @@
 	    <version>1.5.0</version>
 	</dependency>
 
+
   
     
   </dependencies>
@@ -112,12 +115,12 @@
           <version>2.22.1</version>
         </plugin>
         
-        <!--  일단 오류라 주석처리
+  
         <plugin>
           <artifactId>maven-war-plugin</artifactId>
           <version>3.2.2</version>
         </plugin> 
-        -->
+       
 
         <plugin>
           <artifactId>maven-install-plugin</artifactId>

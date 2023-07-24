@@ -36,6 +36,7 @@ public class MessageController extends Socket {
         for (int i = 0; i < session.size(); i++) {
             if (!recieveSession.getId().equals(session.get(i).getId())) {
                 try {
+                	System.out.println("상대 실행");
                     session.get(i).getBasicRemote().sendText("상대 : "+msg);
                 } catch (IOException e) {
                     e.printStackTrace();

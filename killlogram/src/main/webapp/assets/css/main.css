@@ -1,6 +1,21 @@
 @import url("fontawesome-all.min.css");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic|Open+Sans+Condensed:700");
 
+
+.btn_food{
+	position: absolute;
+    padding: 20px 95px;
+    margin: -94px -416px;
+}
+
+.btn_exercise{
+	position: absolute;
+    padding: 20px 110px;
+    margin: -94px -114px;
+}
+
+
+
 /* .button{
 	position: relative;
 	top: -200px;
@@ -169,7 +184,6 @@
  
   */
  
-
 
 
 

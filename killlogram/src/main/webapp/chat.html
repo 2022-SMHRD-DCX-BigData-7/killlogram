@@ -1,164 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>TXT by HTML5 UP</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
 </head>
 <body>
-    <!DOCTYPE HTML>
-<!--
-	TXT by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>chat</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
-	<body class="is-preload">
-		<div id="page-wrapper">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <header id="header">
+            <div class="logo container">
+                <div>
+                    <h1><a href="index.html" id="logo">Killlogram</a></h1>
+                </div>
+            </div>
+        </header>
 
-			<!-- Header -->
-			<header id="header">
-				<div class="logo container">
-					<div>
-						<h1><a href="index.html" id="logo">Killlogram</a></h1>
-						<!-- <p>A responsive site template by HTML5 UP</p> -->
-					</div>
-				</div>
-			</header>
+        <!-- Nav -->
+        <nav id="nav1">
+            <ul>
+                <li class="current"><a href="chat.html">채팅</a></li>
+                <li><a class="myp" href="mypage.html">마이페이지</a></li>
+                <li><a class="log" href="login.html">로그인</a></li>
+            </ul>
+        </nav>
 
-			<!-- Nav -->
-			<nav id="nav1">
-				<ul>
-					<li class="current"><a href="chat.html">채팅</a></li>
-					<li><a class="myp" href="mypage.html">마이페이지</a></li>
-					<li><a class="log" href="login.html">로그인</a></li>
-				</ul>
-			</nav>
+        <nav id="nav">
+            <ul>
+                <li><a href="index.html">홈</a></li>
+                <li><a href="search.html">검색</a></li>
+                <li><a href="kcal(left).html">칼로리</a></li>
+                <li><a href="rankRight.html">랭크</a></li>
+                <li><a href="save(right).html">저장됨</a></li>
+                <li><a href="write.html">게시물 추가</a></li>
+            </ul>
+        </nav>
 
-			<nav id="nav">
-				<ul>
-					<li><a href="index.html">홈</a></li>
-					<li><a href="search.html">검색</a></li>
-					<li><a href="kcal(left).html">칼로리</a></li>
-					<li><a href="rankRight.html">랭크</a></li>
-					<li><a href="save(right).html">저장됨</a></li>
-					<li><a href="write.html">게시물 추가</a></li>					
-					<!-- 게시물 추가 html생성 -->
-				</ul>
-			</nav>
-						
-			<!-- Main -->
-			<section id="main">
-				<div class="container">
-					<div class="row">
-						<div class="col-12">
-							<div class="content">
+        <!-- Main -->
+        <section id="main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="content">
+                            <!-- Content -->
+                            <div class="chat_wrap">
+                                <article class="box page-content"></article>
+                                <header>
+                                    <h2>채팅</h2>
+                                </header>
+                                <div class="col-12">
+                                    <ul class="actions">
+                                        <li><a href="chat.html" class="button large">개인채팅</a></li>
+                                        <li><a href="group.html" class="button alt large">오픈채팅</a></li>
+                                    </ul>
+                                </div>
+                                <div id="chatContent">
+                                    <!-- Chat messages will be displayed here -->
+                                </div>
+                                <input placeholder="메시지를 입력하세요." name="message" id="myChat" type="text">
+                                <input type="submit" id="send" value="전송">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>
+        let socket = new WebSocket("ws://localhost:8082/websocket");
 
-								<!-- Content -->
-									<div class="chat_wrap">
-									<article class="box page-content"></article>
+        socket.onopen = function (e) {
+            console.log('WebSocket connected!');
+        };
 
-										<header>
-											<h2>채팅</h2>
-											
-										</header>
+        socket.onerror = function (e) {
+            console.error('WebSocket error:', e);
+        };
 
-										<div class="col-12">
-											<ul class="actions">
-												<li><a href="chat.html" class="button large">개인채팅</a></li>
-												<li><a href="group.html" class="button alt large">오픈채팅</a></li>
-											</ul>
-										</div>
-										<!-- 수신받을 메시지가 노출될 div -->
-										<div id="messages"></div>
-										<!-- 메시지 폼 -->
-										<div class="input-div">
-											<form name="publish">
-											  <textarea placeholder="Press Enter for send message." name="message"></textarea>
-											  <input type="submit" value="전송">
-											</form>
-										</div>
-										
-										
-	                                   
-									    
-									</div>
-							</div>
-						</div>
-					</div>
-				</div>	
-			</section>
+        socket.onmessage = function (e) {
+            console.log(e.data);
+            let msgContent = document.getElementById('chatContent');
+            let newMsgLine = document.createElement('div');
+            newMsgLine.classList.add('msgLine');
+            let newMsgBox = document.createElement('div');
+            newMsgBox.classList.add('msgBox');
+            newMsgBox.textContent = e.data;
+            newMsgLine.appendChild(newMsgBox);
+            msgContent.appendChild(newMsgLine);
+            // Scroll to bottom
+            msgContent.scrollTop = msgContent.scrollHeight;
+        };
 
-		</div>
+        document.getElementById('myChat').addEventListener('keyup', function (event) {
+            if (event.key === 'Enter') {
+                sendMsg();
+            }
+        });
 
-	
+        document.getElementById('send').addEventListener('click', function () {
+            sendMsg();
+        });
 
-
-							 
-                                <!-- <div class="chat_wrap">
-                                    <article class="box page-content">
-
-                                        <header>
-                                            <h2>채팅</h2>
-                                            <a href="">개인채팅</a>
-                                            <a href="">단체채팅</a>
-                                        </header>
-
-
-                                    </article>
-                                    <div class="chat">
-                                        <ul>
-                                            동적 생성 -->
-                                        <!-- </ul>
-                                    </div>
-                                    <div class="input-div">
-                                        <textarea placeholder="Press Enter for send message."></textarea>
-                                    </div> -->
-                                 
-                                    <!-- format -->
-                                 
-                                    <!-- <div class="chat format">
-                                        <ul>
-                                            <li>
-                                                <div class="sender">
-                                                    <span></span>
-                                                </div>
-                                                <div class="message">
-                                                    <span></span>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div> -->
-                                
-                                
-							<!-- </div> -->
-
-	</body>
-	<script>
-		let socket = new WebSocket("wss://javascript.info/article/websocket/chat/ws");
-	
-		// 폼에 있는 메시지를 전송합니다.
-		document.forms.publish.onsubmit = function() {
-		  let outgoingMessage = this.message.value;
-	
-		  socket.send(outgoingMessage);
-		  return false;
-		};
-	
-		// 메시지를 수신하고, 수신한 메시지를 div#messages에 보여줍니다.
-		socket.onmessage = function(event) {
-		  let message = event.data;
-	
-		  let messageElem = document.createElement('div');
-		  messageElem.textContent = message;
-		  document.getElementById('messages').prepend(messageElem);
-		}
-	</script>
+        function sendMsg() {
+            let content = document.getElementById('myChat').value;
+            if (content.trim() !== '') {
+                socket.send(content);
+                document.getElementById('myChat').value = '';
+            }
+        }
+    </script>
+</body>
 </html>

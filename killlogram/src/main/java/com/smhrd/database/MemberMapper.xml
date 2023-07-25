@@ -10,5 +10,16 @@
 		 다른 태그를 실행하더라도 오류가 있는 태그를 써두면 오류남 -->
   
   
+	<insert id ="insertMember" parameterType ="com.smhrd.domain.Killlogram_member">
+		insert into user_info values (#{id},#{password},#{name},#{nick})
+	
+	</insert>
 
+	<select id ="selectMember" parameterType ="com.smhrd.domain.Killlogram_member"
+		resultType="com.smhrd.domain.Killlogram_member">
+		select * from user_info where user_id=#{id} and user_pw=#{password}	
+	</select>
+
+	
+	
 </mapper>

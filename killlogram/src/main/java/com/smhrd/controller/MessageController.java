@@ -1,10 +1,4 @@
-/*
- * COPYRIGHT (c) ADOP 2021
- * This software is the proprietary of ADOP
- *
- * @author <a href=“mailto:wesley@adop.cc“>wesley</a>
- * @since 2021/04/13
- */
+
 package com.smhrd.controller;
 
 import org.springframework.scheduling.annotation.Scheduled;
@@ -20,18 +14,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * create on 2021/04/13.
- * create by IntelliJ IDEA.
- *
- * <p> 클래스 설명 </p>
- * <p> {@link } and {@link }관련 클래스 </p>
- *
- * @author wesley
- * @version 1.0
- * @see
- * @since 지원하는 자바버전 (ex : 5+ 5이상)
- */
+
 @Controller
 @ServerEndpoint("/websocket")
 public class MessageController extends Socket {
@@ -43,7 +26,7 @@ public class MessageController extends Socket {
 
     @GetMapping("/")
     public String index() {
-        return "index.html";
+        return "chat.html";
     }
 
     @OnOpen

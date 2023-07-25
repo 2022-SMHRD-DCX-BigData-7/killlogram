@@ -23,7 +23,7 @@ public class SqlSessionManager {
 			String resource = "com/smhrd/database/config.xml";
 			// 연결되어있는 내용대로 resource를 활용해 내용을 연결함
 			InputStream inputStream = Resources.getResourceAsStream(resource);
-			SqlSessionFactory sqlSessionFactory =
+			sqlSessionFactory =
 			  new SqlSessionFactoryBuilder().build(inputStream);
 			// SqlSessionFactoryBuilder : 설정파일을 바탕으로 SqlSessionFactory 생성
 			// SqlSessionFactory : SqlSession을 설정(Connection 객체와 같은 역할)

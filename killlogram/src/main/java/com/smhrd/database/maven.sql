@@ -1,1 +1,1 @@
-select * from NUTRITIONFACTS_INFO;
+select * from user_info;

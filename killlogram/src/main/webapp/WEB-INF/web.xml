@@ -4,4 +4,34 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+  	<servlet-name>RegisterCon</servlet-name>
+  	<display-name>RegisterCon</display-name>
+  	<description></description>
+  	<servlet-class>com.smhrd.controller.RegisterCon</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>loginCon</servlet-name>
+  	<display-name>loginCon</display-name>
+  	<description></description>
+  	<servlet-class>com.smhrd.controller.loginCon</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>UpdateCon</servlet-name>
+  	<display-name>UpdateCon</display-name>
+  	<description></description>
+  	<servlet-class>com.smhrd.controller.UpdateCon</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>RegisterCon</servlet-name>
+  	<url-pattern>/RegisterCon</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>loginCon</servlet-name>
+  	<url-pattern>/loginCon</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UpdateCon</servlet-name>
+  	<url-pattern>/UpdateCon</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"   isELIgnored="false" %>
+        <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,24 +70,19 @@
 											<header>
 												<h2>회원 정보 수정</h2>
 											</header>
-
 						<br>
 					
 						
 						<form action="UpdateCon">
 						
-						<c:choose>
-		                <c:when test="${empty loginMember}"></c:when>
-						<c:otherwise><h1>접속한 ID : ${loginMember.id}</h1></c:otherwise>
-						</c:choose>
-						
+						<h1>접속한 ID : ${loginMember.id}</h1>
 						<label for="username">닉네임
-						<br><input type="text"  name="username" id="username" placeholder="닉네임을 입력하세요" required></label><br>
+						<br><input type="text"  name="nick" id="nick" placeholder="닉네임을 입력하세요" required></label><br>
 						  
 						 <label for="password">비밀번호
 						 <br><input type="password" name="password" id="password" placeholder="비밀번호를 입력하세요" required><br>
 						 
-						  <input type="submit" value="수정하기">
+						  <input type="submit" value="수정하기" class="button">
 						</form>
 					  
 								</div>

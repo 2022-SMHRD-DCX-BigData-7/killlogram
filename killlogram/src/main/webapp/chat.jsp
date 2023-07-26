@@ -19,14 +19,24 @@
             </div>
         </header>
 
-        <!-- Nav -->
-        <nav id="nav1">
-            <ul>
-                <li class="current"><a href="chat.jsp">채팅</a></li>
-                <li><a class="myp" href="mypage.jsp">마이페이지</a></li>
-                <li><a class="log" href="login.jsp">로그인</a></li>
-            </ul>
-        </nav>
+        				<nav id="nav1">
+					<ul>
+						
+				 <%-- 로그인 정보가 없으면 로그인 할 수 있도록 --%>
+				 <c:choose>
+			 	<c:when test="${empty loginMember}">
+			 	</c:when>
+			 	
+			 	<c:otherwise>
+			 	
+			 		<li><a href="chat.jsp">채팅</a></li>
+					<li><a class="myp" href="mypage.jsp">마이페이지</a></li> 
+					<li><a class="log" href="LogoutCon">로그아웃</a></li>
+				
+				</c:otherwise>		
+				</c:choose>	 	
+				</ul>
+				</nav>
 
         <nav id="nav">
             <ul>

@@ -19,20 +19,29 @@
     <header id="header">
       <div class="logo container">
         <div>
-							<h1><a href="index.jsp" id="logo">Killlogram</a></h1>
-        <!-- <p>A responsive site template by HTML5 UP</p> -->
+			<h1><a href="index.jsp" id="logo">Killlogram</a></h1>
         </div>
       </div>
     </header>
 
-    <!-- Nav -->
-    <nav id="nav1">
-      <ul>
-        <li><a href="chat.jsp">채팅</a></li>
-        <li><a class="myp" href="mypage.jsp">마이페이지</a></li>
-        <li class="current"><a class="log" href="login.jsp">로그인</a></li>
-      </ul>
-    </nav>
+				<nav id="nav1">
+					<ul>
+						
+				 <%-- 로그인 정보가 없으면 로그인 할 수 있도록 --%>
+				 <c:choose>
+			 	<c:when test="${empty loginMember}">
+			 	</c:when>
+			 	
+			 	<c:otherwise>
+			 	
+			 		<li><a href="chat.jsp">채팅</a></li>
+					<li><a class="myp" href="mypage.jsp">마이페이지</a></li> 
+					<li><a class="log" href="LogoutCon">로그아웃</a></li>
+				
+				</c:otherwise>		
+				</c:choose>	 	
+				</ul>
+				</nav>
 
     <nav id="nav">
       <ul>

@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
 <!--
 	TXT by HTML5 UP
@@ -18,7 +20,7 @@
 				<header id="header">
 					<div class="logo container">
 						<div>
-							<h1><a href="index.html" id="logo">Killlogram</a></h1>
+							<h1><a href="index.jsp" id="logo">Killlogram</a></h1>
 							<!-- <p>A responsive site template by HTML5 UP</p> -->
 						</div>
 					</div>
@@ -27,20 +29,20 @@
 			<!-- Nav -->
 			<nav id="nav1">
 				<ul>
-					<li><a href="chat.html">채팅</a></li>
-					<li><a class="myp" href="mypage.html">마이페이지</a></li>
-					<li><a class="log" href="login.html">로그인</a></li>
+					<li><a href="chat.jsp">채팅</a></li>
+					<li><a class="myp" href="mypage.jsp">마이페이지</a></li>
+					<li><a class="log" href="login.jsp">로그인</a></li>
 				</ul>
 			</nav>
 
 			<nav id="nav">
 				<ul>
-					<li><a href="index.html">홈</a></li>
-					<li><a href="search.html">검색</a></li>
-					<li class="current"><a href="kcalLeft.html">칼로리</a></li>
-					<li><a href="rankRight.html">랭크</a></li>
-					<li><a href="saveRight.html">저장됨</a></li>
-					<li><a href="write.html">게시물 추가</a></li>					
+					<li><a href="index.jsp">홈</a></li>
+					<li><a href="search.jsp">검색</a></li>
+					<li class="current"><a href="kcalLeft.jsp">칼로리</a></li>
+					<li><a href="rankRight.jsp">랭크</a></li>
+					<li><a href="saveRight.jsp">저장됨</a></li>
+					<li><a href="write.jsp">게시물 추가</a></li>					
 					<!-- 게시물 추가 html생성 -->
 				</ul>
 			</nav>
@@ -51,33 +53,48 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-3 col-12-medium">
-								<div class="sidebar">
-
+                                <p class="weight1"> 몸무게 :</p>
+                                <input type="text"  class="hweight" placeholder="내용을 입력해주세요" 
+                                onfocus="this.placeholder=''" onblur="this.placeholder='내용을 입력해주세요'" name="weight">
+                                <p class="time">시간 :</p>
+                                <input type="text"  class="htime" placeholder="내용을 입력해주세요" 
+                                onfocus="this.placeholder=''" onblur="this.placeholder='내용을 입력해주세요'" name="time1">
+								<p class="exer">강도 :</p>
+                                <select style="width: 120px;" class="exercise">
+                                    <option value="fastwalk">속보</option>
+                                    <option value="badminton">배드민턴</option>
+                                    <option value="dance">댄스</option>
+                                    <option value="wtraining">웨이트</option>
+                                    <option value="tennis">테니스</option>
+                                    <option value="swim">수영</option>
+                                    <option value="stairs">계단 오르기</option>
+                                </select>
+                                <div class="sidebar">
+                                    
 									<!-- Sidebar -->
 								</div>
 							</div>
 							<div class="col-9 col-12-medium imp-medium">
-    <div class="content">
-        <button type="button" onclick="location.href='kcalLeft.html'" class="button1">식단 칼로리</button> 
-		<button type="button" onclick="location.href='kcalHweek.html'" class="button1">운동 칼로리</button> 
-        <button type="button" onclick="location.href='kcalLeft.html'"  class="btn3">일</button>
-        <button type="button" onclick="location.href='kcalWeek.html'"  class="btn4">주</button>
-        <button type="button" onclick="location.href='kcalMonth.html'"  class="btn5">월</button>
-
-        <span class="kcal">칼로리 검색</span>
-        <div class="line"></div>
-        <div class="search_wrapper">
-            <div class="mid_wrapper">
-                <input type="text" class="search1" autocomplete="off">
-                <input type="submit" class="sbtn" value="검색"><br>
-            </div>
-        </div>
-        <span class="day">하루 총 섭취량</span>
-        <h4 class="total">총 열량 :</h4>
-        <input type="submit" class="res1" value="등록">
-        <input type="submit" class="del" value="삭제">
-    </div>
-</div>
+								<div class="content">
+									<button type="button" onclick="location.href='kcalLeft.jsp'" class="button1">식단 칼로리</button> 
+									<button type="button" onclick="location.href='kcalHweek.jsp'" class="button1">운동 칼로리</button> 
+									<button type="button" onclick="location.href='kcalHweek.jsp'"  class="hbtn4">주</button>
+									<button type="button" onclick="location.href='kcalHmonth.jsp'"  class="hbtn5">월</button>
+                                   
+									<span class="kcal"></span>
+									<div class="line"></div>
+									<div class="search_wrapper">
+										<div class="mid_wrapper">
+										
+										</div>
+									</div>
+									<span class="day"></span>
+									<h4 class="total">총 열량 :</h4>
+									<input type="submit" class="hres1" value="등록">
+									<input type="submit" class="hdel" value="삭제">
+								</div>
+							</div>
+							
 
 								
 								<!-- Features

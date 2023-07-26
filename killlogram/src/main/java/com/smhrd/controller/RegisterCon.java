@@ -45,9 +45,9 @@ public class RegisterCon extends HttpServlet {
 		// 4. 명령 후 처리
 		String page ="";
 		if(cnt>0) {
-			page = "registerSuccess.html";
+			page = "registerSuccess.jsp";
 		}else {
-			page = "register.html";
+			page = "register.jsp";
 		}
 		
 		response.sendRedirect(page);

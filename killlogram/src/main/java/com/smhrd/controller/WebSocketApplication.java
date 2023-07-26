@@ -1,4 +1,4 @@
-package com.smhrd;
+package com.smhrd.controller;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

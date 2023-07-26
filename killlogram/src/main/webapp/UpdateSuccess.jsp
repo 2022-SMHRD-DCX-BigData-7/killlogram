@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +19,7 @@
     <header id="header">
       <div class="logo container">
         <div>
-          <h1><a href="index.html" id="logo">Killlogram</a></h1>
+							<h1><a href="index.jsp" id="logo">Killlogram</a></h1>
         <!-- <p>A responsive site template by HTML5 UP</p> -->
         </div>
       </div>
@@ -26,20 +28,20 @@
     <!-- Nav -->
     <nav id="nav1">
       <ul>
-        <li><a href="chat.html">채팅</a></li>
-        <li><a class="myp" href="mypage.html">마이페이지</a></li>
-        <li class="current"><a class="log" href="login.html">로그인</a></li>
+        <li><a href="chat.jsp">채팅</a></li>
+        <li><a class="myp" href="mypage.jsp">마이페이지</a></li>
+        <li class="current"><a class="log" href="login.jsp">로그인</a></li>
       </ul>
     </nav>
 
     <nav id="nav">
       <ul>
-        <li><a href="index.html">홈</a></li>
-        <li><a href="search.html">검색</a></li>
-        <li><a href="kcal(left).html">칼로리</a></li>
-        <li><a href="rank(right).html">랭크</a></li>
-        <li><a href="save(right).html">저장됨</a></li>
-        <li><a href="write.html">게시물 추가</a></li>					
+        <li><a href="index.jsp">홈</a></li>
+        <li><a href="search.jsp">검색</a></li>
+        <li><a href="kcal(left).jsp">칼로리</a></li>
+        <li><a href="rank(right).jsp">랭크</a></li>
+        <li><a href="save(right).jsp">저장됨</a></li>
+        <li><a href="write.jsp">게시물 추가</a></li>					
         <!-- 게시물 추가 html생성 -->
       </ul>
     </nav>
@@ -54,11 +56,11 @@
                 <article class="box page-content">
 
                     <header>
-                      <h2>회원가입 완료 페이지</h2>
+                      <h2>회원정보 수정 페이지</h2>
                      
                     </header>
 
-				<h3>회원가입 완료하셨습니다~~~</h3>
+				<h3>회원정보 수정이 완료되었습니다~~~</h3>
 
                    
 			</div>

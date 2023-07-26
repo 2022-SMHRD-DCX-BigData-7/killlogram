@@ -19,6 +19,11 @@
 		resultType="com.smhrd.domain.Killlogram_member">
 		select * from user_info where user_id=#{id} and user_pw=#{password}	
 	</select>
+	
+		<update id="updateMember" parameterType="com.smhrd.domain.Killlogram_member">
+	update user_info set user_nick =#{nick}, user_pw=#{password}
+	where user_id =#{id}
+	</update>
 
 	
 	

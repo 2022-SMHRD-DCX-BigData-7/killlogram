@@ -2,6 +2,8 @@ package com.smhrd.domain;
 
 public class Killlogram_member {
 
+
+
 	private String id;
 	private String password;
 	private String name;
@@ -14,6 +16,12 @@ public class Killlogram_member {
 	}
 	
 	
+	public Killlogram_member(String id, String password, String nick) {
+		super();
+		this.id = id;
+		this.password = password;
+		this.nick = nick;
+	}
 	
 	public Killlogram_member(String id, String password, String name, String nick) {
 		super();

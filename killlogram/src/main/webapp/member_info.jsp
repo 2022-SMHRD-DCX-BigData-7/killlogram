@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,29 +15,40 @@
 			<header id="header">
 				<div class="logo container">
 					<div>
-						<h1><a href="index.html" id="logo">Killlogram</a></h1>
+							<h1><a href="index.jsp" id="logo">Killlogram</a></h1>
 						<!-- <p>A responsive site template by HTML5 UP</p> -->
 					</div>
 				</div>
 			</header>
 
-		<!-- Nav -->
-		<nav id="nav1">
-			<ul>
-				<li><a href="chat.html">채팅</a></li>
-				<li class="current"><a class="myp" href="mypage.html">마이페이지</a></li>
-				<li><a class="log" href="login.html">로그인</a></li>
-			</ul>
-		</nav>
+				<nav id="nav1">
+					<ul>
+						
+				 <%-- 로그인 정보가 없으면 로그인 할 수 있도록 --%>
+				 <c:choose>
+			 	<c:when test="${empty loginMember}">
+			 	</c:when>
+			 	
+			 	<c:otherwise>
+			 	
+			 		<li><a href="chat.jsp">채팅</a></li>
+					<li><a class="myp" href="mypage.jsp">마이페이지</a></li> 
+					<li><a class="log" href="LogoutCon">로그아웃</a></li>
+				
+				</c:otherwise>		
+				</c:choose>	 	
+				</ul>
+				</nav>
+		
 
 		<nav id="nav">
 			<ul>
-				<li><a href="index.html">홈</a></li>
-				<li><a href="search.html">검색</a></li>
-				<li><a href="kcalLeft.html">칼로리</a></li>
-				<li><a href="rankRight.html">랭크</a></li>
-				<li><a href="saveRight.html">저장됨</a></li>
-				<li><a href="write.html">게시물 추가</a></li>					
+				<li><a href="index.jsp">홈</a></li>
+				<li><a href="search.jsp">검색</a></li>
+				<li><a href="kcalLeft.jsp">칼로리</a></li>
+				<li><a href="rankRight.jsp">랭크</a></li>
+				<li><a href="saveRight.jsp">저장됨</a></li>
+				<li><a href="write.jsp">게시물 추가</a></li>					
 				<!-- 게시물 추가 html생성 -->
 			</ul>
 		</nav>
@@ -56,21 +69,22 @@
 												<h2>회원 정보 수정</h2>
 											</header>
 
+						<br>
 					
-						<br>
 						
-						<form action="UpdateCon" method="post">
+						<form action="UpdateCon">
+						
+						<c:choose>
+		                <c:when test="${empty loginMember}"></c:when>
+						<c:otherwise><h1>접속한 ID : ${loginMember.id}</h1></c:otherwise>
+						</c:choose>
+						
 						<label for="username">닉네임
-						<br>
-						<input type="text" id="username" name="username" required></label>
+						<br><input type="text"  name="username" id="username" placeholder="닉네임을 입력하세요" required></label><br>
 						  
-						  <br>
-						  
-						  <label for="password">비밀번호
-						  <br>
-						  <input type="password" id="password" name="password" required></label>
+						 <label for="password">비밀번호
+						 <br><input type="password" name="password" id="password" placeholder="비밀번호를 입력하세요" required><br>
 						 
-						  <br>
 						  <input type="submit" value="수정하기">
 						</form>
 					  

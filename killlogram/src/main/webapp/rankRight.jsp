@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
 <!--
 	TXT by HTML5 UP
@@ -18,7 +20,7 @@
 				<header id="header">
 					<div class="logo container">
 						<div>
-							<h1><a href="index.html" id="logo">Killlogram</a></h1>
+							<h1><a href="index.jsp" id="logo">Killlogram</a></h1>
 							<!-- <p>A responsive site template by HTML5 UP</p> -->
 						</div>
 					</div>
@@ -27,24 +29,26 @@
 			<!-- Nav -->
 			<nav id="nav1">
 				<ul>
-					<li><a href="chat.html">채팅</a></li>
-					<li><a class="myp" href="mypage.html">마이페이지</a></li>
-					<li><a class="log" href="login.html">로그인</a></li>
+					<li><a href="chat.jsp">채팅</a></li>
+					<li><a class="current" class="myp" href="mypage.jsp">마이페이지</a></li>
+					<li><a class="log" href="login.jsp">로그인</a></li>
 				</ul>
 			</nav>
 
 			<nav id="nav">
 				<ul>
-					<li><a href="index.html">홈</a></li>
-					<li><a href="search.html">검색</a></li>
-					<li><a href="kcalLeft.html">칼로리</a></li>
-					<li class="current"><a href="rankRight.html">랭크</a></li>
-					<li><a href="saveRight.html">저장됨</a></li>
-					<li><a href="write.html">게시물 추가</a></li>					
+					<li><a href="index.jsp">홈</a></li>
+					<li><a href="search.jsp">검색</a></li>
+					<li><a href="kcalLeft.jsp">칼로리</a></li>
+					<li class="current"><a href="rankRight.jsp">랭크</a></li>
+					<li><a href="saveRight.jsp">저장됨</a></li>
+					<li><a href="write.jsp">게시물 추가</a></li>					
 					<!-- 게시물 추가 html생성 -->
 				</ul>
 			</nav>
 
+
+			
 			<!-- Main -->
             <section id="main">
 				<div class="container">
@@ -60,7 +64,7 @@
 									 <h2>Rank</h2>
 									
 									 <p>인기 게시물 순위</p>
-									 <h2 class="major"><span>근력 Top 10</span></h2>
+									 <h2 class="major"><span>유산소 Top 10</span></h2>
 
 									<br>
 									 
@@ -175,9 +179,8 @@
 										   <label for="topic-select">운동 주제 :</label>
 										   <select id="topic-select" onchange="location.href=(this.value);">
 											<!-- <option style="padding-left: 160px;">카테고리</option> -->
-											<option class="muscle" value="rank_strength.html">근력</option>
-											<option class="cardio" value="rankRight.html">유산소</option>
-											
+											  <option class="cardio" value="rankRight.jsp">유산소</option>
+											  <option class="muscle" value="rank_strength.jsp">근력</option>
 										</li>
 									 </ul>
 									 <a href="#" class="button alt">Arcives</a>

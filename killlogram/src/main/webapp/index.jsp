@@ -1,3 +1,7 @@
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"   isELIgnored="false"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE HTML>
 
 <html>
@@ -15,29 +19,44 @@
 				<header id="header">
 					<div class="logo container">
 						<div>
-							<h1><a href="index.html" id="logo">Killlogram</a></h1>
+							<h1><a href="index.jsp" id="logo">Killlogram</a></h1>
 							<!-- <p>A responsive site template by HTML5 UP</p> -->
 						</div>
 					</div>
 				</header>
-
-			<!-- Nav -->
-				<nav id="nav1">
+				
+				
+					<nav id="nav1">
 					<ul>
-						<li><a href="chat.html">채팅</a></li>
-						<li><a class="myp" href="mypage.html">마이페이지</a></li>
-						<li><a class="log" href="login.html">로그인</a></li>
-					</ul>
+						
+				 <%-- 로그인 정보가 없으면 로그인 할 수 있도록 --%>
+				 <c:choose>
+			 	<c:when test="${empty loginMember}">
+						<li><a class="log" href="login.jsp">로그인</a></li>
+			 	</c:when>
+			 	
+			 	<c:otherwise>
+			 	
+			 		<li><a href="chat.jsp">채팅</a></li>
+					<li><a class="myp" href="mypage.jsp">마이페이지</a></li> 
+					<li><a class="log" href="LogoutCon">로그아웃</a></li>
+				
+				</c:otherwise>		
+				</c:choose>	 	
+				</ul>
 				</nav>
+		
+
+
 
 				<nav id="nav">
 					<ul>
-						<li class="current"><a href="index.html">홈</a></li>
-						<li><a href="search.html">검색</a></li>
-						<li><a href="kcalLeft.html">칼로리</a></li>
-						<li><a href="rankRight.html">랭크</a></li>
-						<li><a href="saveRight.html">저장됨</a></li>
-						<li><a href="write.html">게시물 추가</a></li>					
+						<li class="current"><a href="index.jsp">홈</a></li>
+						<li><a href="search.jsp">검색</a></li>
+						<li><a href="kcalLeft.jsp">칼로리</a></li>
+						<li><a href="rankRight.jsp">랭크</a></li>
+						<li><a href="saveRight.jsp">저장됨</a></li>
+						<li><a href="write.jsp">게시물 추가</a></li>					
 						<!-- 게시물 추가 html생성 -->
 					</ul>
 				</nav>
@@ -47,9 +66,14 @@
 			<!-- Banner -->
 				<section id="banner">
 					<div class="content">
-						<h2>KILLLOGRAM에 오신걸 환영합니다</h2>
-						<h3>운동과 건강관리를 위한 다양한 정보를 받아보세요</h3>
-						<!-- <p>A free responsive site template built on HTML5, CSS3, and some other stuff</p> -->
+						<c:choose>
+		               <c:when test="${empty loginMember}"></c:when>
+		               
+						<c:otherwise><h2>${loginMember.id}님 환영합니다~</h2>
+						
+						</c:otherwise>
+						</c:choose>
+						<h3>운동과 건강관리를 위한 다양한 정보를 받아보세요</h3> 
 						<br>
 						<br>
 						<a href="#main" class="button scrolly">피드를 구경하세요!</a>
@@ -83,7 +107,7 @@
 							</div>
 <!-- 게시물 추가 버튼 -->
 							<!-- <div class="upload">
-								<li><a href="write.html">게시물 추가</a></li>
+								<li><a href="write.jsp">게시물 추가</a></li>
 
 							</div> -->
 
@@ -423,4 +447,3 @@
 			<script src="assets/js/main.js"></script>
 
 	</body>
-</html>

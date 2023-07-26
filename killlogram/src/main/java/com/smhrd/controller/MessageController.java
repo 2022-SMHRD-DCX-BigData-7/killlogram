@@ -26,7 +26,7 @@ public class MessageController extends Socket {
 
     @GetMapping("/")
     public String index() {
-        return "chat.html";
+        return "chat.jsp";
     }
 
     @OnOpen

@@ -46,15 +46,15 @@ public class loginCon extends HttpServlet {
 		// 4. 명령 후 처리
 		if(loginMember != null) {
 			System.out.println("로그인 성공~~");
-			response.sendRedirect("index.html");
+			response.sendRedirect("index.jsp");
 			// 회원정보를 session에 저장
 			// Servlet에서 session 사용할때는 session객체 생성
-			//HttpSession session = request.getSession();
-			//session.setAttribute("loginMember", loginMember);
+			HttpSession session = request.getSession();
+			session.setAttribute("loginMember", loginMember);
 		}else {
 			// 회원가입 실패하면 main.jsp 이동 -> Redirect 방식
 			System.out.println("로그인 실패ㅠㅠ");
-			response.sendRedirect("login.html");
+			response.sendRedirect("login.jsp");
 		}
 
 		

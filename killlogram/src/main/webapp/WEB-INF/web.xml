@@ -22,6 +22,13 @@
   	<description></description>
   	<servlet-class>com.smhrd.controller.UpdateCon</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>LogoutCon</servlet-name>
+  	<display-name>LogoutCon</display-name>
+  	<description></description>
+  	<servlet-class>com.smhrd.controller.LogoutCon</servlet-class>
+  </servlet>
+
   <servlet-mapping>
   	<servlet-name>RegisterCon</servlet-name>
   	<url-pattern>/RegisterCon</url-pattern>
@@ -34,4 +41,9 @@
   	<servlet-name>UpdateCon</servlet-name>
   	<url-pattern>/UpdateCon</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>LogoutCon</servlet-name>
+  	<url-pattern>/LogoutCon</url-pattern>
+  </servlet-mapping>
+
 </web-app>

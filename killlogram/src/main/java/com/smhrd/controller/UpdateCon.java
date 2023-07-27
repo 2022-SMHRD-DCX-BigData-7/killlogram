@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.smhrd.domain.Killlogram_member;
+import com.smhrd.domain.KilllogramVO;
 import com.smhrd.domain.MemberDAO;
 
 
@@ -24,7 +24,7 @@ public class UpdateCon extends HttpServlet {
 		// 1. 파라미터 수집
 		// 1-1. email은 입력받지 않고 session에서 가져와야함
 		HttpSession session = request.getSession();
-		Killlogram_member loginMember = (Killlogram_member)session.getAttribute("loginMember");
+		KilllogramVO loginMember = (KilllogramVO)session.getAttribute("loginMember");
 		String id = loginMember.getId();
 		
 		// 1-2. 입력받은 pw, tel, address 파라미터 수집
@@ -32,7 +32,7 @@ public class UpdateCon extends HttpServlet {
 		String pw = request.getParameter("password");
 	
 		// 2. 받아온 값을 member 객체에 묶어 담아주기
-		Killlogram_member update = new Killlogram_member(id, nick, pw);
+		KilllogramVO update = new KilllogramVO(id, nick, pw);
 	
 	
 		// 받아온 값 확인 -->  toString()

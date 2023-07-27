@@ -10,17 +10,17 @@
 		 다른 태그를 실행하더라도 오류가 있는 태그를 써두면 오류남 -->
   
   
-	<insert id ="insertMember" parameterType ="com.smhrd.domain.Killlogram_member">
+	<insert id ="insertMember" parameterType ="com.smhrd.domain.KilllogramVO">
 		insert into user_info values (#{id},#{password},#{name},#{nick})
 	
 	</insert>
 
-	<select id ="selectMember" parameterType ="com.smhrd.domain.Killlogram_member"
-		resultType="com.smhrd.domain.Killlogram_member">
+  	<select id ="selectMember" parameterType ="com.smhrd.domain.KilllogramVO"
+		resultType="com.smhrd.domain.KilllogramVO">
 		select * from user_info where user_id=#{id} and user_pw=#{password}	
 	</select>
 	
-		<update id="updateMember" parameterType="com.smhrd.domain.Killlogram_member">
+		<update id="updateMember" parameterType="com.smhrd.domain.KilllogramVO">
 	update user_info set user_nick =#{nick}, user_pw=#{password}
 	where user_id =#{id}
 	</update>

@@ -3,7 +3,14 @@
     pageEncoding="UTF-8"   isELIgnored="false"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE HTML>
+<%
+	// select.jsp참고해서
+	// 게시글 불러오는 DAO 객체 새성
+	// List<객체> = dao.selectAll();
+	
+	// List를 해당 위치에서 반복문으로 출력
 
+%>
 <html>
 	<head>
 		<title>TXT by HTML5 UP</title>
@@ -120,6 +127,15 @@
 									<div class="album py-5 bg-light">
 											<div class="container">
 										
+													<c:choose>
+									               <c:when test="${empty loginMember}"></c:when>
+									               
+													<c:otherwise><p>작성자 : ${loginMember.id}</p>
+													
+													</c:otherwise>
+													</c:choose>
+													
+													
 											  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 												<div class="col">
 												  <div class="card shadow-sm" style="text-align : center;">
@@ -128,10 +144,13 @@
 														
 													<img width="1100px" height="500px" src="images/exercise1.jpg" alt="" /></a>
 
+		
+													
 													<div class="card-body">
 													  <p class="card-text">#오운완 #오늘의 운동법</p>
 													  <div class="d-flex justify-content-between align-items-center heart-div">
 														
+														<h2 class="major"></h2>
 														  <input type="text" size="85px"  value="댓글을 작성해주세요" name="comment">
 														  <button type="button" class="comment-btn" onclick="alert('댓글 등록 완료!')">등록</button>
 														 

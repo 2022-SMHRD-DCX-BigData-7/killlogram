@@ -1,6 +1,6 @@
 package com.smhrd.domain;
 
-public class Killlogram_member {
+public class KilllogramVO {
 
 
 
@@ -9,21 +9,21 @@ public class Killlogram_member {
 	private String name;
 	private String nick;
 	
-	public Killlogram_member(String id, String password) {
+	public KilllogramVO(String id, String password) {
 		super();
 		this.id = id;
 		this.password = password;
 	}
 	
 	
-	public Killlogram_member(String id, String password, String nick) {
+	public KilllogramVO(String id, String password, String nick) {
 		super();
 		this.id = id;
 		this.password = password;
 		this.nick = nick;
 	}
 	
-	public Killlogram_member(String id, String password, String name, String nick) {
+	public KilllogramVO(String id, String password, String name, String nick) {
 		super();
 		this.id = id;
 		this.password = password;
@@ -70,7 +70,6 @@ public class Killlogram_member {
 	public void setNick(String nick) {
 		this.nick = nick;
 	}
-	
 	
 
 	

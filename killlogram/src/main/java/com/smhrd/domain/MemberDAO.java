@@ -12,7 +12,7 @@ public class MemberDAO {
 			SqlSession sqlSession = sqlSessionFactory.openSession();
 			
 			// 회원가입 기능 구현 메소드
-			public int insertMember(Killlogram_member joinMember) {
+			public int insertMember(KilllogramVO joinMember) {
 				int cnt = 0;
 
 				try {
@@ -42,8 +42,8 @@ public class MemberDAO {
 			
 			
 			// 로그인 기능 구현 //selectmember 값을 member로 돌려준다
-			public Killlogram_member selectMember(Killlogram_member login) {
-				Killlogram_member loginMember = null;
+			public KilllogramVO selectMember(KilllogramVO login) {
+				KilllogramVO loginMember = null;
 
 				
 				try {
@@ -62,7 +62,7 @@ public class MemberDAO {
 			
 			
 			// 회원 정보 수정 기능 구현
-			public int updateMember(Killlogram_member update) {
+			public int updateMember(KilllogramVO update) {
 				int cnt = 0;
 				try {
 					//update("MemberMapper.xml SQL태그 id", 넘어줄 값 )

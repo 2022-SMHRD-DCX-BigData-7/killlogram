@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="postMapper">
+	<!-- SQL 태그의 id : 중복 불가, 해당태그의 고유한 식별자 -->
+	<!-- SQL문에 세미콜론 적지 않을것~
+		 바인드변수 ?와 같은 역할로 #{컬럼명} #{객체의 필드명}
+		 다른 태그를 실행하더라도 오류가 있는 태그를 써두면 오류남 -->
+		 
+<!--   <insert id="insert">
+  	
+  	INSERT INTO POST_INFO(
+  	post_index,
+  	post_title, 
+  	post_content, 
+  	user_id, 
+  	created_at, 
+  	post_file, 
+  	post_views, 
+  	post_likes) 
+  	VALUES(
+  	#{post_content},
+  	#{post_title},
+  	#{user_id},
+  	sysdate,
+  	#{post_file},
+  	#{post_views},
+  	#{post_likes} )
+  	
+  	
+  	)
+  	
+  	  </insert> -->
+  
+	  <!--게시물 등록  -->
+	  <insert id ="insertPost" parameterType="com.smhrd.domain.PostVO">
+	  	insert into post_info values (num_post.nextval, #{post_title}, #{post_content},
+	  	#{user_id}, #{post_file}, sysdate, 0, 0)
+	  </insert>
+  
+  	<!-- 게시물 조회 -->
+  	<select id ="selectPost" parameterType ="com.smhrd.domain.PostVO"
+		resultType="com.smhrd.domain.Killlogram_VO">
+		select * from user_info where user_id=#{id} and user_pw=#{password}	
+	</select>
+  
+  
+
+  
+  
+  
+  
+  
+  
+ 
+ 
+
+
+</mapper>

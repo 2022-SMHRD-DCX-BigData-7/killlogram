@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.smhrd.domain.Killlogram_member;
+import com.smhrd.domain.KilllogramVO;
 import com.smhrd.domain.MemberDAO;
 
 
@@ -29,7 +29,7 @@ public class loginCon extends HttpServlet {
 		String pw = request.getParameter("password");
 				
 		// 2. 받아온 값을 member 객체에 묶어 담아주기
-		Killlogram_member login = new Killlogram_member(id, pw);
+		KilllogramVO login = new KilllogramVO(id, pw);
 				
 	
 		// 받아온 값 확인 --> toString
@@ -41,7 +41,7 @@ public class loginCon extends HttpServlet {
 		// 3-2. DAO 객체 생성
 		MemberDAO dao = new  MemberDAO();
 		// 3-3. DAO 메소드 호출 -> member객체에 결과값 담기
-		Killlogram_member loginMember = dao.selectMember(login);
+		KilllogramVO loginMember = dao.selectMember(login);
 		
 		// 4. 명령 후 처리
 		if(loginMember != null) {

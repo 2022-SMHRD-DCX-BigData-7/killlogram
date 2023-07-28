@@ -76,7 +76,7 @@
 							        <button type="button" onclick="location.href='kcalWeek.jsp'"  class="btn4">주</button>
 							        <button type="button" onclick="location.href='kcalMonth.jsp'"  class="btn5">월</button>
                             
-                                    <span class="kcal">주간 칼로리</span>
+                                    <p class="kcal">주간 칼로리</p>
                                     <div class="line"></div>
                                     <div class="search_wrapper">
                                         <div class="mid_wrapper">
@@ -85,8 +85,7 @@
                                     </div>
                                     <span class="day">주간 총 섭취량</span>
                                     <h4 class="total">총 열량 :</h4>
-                                    <input type="submit" class="res1" value="등록">
-                                    <input type="submit" class="del" value="삭제">
+                                    
                                 </div>
                             </div>
                             

@@ -206,8 +206,8 @@ named upload
 }
 .kcal{
 	position: relative;
-    bottom: 177px;
-    left: -240px;
+    top: -170px;
+    left: 460px;
     font-weight: bold;
     font-size: x-large;
 }

@@ -81,7 +81,7 @@ List<Nutritonfacts> nutriList = nutritionDAO.selectNutri(foodName);
                             <button type="button" onclick="location.href='kcalWeek.jsp'"  class="btn4">주</button>
                             <button type="button" onclick="location.href='kcalMonth.jsp'"  class="btn5">월</button>
 
-                            <span class="kcal">칼로리 검색</span>
+                            <p class="kcal">칼로리 검색</p>
                             <div class="line"></div>
                             
                             

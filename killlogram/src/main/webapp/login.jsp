@@ -96,7 +96,6 @@
                   <div class="col-12">
                     <ul class="actions">
                       <li><p><input type="submit" value="로그인"></p></li>
-                      <li><input type="submit" href="index.jsp" value="로그아웃"></li>
                     </ul>
                   </div>
                 </div> 

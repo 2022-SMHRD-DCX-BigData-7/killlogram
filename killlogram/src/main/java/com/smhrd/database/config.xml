@@ -25,6 +25,8 @@
   </environments>
   <mappers>
     <mapper resource="com/smhrd/database/MemberMapper.xml"/>
+    <mapper resource="com/smhrd/database/postMapper.xml"/>
+    <mapper resource="com/smhrd/database/NutritonfactsMapper.xml"/>
    
   </mappers>
 </configuration>

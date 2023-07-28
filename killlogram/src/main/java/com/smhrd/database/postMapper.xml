@@ -41,7 +41,7 @@
   
   	<!-- 게시물 조회 -->
   	<select id ="selectPost" parameterType ="com.smhrd.domain.PostVO"
-		resultType="com.smhrd.domain.Killlogram_VO">
+		resultType="com.smhrd.domain.KilllogramVO">
 		select * from user_info where user_id=#{id} and user_pw=#{password}	
 	</select>
   

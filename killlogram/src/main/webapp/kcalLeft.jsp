@@ -87,8 +87,14 @@ List<Nutritonfacts> nutriList = nutritionDAO.selectNutri(foodName);
                             
     <div class="mid_wrapper">
         <form class="aaa" action="kcalLeft.jsp">
-            <input type="text" class="search_kcal" autocomplete="off" name="food_name"> <!-- 사용자 입력 값 음식 이름 받기 -->
-            <input type="submit" class="btn_kcal" value="검색">
+    <table>
+    <tr>
+    	<td width=60%><input type="text" class="search_kcal" autocomplete="off" name="food_name"></td>
+    	<td><input type="submit" class="btn_kcal" value="검색"></td>
+    </tr>
+             <!-- 사용자 입력 값 음식 이름 받기 -->
+            
+        </table>
         </form>
     </div>
 
@@ -133,16 +139,14 @@ List<Nutritonfacts> nutriList = nutritionDAO.selectNutri(foodName);
 		<% } %>
 	
 
+</div>
   							<input type="submit" class="res1" value="등록">
                             <input type="submit" class="del" value="삭제">
-</div>
 </form>
 
 
 <span class="day">하루 총 섭취량</span>
 <h4 class="total">총 열량 :</h4>
-	                        <!--     <input type="submit" class="res1" value="등록">
-                            <input type="submit" class="del" value="삭제"> -->
                         </div>
                     </div>
                 </div>

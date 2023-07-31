@@ -1,13 +1,17 @@
 package com.smhrd.domain;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.smhrd.database.SqlSessionManager;
 
 public class PostDAO {
+	
 	SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSession();
 	SqlSession sqlSession = sqlSessionFactory.openSession();
+	
 	
 	// 게시글 작성 코드 
 	
@@ -17,8 +21,9 @@ public class PostDAO {
 		try {
 			//insert("MemberMapper.xml SQL태그 id", 넘어줄 값 )
 			// Mapper가 여러개인 경우 com.smhrd.database.MemberMapper.insertMember
-			System.out.println("dao : "+postMember.toString());
+			System.out.println("dao : "+ postMember.toString());
 			cnt = sqlSession.insert("insertPost", postMember);
+			
 			
 			// 내가 원하는 일을 성공했다면 DB에 반영
 			if(cnt>0) {
@@ -35,6 +40,31 @@ public class PostDAO {
 			sqlSession.close();
 		}//finally문 끝
 		return cnt;
+		
 	}//insertMember 메소드 끝
 	
+	
+	
+	// 피드 글 조회
+	public List<PostVO> selectPost() {
+        List<PostVO> postList = null;
+
+        try {
+        	
+            postList = sqlSession.selectList("com.smhrd.database.PostMapper.selectPost");
+        
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	sqlSession.close();
+        }
+
+        return postList;
+    }
+	
+	
+	
 }
+
+

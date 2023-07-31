@@ -35,15 +35,14 @@
   
 	  <!--게시물 등록  -->
 	  <insert id ="insertPost" parameterType="com.smhrd.domain.PostVO">
-	  	insert into post_info values (num_post.nextval, #{post_title}, #{post_content},
-	  	#{user_id}, #{post_file}, sysdate, 0, 0)
+	  	insert into post_info (post_idx, post_title, post_content, user_id, created_at, post_file, post_likes) 
+	  	values (post_info_SEQ.nextval, #{post_title}, #{post_content}, #{user_id}, sysdate, #{post_file, jdbcType=VARCHAR},0)
 	  </insert>
   
   	<!-- 게시물 조회 -->
- <!--  	<select id ="selectPost" parameterType ="com.smhrd.domain.PostVO"
-		resultType="com.smhrd.domain.KilllogramVO">
-		select * from user_info where user_id=#{id} and user_pw=#{password}	
-	</select> -->
+  	<select id ="selectPost" resultType="com.smhrd.domain.PostVO">
+		select * from post_info
+	</select> 
   
   
 

@@ -34,6 +34,7 @@
   	<description></description>
   	<servlet-class>com.smhrd.controller.PostCon</servlet-class>
   </servlet>
+
  
 
   <servlet-mapping>
@@ -56,6 +57,7 @@
   	<servlet-name>PostCon</servlet-name>
   	<url-pattern>/PostCon</url-pattern>
   </servlet-mapping>
+
  
 
 </web-app>

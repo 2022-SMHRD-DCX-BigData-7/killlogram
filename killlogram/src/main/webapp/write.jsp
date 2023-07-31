@@ -1,5 +1,8 @@
+<%@page import="org.springframework.web.multipart.MultipartRequest"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isELIgnored="false"%>
+
+
 <!DOCTYPE HTML>
 
 <html>
@@ -64,7 +67,6 @@
 
 									<!-- Content -->
 
-
 									<section id="contact" class="four">
 										<div class="container">
 									
@@ -73,29 +75,28 @@
 												<p> 사진과 동영상을 첨부하세요 </p>
 											</header>
 									
-									
 											<form method="post" action="PostCon">
-											<input type="hidden" name="____id" value="${loginMember.id }">
+											<input type="hidden" name="id" value="${loginMember.id }">
 												<div class="row">
 													
 													<div class="fileBox previewImage">
-													  <input class="uploadFileName" value="파일선택" disabled="disabled" style="width: 300px;">
+													  <input name="post_file" class="uploadFileName" value="파일선택" disabled="disabled" style="width: 300px;">
 													  <label for="file1">업로드</label> 
 													  <input type="file" id="file1" class="inputHidden"> 
 													</div>
 													
 													<div class="col-12">
 													  
-														제목 <input type="text" placeholder="제목을 입력해주세요" />
+														제목 <input type="text" name="post_title" placeholder="제목을 입력해주세요" />
 
-														<textarea name="message" placeholder="내용을 입력하세요"></textarea>
+														<textarea name="post_content" placeholder="내용을 입력하세요"></textarea>
 													</div>
 													<div class="col-12">
-														<input type="submit" value="게시물 등록" />
+														<input class="post_up" href="index.jsp" type="submit" value="게시물 등록" />
 													</div>
 												</div>
 											</form>
-									
+
 										</div>
 									</section>
 								
@@ -115,10 +116,8 @@
 							</div>
 						</div>
 
-						
 
 					</div>
-				</footer>
 
 		</div>
 

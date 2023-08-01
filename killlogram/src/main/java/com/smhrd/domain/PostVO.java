@@ -80,5 +80,9 @@ public class PostVO {
 				+ post_likes + "]";
 	}
 	
+	public PostVO() {
+		super();
+	}
+	
 	
 }

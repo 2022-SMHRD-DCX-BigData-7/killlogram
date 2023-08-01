@@ -27,6 +27,7 @@
     <mapper resource="com/smhrd/database/MemberMapper.xml"/>
     <mapper resource="com/smhrd/database/postMapper.xml"/>
     <mapper resource="com/smhrd/database/NutritonfactsMapper.xml"/>
+    <mapper resource="com/smhrd/database/CommentMapper.xml"/>
    
   </mappers>
 </configuration>

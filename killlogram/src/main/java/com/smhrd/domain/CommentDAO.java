@@ -7,22 +7,21 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.smhrd.database.SqlSessionManager;
 
-public class PostDAO {
-	
+public class CommentDAO {
 	SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSession();
 	SqlSession sqlSession = sqlSessionFactory.openSession();
 	
 	
-	// 게시글 작성 코드 
+	// 댓글 작성 코드 
 	
-	public int insertPost(PostVO postMember) {
+	public int insertComment(CommentVO commentMember) {
 		int cnt = 0;
 
 		try {
 			//insert("MemberMapper.xml SQL태그 id", 넘어줄 값 )
 			// Mapper가 여러개인 경우 com.smhrd.database.MemberMapper.insertMember
-			System.out.println("dao : "+ postMember.toString());
-			cnt = sqlSession.insert("insertPost", postMember);
+			System.out.println("dao : "+ commentMember.toString());
+			cnt = sqlSession.insert("insertComment", commentMember);
 			
 			
 			// 내가 원하는 일을 성공했다면 DB에 반영
@@ -43,28 +42,26 @@ public class PostDAO {
 		
 	}//insertMember 메소드 끝
 	
-	
-	
-	// 피드 글 조회
-	public List<PostVO> selectPost() {
-        List<PostVO> postList = null;
+	// 댓글 조회
+		public List<CommentVO> selectComment() {
+	        List<CommentVO> CommentList = null;
 
-        try {
+	        try {
 
-			/* SqlSession sqlSession = sqlSessionFactory.openSession(); */
-        		postList = sqlSession.selectList("selectPost");
-        	
-        } catch (Exception e) {
-            e.printStackTrace();
-        }finally {
-			sqlSession.close();
-		} 
+				/* SqlSession sqlSession = sqlSessionFactory.openSession(); */
+	        		CommentList = sqlSession.selectList("selectComment");
+	        	
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }finally {
+				sqlSession.close();
+			} 
 
-        return postList;
-    }
-	
-	
-	
-}
+	        return CommentList;
+	    }
+		
+		
+		
+	}
 
 

@@ -1,6 +1,11 @@
 @import url("fontawesome-all.min.css");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic|Open+Sans+Condensed:700");
 
+.line{
+	border-top: solid 5px #e7eae8;
+	    vertical-align: baseline;
+}
+
 .aaa{
 	height: 50px;
 }
@@ -1382,7 +1387,7 @@ input, select, textarea {
 				}
 
 					.row > * {
-						padding: 40px 0 0 40px;
+						padding: 40px 0 0 80px;
 					}
 
 					.row.gtr-uniform {
@@ -2230,6 +2235,7 @@ input, select, textarea {
 .comment-btn{
 	background-color: white;
 	color: black;
+	margin: 60px 100px 0 100px;
 }
 .comment-btn:hover{
 	background: #fff;
@@ -3142,7 +3148,7 @@ input, select, textarea {
 /* Sidebar + Content */
 
 	.sidebar h2.major {
-		text-align: left;
+		text-align: center;
 		margin: 0 0 1.5em 0;
 	}
 

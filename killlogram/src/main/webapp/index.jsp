@@ -1,9 +1,10 @@
-
+<%@page import="com.smhrd.domain.CommentDAO"%>
+<%@page import="com.smhrd.domain.CommentVO"%>
 <%@page import="com.smhrd.domain.PostVO"%>
 <%@page import="java.util.List"%>
 <%@page import="com.smhrd.domain.PostDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"   isELIgnored="false"%>
+    pageEncoding="UTF-8" isELIgnored="False"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
  
@@ -14,9 +15,15 @@
 	// List<객체> = dao.selectAll();
 	// List를 해당 위치에서 반복문으로 출력
 	
-	PostDAO postDAO = new PostDAO();
-/*    String postMember = request.getParameter("post_member");  */	
-	List<PostVO> postList = postDAO.selectPost();
+		PostDAO postDAO = new PostDAO();
+/*     PostVO postMember = (String)request.getParameter("post_member"); */	
+ 		List<PostVO> postList = postDAO.selectPost();
+
+	// 댓글 dao써서 list담아주는거
+	
+	   CommentDAO commentDAO = new CommentDAO();
+/*     PostVO postMember = (String)request.getParameter("post_member"); */	
+ 		List<CommentVO> commentList = commentDAO.selectComment();
 	%>
 
 
@@ -115,46 +122,94 @@
 													</c:otherwise>
 													</c:choose>
  --%>													
-												<a>위치test</a>
+											
 
     
 												<!-- 반복문 출력 !!!! 제목, 내용, 아이디, 파일, 날짜, (좋아요) -->	
 											  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 												<div class="col">
 												  <div class="card shadow-sm" style="text-align : center;">
-														<a>위치 test</a>
+													
 														
 														<!-- 피드가 있을 경우에 출력  -->
-														 <% if (postList != null && !postList.isEmpty()) { %>  
+														 <%-- <% if (postList != null && !postList.isEmpty()) { %> --%>  
 														
+														<!-- 피드 게시물 출력  -->
 														<table border="1">
-														<tr>
-														<td>id</td>
-														<td>title</td>
-														<td>content</td>
-														<td>file</td>
-														<td>date</td>
-														</tr>											
+																								
 														
 														 <%for(PostVO post:postList){ %>
+														<tr>
+														<td>ID : <%=post.getUser_id() %></td>
+														</tr>
+														<tr>
+														<td>Title : <%=post.getPost_title() %></td>
+														</tr>
+														<tr>
+														<td>Content : <%=post.getPost_content() %></td>
+														</tr>
 														
 														<tr>
-														<td><%=post.getPost_title() %></td>
-														<td><%=post.getPost_content() %></td>
-														<td><%=post.getUser_id() %></td>
-														<td><%=post.getPost_file() %><td>
-														<td><%=post.getCreated_at() %></td>
+														<td>File : <%=post.getPost_file() %><td>
 														</tr>
+														<tr>
+														<td>Date : <%=post.getCreated_at() %></td>
+														</tr>
+														
+														
+														<!-- 댓글 작성 -->
+														<form action="CommentCon?idx=<%=post.getPost_idx() %>" method="post">
+														<tr>
+														<td>
+														
+														  <input name="cmt_content" type="text" size="85px"  placeholder="댓글을 작성해주세요" >
+														  <input class="comment-btn" type="submit" value="등록" onclick="alert('댓글 등록 완료!')" />
+														</form>
+														
+														<!-- 좋아요 -->
+														<form action="#" method="post">
+														<button name="heart" type="button" class="heart-btn" onclick="alert('좋아요!')">
+															<img width="30px" height="30px" src="images/heart.png"/>
+														</button></td>
+														</tr>
+														</form>
+														
+														<tr>
+														<td><h2 class="major"></h2></td>
+														<td id="line"><br></td>
+														</tr>
+													
 														<% } %>
 														
 														</table>
-														<%-- <%} %> --%>
+														
+														
+														
+														<table border="1">
+														
+														<!-- 댓글 출력 -->
+														
+														<% if (commentList != null && !commentList.isEmpty()) { %>
+														 <%for(CommentVO comment:commentList){ %>
+														 
+														 <tr>
+														 	<td>순번:<%=comment.getCmt_idx() %></td>
+															<td>ID:<%=comment.getUser_id() %></td>
+															<td>내용:<%=comment.getCmt_content() %></td>
+														 </tr>
+														 
+														 <%} //for끝%>
+														 <%} //if끝%>
+														 </table>
+														 
+														
+														<%--  <%} %> --%>
 
 <!-- 													<img width="1100px" height="500px" src="images/exercise1.jpg" alt="" /></a>
  -->
-													<div class="card-body">
-<!-- 													  <p class="card-text">#오운완 #오늘의 운동법</p>
- -->													  <div class="d-flex justify-content-between align-items-center heart-div">
+													<!-- <div class="card-body">
+													  <p class="card-text">#오운완 #오늘의 운동법</p>
+													  <div class="d-flex justify-content-between align-items-center heart-div">
 														
 														<h2 class="major"></h2>
 														  <input type="text" size="85px"  placeholder="댓글을 작성해주세요" name="comment">
@@ -162,7 +217,7 @@
 														 
 															<button name="heart" type="button" class="heart-btn" onclick="alert('좋아요!')">
 																<img width="30px" height="30px" src="images/heart.png"/>
-															  </button>
+															  </button> -->
 														  <!-- <button type="button" class="btn btn-sm btn-outline-secondary">좋아요</button> -->
 														  <br>
 														

@@ -41,7 +41,7 @@
   
   	<!-- 게시물 조회 -->
   	<select id ="selectPost" resultType="com.smhrd.domain.PostVO">
-		select * from post_info
+		select * from post_info 
 	</select> 
   
   

@@ -5,9 +5,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.smhrd.domain.CommentDAO;
 import com.smhrd.domain.CommentVO;
+import com.smhrd.domain.KilllogramVO;
 import com.smhrd.domain.PostDAO;
 import com.smhrd.domain.PostVO;
 
@@ -24,11 +26,13 @@ public class CommentCon extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 	
 		
-//		HttpSession session = request.getSession();
-//		KilllogramVO kvo = (KilllogramVO)session.getAttribute("loginMember");
-//		String id = kvo.getId();
-		String id = request.getParameter("id");
-		String post_idx = request.getParameter("idx");
+		HttpSession session = request.getSession();
+		KilllogramVO kvo = (KilllogramVO)session.getAttribute("loginMember");
+		String id = kvo.getId();
+		// String id = request.getParameter("id");
+		String idx = request.getParameter("idx");
+		int post_idx =Integer.parseInt(idx);
+		
 		// 1. 파라미터 수집
 		// session에서 id가져오기
 		
@@ -44,6 +48,7 @@ public class CommentCon extends HttpServlet {
 		
 		
 		// 받아온 값 확인
+		System.out.println("post_idx 내용 : " + comment_member.getPost_idx());
 		System.out.println("comment 내용 : " + comment_member.getCmt_content());
 		//System.out.println("toString 내용 : " + comment_member.toString());
 

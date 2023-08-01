@@ -155,7 +155,23 @@
 														<tr>
 														<td>Date : <%=post.getCreated_at() %></td>
 														</tr>
-														
+														<!-- 댓글출력 -->
+														<% if (commentList != null && !commentList.isEmpty()) { %>
+														 <%for(CommentVO comment:commentList){ 
+														 if(comment.getPost_idx() == post.getPost_idx()){
+															 
+														 %>
+														 
+														 <tr>
+														 	<td>순번:<%=comment.getCmt_idx() %></td>
+															<td>ID:<%=comment.getUser_id() %></td>
+															<td>내용:<%=comment.getCmt_content() %></td>
+														 </tr>
+														 
+														 <%
+														 }//if끝
+														 } //for끝%>
+														 <%} //if끝%>
 														
 														<!-- 댓글 작성 -->
 														<form action="CommentCon?idx=<%=post.getPost_idx() %>" method="post">
@@ -163,8 +179,9 @@
 														<td>
 														
 														  <input name="cmt_content" type="text" size="85px"  placeholder="댓글을 작성해주세요" >
-														  <input class="comment-btn" type="submit" value="등록" onclick="alert('댓글 등록 완료!')" />
-														</form>
+<!-- 														 <input class="comment-btn" type="submit" value="등록" onclick="alert('댓글 등록 완료!')" />
+ -->														  <button class="comment-btn" type="submit" value="등록" onclick="alert('댓글 등록 완료!')" />
+ 														</form>
 														
 														<!-- 좋아요 -->
 														<form action="#" method="post">
@@ -185,12 +202,14 @@
 														
 														
 														
-														<table border="1">
+<%-- 														<table border="1">
 														
 														<!-- 댓글 출력 -->
 														
 														<% if (commentList != null && !commentList.isEmpty()) { %>
-														 <%for(CommentVO comment:commentList){ %>
+														 <%for(CommentVO comment:commentList){ 
+														 
+														 %>
 														 
 														 <tr>
 														 	<td>순번:<%=comment.getCmt_idx() %></td>
@@ -200,7 +219,7 @@
 														 
 														 <%} //for끝%>
 														 <%} //if끝%>
-														 </table>
+														 </table> --%>
 														 
 														
 														<%--  <%} %> --%>

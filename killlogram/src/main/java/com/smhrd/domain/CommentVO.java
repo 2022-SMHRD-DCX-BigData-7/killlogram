@@ -7,6 +7,8 @@ public class CommentVO {
 	private int post_idx;
 	private String cmt_content;
 	private String created_at;
+	private String user_id;
+
 	
 	public CommentVO(int post_idx, String cmt_content, String user_id) {
 		super();
@@ -15,7 +17,6 @@ public class CommentVO {
 		this.user_id = user_id;
 	}
 
-	private String user_id;
 
 	public CommentVO(String cmt_content, String user_id) {
 		super();

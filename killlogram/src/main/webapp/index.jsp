@@ -174,23 +174,35 @@
 														 <%} //if끝%>
 														
 														<!-- 댓글 작성 -->
-														<form action="CommentCon?idx=<%=post.getPost_idx() %>" method="post">
 														<tr>
 														<td>
+														<form action="CommentCon?idx=<%=post.getPost_idx() %>" method="post">
 														
 														  <input name="cmt_content" type="text" size="85px"  placeholder="댓글을 작성해주세요" >
-<!-- 														 <input class="comment-btn" type="submit" value="등록" onclick="alert('댓글 등록 완료!')" />
- -->														  <button class="comment-btn" type="submit" value="등록" onclick="alert('댓글 등록 완료!')" />
+ 														 <input class="comment-btn" type="submit" value="등록" onclick="alert('댓글 등록 완료!')" />
+														<!--   <button class="comment-btn" type="submit" value="등록" onclick="alert('댓글 등록 완료!')" /> -->
  														</form>
 														
 														<!-- 좋아요 -->
 														<form action="#" method="post">
 														<button name="heart" type="button" class="heart-btn" onclick="alert('좋아요!')">
 															<img width="30px" height="30px" src="images/heart.png"/>
-														</button></td>
-														</tr>
+														</button>
+														
 														</form>
 														
+														<!--저장 -->
+														<form action="SaveCon" method="post">
+														<input type="hidden" name="id" value="${loginMember.id}">
+														<input type="hidden" name="idx" value="<%=post.getPost_idx() %>">
+														<button class="save-btn" type="submit" value="저장" onclick="alert('저장 완료!')" >
+															<img width="30px" height="30px" src="images/savebtn.png"/>
+														</button>
+														</form>
+														
+														</td>
+														</tr>
+ 														
 														<tr>
 														<td><h2 class="major"></h2></td>
 														<td id="line"><br></td>

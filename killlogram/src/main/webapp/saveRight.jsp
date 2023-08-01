@@ -1,11 +1,21 @@
+<%@page import="com.smhrd.domain.PostDAO"%>
+<%@page import="com.smhrd.domain.PostVO"%>
+<%@page import="com.smhrd.domain.SaveVO"%>
+<%@page import="java.util.List"%>
+<%@page import="com.smhrd.domain.SaveDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isELIgnored="False"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE HTML>
-<!--
-	TXT by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+<%
+
+ 	   SaveDAO saveDAO = new SaveDAO();
+ 	   List<SaveVO> saveList = saveDAO.selectSave();
+
+	   PostDAO postDAO = new PostDAO();
+	   List<PostVO> postList = postDAO.selectPost(); 
+%>
+
 <html>
 	<head>
 		<title> No Sidebar(save)</title>
@@ -75,6 +85,24 @@
 									 <p>저장된 게시물을 확인하세요</p>
 								  </header>
  
+ 									<!-- 저장된 게시물 출력  -->
+									 <table border="1">
+										
+										<%for(PostVO post:postList){ %>
+											<% if(save.getPost_idx() == post.getPost_idx()) %>
+										<tr>
+										<td>ID : <%=save.getUser_id() %></td>
+										</tr>
+										<tr>
+										<td>Title : <%=save.getCreated_at() %></td>
+										</tr>
+										<tr>
+										<td>Content : <%=save.getPost_idx() %></td>
+										</tr>
+																				
+									<%} %>		
+									</table>			
+
 							   </article>
  
 						 </div>

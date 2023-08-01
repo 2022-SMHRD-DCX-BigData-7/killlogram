@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="saveMapper">
+	  
+	  <!-- 게시물 저장  -->
+	  <insert id ="insertSave" parameterType="com.smhrd.domain.SaveVO">
+	  	insert into save_post (save_idx, post_idx, user_id, created_at) 
+	  	values (save_post_SEQ.nextval, #{post_idx}, #{user_id}, sysdate)
+	  </insert>
+	  
+	  <!-- 저장된 게시물 출력  -->
+	  <select id ="selectSave" parameterType="String" resultType="com.smhrd.domain.SaveVO">
+		select * from post_info
+       where post_idx=(select post_idx from save_post where user_id=#{user_id})
+	</select> 
+  
+	 </mapper>

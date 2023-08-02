@@ -115,6 +115,10 @@
 														            <tr>
 														                <td>Date : ${post.created_at}</td>
 														            </tr>
+														            
+												
+														 
+														 
 														            <form action="CommentCon" method="post">
 														                <tr>
 														                    <td>

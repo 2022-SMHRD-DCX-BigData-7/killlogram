@@ -11,15 +11,15 @@ public class NutritonfactsDAO {
 	
     private SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSession();
 
-    public List<Nutritonfacts> selectNutri(String foodName) {
-        List<Nutritonfacts> nutriList = null;
+    public List<NutritonfactsVO> selectNutri(String foodName) {
+        List<NutritonfactsVO> nutriList = null;
 
         try {
             // 음식 이름이 null이 아닐 경우에만 데이터베이스에서 음식 정보 조회
             if (foodName != null) {
                 SqlSession sqlSession = sqlSessionFactory.openSession();
                 nutriList = sqlSession.selectList("com.smhrd.database.NutritonfactsMapper.selectNutriByName", "%" + foodName + "%");
-                sqlSession.close();
+                
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -27,4 +27,5 @@ public class NutritonfactsDAO {
 
         return nutriList;
     }
+
 }

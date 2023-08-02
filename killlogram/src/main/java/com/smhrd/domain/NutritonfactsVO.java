@@ -1,6 +1,7 @@
 package com.smhrd.domain;
 
-public class Nutritonfacts {
+public class NutritonfactsVO {
+	private int nutri_idx;
     private String food_name;
     private Float calories;
     private Float protein;
@@ -10,19 +11,29 @@ public class Nutritonfacts {
     private String unit;
 
     // 기본 생성자
-    public Nutritonfacts() {
+    public NutritonfactsVO() {
     }
 
-    // 모든 필드를 매개변수로 받는 생성자
-    public Nutritonfacts(String food_name, Float calories, Float protein, Float carbohydrate, Float fat, int intake, String unit) {
-        this.food_name = food_name;
-        this.calories = calories;
-        this.protein = protein;
-        this.carbohydrate = carbohydrate;
-        this.fat = fat;
-        this.intake = intake;
-        this.unit = unit;
-    }
+	public NutritonfactsVO(int nutri_idx, String food_name, Float calories, Float protein, Float carbohydrate,
+			Float fat, int intake, String unit) {
+		super();
+		this.nutri_idx = nutri_idx;
+		this.food_name = food_name;
+		this.calories = calories;
+		this.protein = protein;
+		this.carbohydrate = carbohydrate;
+		this.fat = fat;
+		this.intake = intake;
+		this.unit = unit;
+	}
+
+	public int getNutri_idx() {
+		return nutri_idx;
+	}
+
+	public void setNutri_idx(int nutri_idx) {
+		this.nutri_idx = nutri_idx;
+	}
 
 	public String getFood_name() {
 		return food_name;
@@ -79,7 +90,8 @@ public class Nutritonfacts {
 	public void setUnit(String unit) {
 		this.unit = unit;
 	}
-	
+
+    
 	
 
 }

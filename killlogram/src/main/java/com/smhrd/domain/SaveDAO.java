@@ -43,13 +43,13 @@ public class SaveDAO {
 	}//insertMember 메소드 끝
 	
 	// 피드 글 조회
-		public List<SaveVO> selectSave() {
-	        List<SaveVO> saveList = null;
+		public List<PostVO> selectSave(String user_id) {
+	        List<PostVO> saveList = null;
 
 	        try {
 
 				/* SqlSession sqlSession = sqlSessionFactory.openSession(); */
-	        		saveList = sqlSession.selectList("selectSave");
+	        		saveList = sqlSession.selectList("selectSave",user_id);
 	        	
 	        } catch (Exception e) {
 	            e.printStackTrace();

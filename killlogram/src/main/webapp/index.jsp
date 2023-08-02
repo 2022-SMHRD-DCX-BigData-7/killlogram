@@ -140,20 +140,25 @@
 														
 														 <%for(PostVO post:postList){ %>
 														<tr>
-														<td>ID : <%=post.getUser_id() %></td>
+														<td>작성자 : <%=post.getUser_id() %>님</td>
 														</tr>
 														<tr>
-														<td>Title : <%=post.getPost_title() %></td>
+														<td>< <%=post.getPost_title() %> ></td>
 														</tr>
 														<tr>
-														<td>Content : <%=post.getPost_content() %></td>
-														</tr>
-														
-														<tr>
-														<td>File : <%=post.getPost_file() %><td>
+														<td><br></td>
 														</tr>
 														<tr>
-														<td>Date : <%=post.getCreated_at() %></td>
+														<td><%=post.getPost_file() %><td>
+														</tr>
+														<tr>
+														<td><%=post.getPost_content() %></td>
+														</tr>
+														<tr>
+														<td><br></td>
+														</tr>
+														<tr>
+														<td><%=post.getCreated_at() %></td>
 														</tr>
 														<!-- 댓글출력 -->
 														<% if (commentList != null && !commentList.isEmpty()) { %>
@@ -163,9 +168,8 @@
 														 %>
 														 
 														 <tr>
-														 	<td>순번:<%=comment.getCmt_idx() %></td>
-															<td>ID:<%=comment.getUser_id() %></td>
-															<td>내용:<%=comment.getCmt_content() %></td>
+														 	<td style="width: 422px; padding: 0 760px 0 0px;">ID:<%=comment.getUser_id() %></td>
+                                            				 <td class="com5" style="width: 299px; text-align: left;">내용:<%=comment.getCmt_content() %></td>
 														 </tr>
 														 
 														 <%

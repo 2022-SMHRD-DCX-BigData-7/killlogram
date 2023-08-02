@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- src/main/resources/com/smhrd/mapper/SearchMapper.xml -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.smhrd.mapper.SearchMapper">
+
+    <!-- 특정 키워드로 게시물을 검색하는 쿼리 -->
+    <select id="searchPostsByKeyword" parameterType="String" resultType="com.smhrd.domain.SearchVO">
+    
+        SELECT user_id, post_title, post_content
+        FROM post_info
+        WHERE post_title LIKE '%' || #{keyword} || '%'
+        OR post_content LIKE '%' || #{keyword} || '%'
+    </select>
+
+</mapper>

@@ -30,6 +30,7 @@
     <mapper resource="com/smhrd/database/CommentMapper.xml"/>
     <mapper resource="com/smhrd/database/saveMapper.xml"/>
     <mapper resource="com/smhrd/database/searchMapper.xml"/>
+    <mapper resource="com/smhrd/database/likeMapper.xml"/>
    
   </mappers>
 </configuration>

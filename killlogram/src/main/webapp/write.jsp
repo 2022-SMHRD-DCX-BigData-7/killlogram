@@ -1,3 +1,4 @@
+<%@page import="java.io.IOException"%>
 <%@page import="org.springframework.web.multipart.MultipartRequest"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
@@ -81,8 +82,9 @@
 													<div class="fileBox previewImage">
 													  <input name="post_file" class="uploadFileName" value="파일선택" disabled="disabled" style="width: 300px;">
 													  <label for="file1">업로드</label> 
-													  <input type="file" id="file1" class="inputHidden"> 
+													  <input type="file" id="file1"  name="post_file" class="inputHidden"> 
 													</div>
+												
 													
 													<div class="col-12">
 													  
@@ -98,7 +100,6 @@
 
 										</div>
 									</section>
-								
 
 								<!-- Contact -->
 									<section>

@@ -1,3 +1,4 @@
+<%@page import="com.smhrd.domain.LikeDAO"%>
 <%@page import="com.smhrd.domain.CommentDAO"%>
 <%@page import="com.smhrd.domain.CommentVO"%>
 <%@page import="com.smhrd.domain.PostVO"%>
@@ -18,12 +19,21 @@
 		PostDAO postDAO = new PostDAO();
 /*     PostVO postMember = (String)request.getParameter("post_member"); */	
  		List<PostVO> postList = postDAO.selectPost();
+ 		
+		// 이미지 파일 이름을 DB에서 가져오는 로직
+		PostVO image = null;
 
 	// 댓글 dao써서 list담아주는거
 	
 	   CommentDAO commentDAO = new CommentDAO();
 /*     PostVO postMember = (String)request.getParameter("post_member"); */	
  		List<CommentVO> commentList = commentDAO.selectComment();
+
+ 		LikeDAO likeDAO = new LikeDAO();
+
+ 		String originName = (String)session.getAttribute("originName");
+ 	
+ 		
 	%>
 
 
@@ -143,14 +153,39 @@
 														<td>작성자 : <%=post.getUser_id() %>님</td>
 														</tr>
 														<tr>
-														<td>< <%=post.getPost_title() %> ></td>
+														<td><%=post.getPost_title() %></td>
 														</tr>
 														<tr>
 														<td><br></td>
 														</tr>
+														
 														<tr>
-														<td><%=post.getPost_file() %><td>
+														<td>
+														<%-- <% if (imageList != null && !imageList.isEmpty()) { %> --%>
+														<% 
+															image = postDAO.selectImage(post.getPost_idx());
+															if (image!=null && image.getPost_file() != null){ 
+																if (post.getPost_idx() == image.getPost_idx()){
+																	String fName = image.getPost_file().split("\\\\")[image.getPost_file().split("\\\\").length-1];
+																	out.print("<img src='upload/"+fName+"' alt='설정 후 이미지'/>");
+																}//if1
+																}//if2
+															else{
+																out.print("파일이 존재하지 않습니다.");
+															}
+															
+															%>
+														
+<%-- 														      <img src="<%= request.getContextPath() %>/upload/<%=image.getPost_file() %>" alt="<%= image.getPost_file() %>" />
+														      <img src="Killlogram/upload/<%=image%>" alt="설정 후 이미지" /> --%>
+
+														<%-- <% } %>  --%>
+														</td>
 														</tr>
+														
+														<%-- <tr>
+														<td><%=post.getPost_file() %><td>
+														</tr> --%>
 														<tr>
 														<td><%=post.getPost_content() %></td>
 														</tr>
@@ -187,13 +222,15 @@
 														<!--   <button class="comment-btn" type="submit" value="등록" onclick="alert('댓글 등록 완료!')" /> -->
  														</form>
 														
-														<!-- 좋아요 -->
-														<form action="#" method="post">
-														<button name="heart" type="button" class="heart-btn" onclick="alert('좋아요!')">
-															<img width="30px" height="30px" src="images/heart.png"/>
-														</button>
-														
-														</form>
+														  <!-- 좋아요 수를 표시할 부분 -->
+				                                           <span id="likeCount_<%= post.getPost_idx() %>"><%= likeDAO.getLikeCountByPostIdx(post.getPost_idx()) %></span>
+				                                           <!-- 좋아요 버튼 -->
+				                                           <button id="likeButton_<%= post.getPost_idx() %>" name="heart" type="button" class="heart-btn" onclick="alert('댓글 등록 완료!')" onclick="likePost(<%= post.getPost_idx() %>)">
+				                                               <img width="30px" height="30px" src="images/heart.png"/>
+				                                           </button>
+				                                             
+				                                          </form>
+
 														
 														<!--저장 -->
 														<form action="SaveCon" method="post">
@@ -216,44 +253,7 @@
 														
 														</table>
 														
-														
-														
-<%-- 														<table border="1">
-														
-														<!-- 댓글 출력 -->
-														
-														<% if (commentList != null && !commentList.isEmpty()) { %>
-														 <%for(CommentVO comment:commentList){ 
-														 
-														 %>
-														 
-														 <tr>
-														 	<td>순번:<%=comment.getCmt_idx() %></td>
-															<td>ID:<%=comment.getUser_id() %></td>
-															<td>내용:<%=comment.getCmt_content() %></td>
-														 </tr>
-														 
-														 <%} //for끝%>
-														 <%} //if끝%>
-														 </table> --%>
-														 
-														
-														<%--  <%} %> --%>
 
-<!-- 													<img width="1100px" height="500px" src="images/exercise1.jpg" alt="" /></a>
- -->
-													<!-- <div class="card-body">
-													  <p class="card-text">#오운완 #오늘의 운동법</p>
-													  <div class="d-flex justify-content-between align-items-center heart-div">
-														
-														<h2 class="major"></h2>
-														  <input type="text" size="85px"  placeholder="댓글을 작성해주세요" name="comment">
-														  <button type="button" class="comment-btn" onclick="alert('댓글 등록 완료!')">등록</button>
-														 
-															<button name="heart" type="button" class="heart-btn" onclick="alert('좋아요!')">
-																<img width="30px" height="30px" src="images/heart.png"/>
-															  </button> -->
-														  <!-- <button type="button" class="btn btn-sm btn-outline-secondary">좋아요</button> -->
 														  <br>
 														
 

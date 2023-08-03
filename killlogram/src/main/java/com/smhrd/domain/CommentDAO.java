@@ -54,7 +54,7 @@ public class CommentDAO {
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	        }finally {
-				sqlSession.close();
+				
 			} 
 
 	        return CommentList;

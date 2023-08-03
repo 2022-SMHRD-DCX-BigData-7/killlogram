@@ -36,7 +36,7 @@
 	  <!--게시물 등록  -->
 	  <insert id ="insertPost" parameterType="com.smhrd.domain.PostVO">
 	  	insert into post_info (post_idx, post_title, post_content, user_id, created_at, post_file, post_likes) 
-	  	values (post_info_SEQ.nextval, #{post_title}, #{post_content}, #{user_id}, TO_CHAR(SYSDATE,'YYYY-MM-DD') , #{post_file, jdbcType=VARCHAR},0)
+	  	values (post_info_SEQ.nextval, #{post_title}, #{post_content}, #{user_id}, TO_CHAR(SYSDATE,'YYYY-MM-DD') , #{post_file},0)
 	  	
 	  </insert>
   
@@ -46,7 +46,9 @@
 	</select> 
   
   
-
+	<select id="selectImage" parameterType="Int" resultType="com.smhrd.domain.PostVO">
+	select * from post_info where post_idx=#{post_idx}
+	</select>
   
   
   

@@ -20,8 +20,7 @@
 		<update id="updateMember" parameterType="com.smhrd.domain.KilllogramVO">
 	update user_info set user_nick =#{nick}, user_pw=#{password}
 	where user_id =#{id}
-	</update>
-
+	</update>	
 	
 	
 </mapper>

@@ -1,6 +1,5 @@
 package com.smhrd.domain;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,27 +9,24 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import com.smhrd.database.SqlSessionManager;
 
 public class MyNutritionfactsDAO {
-    private SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSession();
+	private SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSession();
+	SqlSession sqlSession = sqlSessionFactory.openSession();
 
-    // Insert MyNutritionfactInfo into the database
-    public boolean insertMyNutritionFactInfo(String meal, float calories, int nutriIdx, Date createdAt) {
-        try {
-            SqlSession sqlSession = sqlSessionFactory.openSession();
-            Map<String, Object> paramMap = new HashMap<>();
-            paramMap.put("meal", meal);
-            paramMap.put("calories", calories);
-            paramMap.put("nutriIdx", nutriIdx);
-            paramMap.put("createdAt", createdAt);
+    // MyNutritionfactInfo DB 삽입
+	public int insertMyNutritionFactInfo(MyNutritionfactsVO mnFacts, int[] nutriIdxArray) {
+        int cnt = 0;
+        try{
+            // Map을 이용해 파라미터로 넘길 데이터를 준비
+            Map<String, Object> param = new HashMap<>();
+            param.put("user_id", mnFacts.getUser_id());
+            param.put("nutriidxArray", nutriIdxArray);
 
-            int rowsInserted = sqlSession.insert("com.smhrd.database.NutritonfactsMapper.insertMyNutritionFactInfo", paramMap);
+            // MyBatis를 사용하여 데이터베이스에 INSERT 쿼리 실행
+            cnt = sqlSession.insert("insertMyNutritionFactInfo", param);
             sqlSession.commit();
-            sqlSession.close();
-
-            return rowsInserted > 0;
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        return false;
+        return cnt;
     }
 }

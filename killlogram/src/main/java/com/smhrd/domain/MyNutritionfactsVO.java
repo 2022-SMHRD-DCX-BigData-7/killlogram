@@ -1,22 +1,25 @@
 package com.smhrd.domain;
 
+import java.sql.Timestamp;
+
 public class MyNutritionfactsVO {
     private int mn_idx;
     private int nutri_idx;
     private String user_id;
-    private String created_at;
+    private Timestamp created_at;
 
     public MyNutritionfactsVO() {
-    }
+    }    
 
-    public MyNutritionfactsVO(int mn_idx, int nutri_idx, String user_id, String created_at) {
-        this.mn_idx = mn_idx;
-        this.nutri_idx = nutri_idx;
-        this.user_id = user_id;
-        this.created_at = created_at;
-    }
+    public MyNutritionfactsVO(int mn_idx, int nutri_idx, String user_id, Timestamp created_at) {
+		super();
+		this.mn_idx = mn_idx;
+		this.nutri_idx = nutri_idx;
+		this.user_id = user_id;
+		this.created_at = created_at;
+	}
 
-    public int getMn_idx() {
+	public int getMn_idx() {
         return mn_idx;
     }
 
@@ -40,11 +43,11 @@ public class MyNutritionfactsVO {
         this.user_id = user_id;
     }
 
-    public String getCreated_at() {
+    public Timestamp getCreated_at() {
         return created_at;
     }
 
-    public void setCreated_at(String created_at) {
+    public void setCreated_at(Timestamp created_at) {
         this.created_at = created_at;
     }
 }

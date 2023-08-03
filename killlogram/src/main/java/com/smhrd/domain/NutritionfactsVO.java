@@ -1,6 +1,6 @@
 package com.smhrd.domain;
 
-public class NutritonfactsVO {
+public class NutritionfactsVO {
 	private int nutri_idx;
     private String food_name;
     private Float calories;
@@ -11,10 +11,10 @@ public class NutritonfactsVO {
     private String unit;
 
     // 기본 생성자
-    public NutritonfactsVO() {
+    public NutritionfactsVO() {
     }
 
-	public NutritonfactsVO(int nutri_idx, String food_name, Float calories, Float protein, Float carbohydrate,
+	public NutritionfactsVO(int nutri_idx, String food_name, Float calories, Float protein, Float carbohydrate,
 			Float fat, int intake, String unit) {
 		super();
 		this.nutri_idx = nutri_idx;

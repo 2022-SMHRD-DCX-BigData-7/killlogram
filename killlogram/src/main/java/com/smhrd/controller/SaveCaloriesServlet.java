@@ -2,17 +2,21 @@ package com.smhrd.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.sql.Timestamp;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+
+import com.smhrd.database.SqlSessionManager;
 import com.smhrd.domain.MyNutritionfactsDAO;
+import com.smhrd.domain.MyNutritionfactsVO;
 
 @WebServlet("/SaveCaloriesServlet")
 public class SaveCaloriesServlet extends HttpServlet {
@@ -20,25 +24,49 @@ public class SaveCaloriesServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("[SaveCaloriesServlet - doPost]");
+        System.out.println("[SaveCaloriesServlet]");
 
-        // 파라미터 수집
-        String meal = request.getParameter("meal");
-        float calories = Float.parseFloat(request.getParameter("calories"));
-        int nutriIdx = Integer.parseInt(request.getParameter("nutriIdx"));
-        Date createdAt = new Date();
+        HttpSession session = request.getSession();
 
-        // 해당 정보를 데이터베이스에 저장하는 로직을 수행합니다.
-        // 여기서는 예시를 위해 MyNutritionfactsDAO 클래스를 사용하여 데이터베이스에 저장하는 것으로 가정합니다.
-        MyNutritionfactsDAO myNutritionfactsDAO = new MyNutritionfactsDAO();
-        boolean result = myNutritionfactsDAO.insertMyNutritionFactInfo(meal, calories, nutriIdx, createdAt);
+        String[] nutriIdxParams = request.getParameterValues("nutri_idx");
 
-        // 결과를 클라이언트에 반환
-        response.setContentType("application/json");
-        response.setCharacterEncoding("utf-8");
-        PrintWriter out = response.getWriter();
-        Map<String, Object> resultMap = new HashMap<>();
-        resultMap.put("result", result);
-        out.print(resultMap);
+        // nutriIdx가 null이거나 비어있는지 검사
+        if (nutriIdxParams != null && nutriIdxParams.length > 0) {
+            int[] nutriIdxArray = new int[nutriIdxParams.length];
+
+            String user_id = request.getParameter("user_id");
+            Timestamp created_at = new Timestamp(System.currentTimeMillis());
+
+                // insertMyNutritionFactInfo 메서드를 한 번만 호출하여 모든 음식 정보를 DB에 저장
+                SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSession();
+                try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+                    MyNutritionfactsDAO MNdao = new MyNutritionfactsDAO();
+                    for (int i = 0; i < nutriIdxParams.length; i++) {
+                        String[] parts = nutriIdxParams[i].split(",");
+                        for (String part : parts) {
+                            if (part.matches("\\d+")) {
+                                int nutriIdx = Integer.parseInt(part);
+                                nutriIdxArray[i] = nutriIdx;
+
+                                MyNutritionfactsVO MNfacts = new MyNutritionfactsVO();
+                                MNfacts.setUser_id(user_id);
+                                MNfacts.setNutri_idx(nutriIdx);
+                                MNfacts.setCreated_at(created_at);
+
+                                int cnt = MNdao.insertMyNutritionFactInfo(MNfacts, nutriIdxArray);
+
+                                if (cnt > 0) {
+                                    System.out.println("칼로리 정보 저장 성공!");
+                                } else {
+                                    System.out.println("올바르지 않은 입력값이 포함되어 있습니다.");
+                                }
+                            } else {
+                                System.out.println("유효하지 않은 숫자 형식입니다. 값: " + part);
+                                return;
+                            }
+                        }
+                    }
+                }
+        }
     }
 }

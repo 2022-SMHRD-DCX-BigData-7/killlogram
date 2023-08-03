@@ -7,18 +7,18 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.smhrd.database.SqlSessionManager;
 
-public class NutritonfactsDAO {
+public class NutritionfactsDAO {
 	
     private SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSession();
 
-    public List<NutritonfactsVO> selectNutri(String foodName) {
-        List<NutritonfactsVO> nutriList = null;
+    public List<NutritionfactsVO> selectNutri(String foodName) {
+        List<NutritionfactsVO> nutriList = null;
 
         try {
             // 음식 이름이 null이 아닐 경우에만 데이터베이스에서 음식 정보 조회
             if (foodName != null) {
                 SqlSession sqlSession = sqlSessionFactory.openSession();
-                nutriList = sqlSession.selectList("com.smhrd.database.NutritonfactsMapper.selectNutriByName", "%" + foodName + "%");
+                nutriList = sqlSession.selectList("com.smhrd.database.NutritionfactsMapper.selectNutriByName", "%" + foodName + "%");
                 
             }
         } catch (Exception e) {

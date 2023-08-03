@@ -2,13 +2,13 @@ package com.smhrd.domain;
 
 public class KilllogramVO {
 
-
-
+	
 	private String id;
 	private String password;
 	private String name;
 	private String nick;
 	
+
 	public KilllogramVO(String id, String password) {
 		super();
 		this.id = id;

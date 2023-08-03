@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-import com.smhrd.domain.NutritonfactsDAO;
-import com.smhrd.domain.NutritonfactsVO;
+import com.smhrd.domain.NutritionfactsDAO;
+import com.smhrd.domain.NutritionfactsVO;
 
 @WebServlet("/NutriList")
 public class NutriList extends HttpServlet {
@@ -25,9 +25,9 @@ public class NutriList extends HttpServlet {
         // 파라미터 수집
         String food_name = request.getParameter("food_name");
 
-        // 데이터베이스 음식 정보를 조회하기 위해 NutritonfactsDAO 사용
-        NutritonfactsDAO dao = new NutritonfactsDAO();
-        List<NutritonfactsVO> mlist = dao.selectNutri(food_name);
+        // 데이터베이스 음식 정보를 조회하기 위해 NutritionfactsDAO 사용
+        NutritionfactsDAO dao = new NutritionfactsDAO();
+        List<NutritionfactsVO> mlist = dao.selectNutri(food_name);
 
         Gson gson = new Gson();
 

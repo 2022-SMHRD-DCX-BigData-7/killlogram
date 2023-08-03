@@ -1,6 +1,33 @@
 @import url("fontawesome-all.min.css");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic|Open+Sans+Condensed:700");
 
+.save-btn {
+    background-color: white !important;
+    color: black !important;
+    margin: 25px 42px 10px 638px;
+    position: relative;
+    right: -352px;
+    bottom: 245px;
+}
+.comment-btn {
+    background-color: white !important;
+    color: black !important;
+    position: relative;
+    bottom: 47px;
+    right: -480px;
+}
+.com5{
+   position: relative;
+    right: 758px;
+}
+.heart-btn {
+    background-color: white;
+    margin: 25px 42px 10px 638px;
+    position: relative;
+    bottom: 134px;
+    right: -274px;
+}
+
 .line{
 	border-top: solid 5px #e7eae8;
 	    vertical-align: baseline;

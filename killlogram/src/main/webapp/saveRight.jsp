@@ -1,3 +1,4 @@
+<%@page import="com.smhrd.domain.KilllogramVO"%>
 <%@page import="com.smhrd.domain.PostDAO"%>
 <%@page import="com.smhrd.domain.PostVO"%>
 <%@page import="com.smhrd.domain.SaveVO"%>
@@ -8,9 +9,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE HTML>
 <%
-
+		
+		KilllogramVO mvo = (KilllogramVO)session.getAttribute("loginMember");
+		String user_id = null;
+		if(mvo != null){
+		user_id = mvo.getId();
+		}
  	   SaveDAO saveDAO = new SaveDAO();
- 	   List<SaveVO> saveList = saveDAO.selectSave();
+ 	   List<PostVO> saveList = saveDAO.selectSave(user_id);
 
 	   PostDAO postDAO = new PostDAO();
 	   List<PostVO> postList = postDAO.selectPost(); 
@@ -36,7 +42,7 @@
 					</div>
 				</header>
 
-				<nav id="nav1">
+					<nav id="nav1">
 					<ul>
 						
 				 <%-- 로그인 정보가 없으면 로그인 할 수 있도록 --%>
@@ -83,40 +89,50 @@
 								  <header>
 									 <h2>save</h2>
 									 <p>저장된 게시물을 확인하세요</p>
-								  </header>
+<!-- 									  <h2 class="major"><span>Save List</span></h2>
+ -->								  </header>
  
  									<!-- 저장된 게시물 출력  -->
 									 <table border="1">
 										
-										<%for(PostVO post:postList){ %>
-											<% if(save.getPost_idx() == post.getPost_idx()) %>
-										<tr>
-										<td>ID : <%=save.getUser_id() %></td>
-										</tr>
-										<tr>
-										<td>Title : <%=save.getCreated_at() %></td>
-										</tr>
-										<tr>
-										<td>Content : <%=save.getPost_idx() %></td>
-										</tr>
-																				
-									<%} %>		
+										<h2 class="major"><span></span></h2>
+										<%for(PostVO save:saveList){ %>
+										<% if (saveList != null && !saveList.isEmpty()) { %>
+												
+													<tr>
+													<td>작성자 : <%=save.getUser_id() %> </td>
+													</tr>
+													<tr>
+													<td>제목 : <%=save.getPost_title() %></td>
+													</tr>
+													<tr>
+													<td>내용 : <%=save.getPost_content() %> </td>
+													</tr> 
+													<tr>
+													<td>첨부파일 : <%=save.getPost_file() %></td>
+													</tr>		
+													<tr>
+													<td><h2 class="major"><span></span></h2></td>
+													</tr>							
+												<%} %>		
+											<%} %>
+										
 									</table>			
 
 							   </article>
  
 						 </div>
 					  </div>
-					  <div class="col-12">
+					  <!-- <div class="col-12">
  
-						 <!-- Features -->
+						 Features
 							<section class="box features">
-							   <h2 class="major"><span>Save List</span></h2>
+							  
 							   <div>
 								  <div class="row">
 									 <div class="col-3 col-6-medium col-12-small">
  
-										<!-- Feature -->
+										Feature
 										   <section class="box feature">
 											  <a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
 											  <h3><a href="#">title1</a></h3>
@@ -127,7 +143,7 @@
 									 </div>
 									 <div class="col-3 col-6-medium col-12-small">
  
-										<!-- Feature -->
+										Feature
 										   <section class="box feature">
 											  <a href="#" class="image featured"><img src="images/pic02.jpg" alt="" /></a>
 											  <h3><a href="#">title2</a></h3>
@@ -140,7 +156,7 @@
 									 </div>
 									 <div class="col-3 col-6-medium col-12-small">
  
-										<!-- Feature -->
+										Feature
 										   <section class="box feature">
 											  <a href="#" class="image featured"><img src="images/pic03.jpg" alt="" /></a>
 											  <h3><a href="#">title3</a></h3>
@@ -153,7 +169,7 @@
 									 </div>
 									 <div class="col-3 col-6-medium col-12-small">
  
-										<!-- Feature -->
+										Feature
 										   <section class="box feature">
 											  <a href="#" class="image featured"><img src="images/pic04.jpg" alt="" /></a>
 											  <h3><a href="#">title4</a></h3>
@@ -177,7 +193,7 @@
 		
  
 	   </div>
- 
+  -->
 	   <!-- Scripts -->
 		  <script src="assets/js/jquery.min.js"></script>
 		  <script src="assets/js/jquery.dropotron.min.js"></script>

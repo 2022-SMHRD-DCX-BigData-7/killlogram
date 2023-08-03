@@ -1,6 +1,12 @@
 package com.smhrd.domain;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.util.Collection;
 import java.util.List;
+
+import javax.servlet.http.Part;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -57,14 +63,30 @@ public class PostDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }finally {
-			sqlSession.close();
+			
 		} 
 
         return postList;
     }
 	
-	
-	
+	//이미지 조회
+	public PostVO selectImage(int post_idx) {
+        PostVO image = null;
+
+        try {
+
+			/* SqlSession sqlSession = sqlSessionFactory.openSession(); */
+        		image = sqlSession.selectOne("selectImage",post_idx);
+        	
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+			
+		} 
+
+        return image;
+    }
 }
+
 
 

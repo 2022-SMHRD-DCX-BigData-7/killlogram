@@ -58,6 +58,12 @@
   	<description></description>
   	<servlet-class>com.smhrd.controller.LikeCon</servlet-class>
   </servlet>
+   <servlet>
+   	<servlet-name>DeleteMyNutri</servlet-name>
+   	<display-name>DeleteMyNutri</display-name>
+   	<description></description>
+   	<servlet-class>com.smhrd.controller.DeleteMyNutri</servlet-class>
+   </servlet>
   
 
   <servlet-mapping>
@@ -95,6 +101,10 @@
   <servlet-mapping>
   	<servlet-name>LikeCon</servlet-name>
   	<url-pattern>/LikeCon</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>DeleteMyNutri</servlet-name>
+  	<url-pattern>/DeleteMyNutri1</url-pattern>
   </servlet-mapping>
 
 </web-app>

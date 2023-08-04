@@ -14,4 +14,13 @@
  		</foreach>   	
     </insert>
     
+    <delete id="deleteMyNutritionFact" parameterType="int">
+    	delete from MY_NUTRITIONFACT_INFO where NUTRI_IDX=#{nutri_idx}
+    </delete>
+    
+    <select id="selectUserNutritionFacts" parameterType="java.lang.String" resultType="com.smhrd.domain.MyNutritionfactsVO">
+        SELECT * FROM MY_NUTRITIONFACT_INFO WHERE USER_ID=#{user_id}
+        SELECT * FROM MY_NUTRITIONFACT_INFO WHERE CREATED_AT >= TO_CHAR(SYSDATE-7,'YYYYMMDD');
+    </select>
+    
 </mapper>

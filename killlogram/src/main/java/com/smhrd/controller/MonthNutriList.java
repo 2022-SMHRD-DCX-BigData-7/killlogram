@@ -14,10 +14,10 @@ import com.google.gson.Gson;
 import com.smhrd.domain.MyNutritionfactsDAO;
 import com.smhrd.domain.MyNutritionfactsVO;
 
-@WebServlet("/WeekNutriList")
-public class WeekNutriList extends HttpServlet {
+@WebServlet("/MonthNutriList")
+public class MonthNutriList extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("[WeekNutriList]");
+        System.out.println("[MonthNutriList]");
 
         String user_id = request.getParameter("user_id");
 

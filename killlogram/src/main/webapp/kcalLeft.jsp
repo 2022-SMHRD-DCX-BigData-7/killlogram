@@ -72,11 +72,14 @@
                      	<button type="button" onclick="location.href='kcalLeft.jsp'" class="button1">식단 칼로리</button> 
                         <button type="button" onclick="location.href='kcalWeek.jsp'" class="button1">운동 칼로리</button> <br>
                         <button type="button" onclick="location.href='kcalLeft.jsp'"  class="btn3">일</button>
-                        <button type="button" onclick="Weekkcal()"   class="btn4">주</button>
-                        <button type="button" onclick="Monthkcal()"  class="btn5">월</button>
+                        <button type="button" onclick="Weekkcal('${loginMember.id}')"   class="btn4">주</button>
+                        <button type="button" onclick="Monthkcal('${loginMember.id}')"  class="btn5">월</button>
                         
                      <!-- 주간 -->
-                     <div id="weeklyCaloriesInfo"></div>
+                     <div id="weeklyCaloriesInfo">
+                     	<table id="weektb">                   	
+                     	</table>
+                     </div>
                      <!-- 월간 -->
                      <div id="monthlyCaloriesInfo"></div>
                                   
@@ -473,25 +476,68 @@ $(document).ready(function() {
 
     
     
-    
-    // 주간 칼로리 정보 불러오기
-	function Weekkcal(user_id, nutriIdxArray) {
+    //주간 칼로리 정보 출력
+   function Weekkcal(user_id) {
+	    let userId = "${loginMember.id}";
+	    
 	    $.ajax({
 	        url: "WeekNutriList",
 	        type: "post",
 	        dataType: "json",
-	        data: { "user_id": user_id, "nutri_idx": nutriIdxArray },
+	        data: {
+	            "user_id": userId,
+	        },
 	        success: function (response) {
-	            // 주간 칼로리 정보를 response에서 처리하는 로직을 작성
-	            // response는 JSON 형태의 데이터 배열로 주어짐
-	            // 배열을 순회하면서 주간 칼로리 정보를 표시하거나 처리
 	            console.log(response);
+	            $(".totalkcal").empty();
+
+	            if (response.length > 0) {
+	                // 음식 정보 출력
+	                $.each(response, function (idx, item) {
+	                    var row = $("<tr></tr>");
+	                    row.append($("<td></td>").text(item.nutri_idx));           
+                	    row.append($("<td></td>").text(item.created_at));
+	                    $(".totalkcal").append(row);
+	                });
+	            }
 	        },
 	        error: function () {
 	            alert("주간 칼로리 정보를 불러오는 데 실패했습니다.");
-	        }
+	        },
 	    });
 	}
+    
+   //월간 칼로리 정보 출력
+   function Monthkcal(user_id) {
+	    let userId = "${loginMember.id}";
+	    
+	    $.ajax({
+	        url: "MonthNutriList",
+	        type: "post",
+	        dataType: "json",
+	        data: {
+	            "user_id": userId,
+	        },
+	        success: function (response) {
+	            console.log(response);
+	            $(".totalkcal").empty();
+
+	            if (response.length > 0) {
+	                // 음식 정보 출력
+	                $.each(response, function (idx, item) {
+	                    var row = $("<tr></tr>");
+	                    row.append($("<td></td>").text(item.nutri_idx));           
+                	    row.append($("<td></td>").text(item.created_at));
+	                    $(".totalkcal").append(row);
+	                });
+	            }
+	        },
+	        error: function () {
+	            alert("월간 칼로리 정보를 불러오는 데 실패했습니다.");
+	        },
+	    });
+	}
+
 
 </script>
 

@@ -50,17 +50,31 @@ public class MyNutritionfactsDAO {
 	    }
 	    return totalDeleted;
 	}
-	public List<MyNutritionfactsVO> selectMyNutritionFacts(int nutri_idx) {
-        List<MyNutritionfactsVO> myNutritiList = null;
+	// 주간 칼로리 정보 조회
+	public List<MyNutritionfactsVO> selectWeeklyCalories(String user_id) {
+        List<MyNutritionfactsVO> myWeekNutriList = null;
         try {
-            if (nutri_idx != null) {
-                SqlSession sqlSession = sqlSessionFactory.openSession();
-                nutri_idx = sqlSession.selectList("com.smhrd.database.NutritionfactsMapper.selectUserNutritionFacts", nutri_idx);
-                
-            }
+        	if(user_id != null) {
+        		SqlSession sqlSession = sqlSessionFactory.openSession();
+        		myWeekNutriList = sqlSession.selectList("com.smhrd.database.NutritionfactsMapper.selectUserNutritionFacts", user_id);;
+        	}
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return nutri_idx;
+        return myWeekNutriList;
+    }
+	
+	// 월간 칼로리 정보 조회
+	public List<MyNutritionfactsVO> MonhtselectUserNutritionFacts(String user_id) {
+        List<MyNutritionfactsVO> myMonthNutriList = null;
+        try {
+        	if(user_id != null) {
+        		SqlSession sqlSession = sqlSessionFactory.openSession();
+        		myMonthNutriList = sqlSession.selectList("com.smhrd.database.NutritionfactsMapper.MonhtselectUserNutritionFacts", user_id);;
+        	}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return myMonthNutriList;
     }
 }

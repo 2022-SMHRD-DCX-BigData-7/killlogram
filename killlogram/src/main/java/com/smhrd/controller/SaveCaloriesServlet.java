@@ -1,7 +1,6 @@
 package com.smhrd.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Timestamp;
 
 import javax.servlet.ServletException;

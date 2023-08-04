@@ -64,6 +64,12 @@
    	<description></description>
    	<servlet-class>com.smhrd.controller.DeleteMyNutri</servlet-class>
    </servlet>
+   <servlet>
+   	<servlet-name>MonthNutriList</servlet-name>
+   	<display-name>MonthNutriList</display-name>
+   	<description></description>
+   	<servlet-class>com.smhrd.controller.MonthNutriList</servlet-class>
+   </servlet>
   
 
   <servlet-mapping>
@@ -105,6 +111,10 @@
   <servlet-mapping>
   	<servlet-name>DeleteMyNutri</servlet-name>
   	<url-pattern>/DeleteMyNutri1</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>MonthNutriList</servlet-name>
+  	<url-pattern>/MonthNutriList1</url-pattern>
   </servlet-mapping>
 
 </web-app>

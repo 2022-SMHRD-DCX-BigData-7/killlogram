@@ -50,19 +50,17 @@ public class MyNutritionfactsDAO {
 	    }
 	    return totalDeleted;
 	}
-	public List<MyNutritionfactsVO> selectMyNutritionFacts(String user_id, int[] nutriIdxArray) {
-        List<MyNutritionfactsVO> nutritionList = null;
-        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-            // Map을 이용해 파라미터로 넘길 데이터를 준비
-            Map<String, Object> param = new HashMap<>();
-            param.put("user_id", user_id);
-            param.put("nutriidxArray", nutriIdxArray);
-
-            // MyBatis를 사용하여 데이터베이스에서 영양 성분 정보를 조회
-            nutritionList = sqlSession.selectList("selectMyNutritionFacts", param);
+	public List<MyNutritionfactsVO> selectMyNutritionFacts(int nutri_idx) {
+        List<MyNutritionfactsVO> myNutritiList = null;
+        try {
+            if (nutri_idx != null) {
+                SqlSession sqlSession = sqlSessionFactory.openSession();
+                nutri_idx = sqlSession.selectList("com.smhrd.database.NutritionfactsMapper.selectUserNutritionFacts", nutri_idx);
+                
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return nutritionList;
+        return nutri_idx;
     }
 }

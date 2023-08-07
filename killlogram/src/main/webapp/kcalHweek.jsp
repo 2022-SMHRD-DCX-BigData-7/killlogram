@@ -120,7 +120,6 @@
                       			    <button type="button" onclick="MonthHkcal('${loginMember.id}')"  class="btn5">월</button>
                                    
 									<span class="kcal"></span>
-									<div class="line"></div>
 									<div class="search_wrapper">
 										<div class="mid_wrapper">
 										

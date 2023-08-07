@@ -35,24 +35,24 @@
             </div>
         </header>
 
-		<nav id="nav1">
-		    <ul>
-		        <c:choose>
-		            <%-- 로그인 정보가 있을 경우 --%>
-		            <c:when test="${not empty loginMember}">
-		                <li><a href="chat.jsp">채팅</a></li>
-		                <li><a class="myp" href="mypage.jsp">마이페이지</a></li> 
-		                <li><a class="log" href="LogoutCon">로그아웃</a></li>
-		                <p>로그인된 사용자의 아이디: ${loginMember.id}</p>
-		            </c:when>
-		            <%-- 로그인 정보가 없을 경우 --%>
-		            <c:otherwise>
-		                <li><a href="login.jsp">로그인</a></li>
-		                <li><a href="register.jsp">회원가입</a></li>
-		            </c:otherwise>
-		        </c:choose>
-		    </ul>
-		</nav>
+      <nav id="nav1">
+          <ul>
+              <c:choose>
+                  <%-- 로그인 정보가 있을 경우 --%>
+                  <c:when test="${not empty loginMember}">
+                      <li><a href="chat.jsp">채팅</a></li>
+                      <li><a class="myp" href="mypage.jsp">마이페이지</a></li> 
+                      <li><a class="log" href="LogoutCon">로그아웃</a></li>
+                      <p>로그인된 사용자의 아이디: ${loginMember.id}</p>
+                  </c:when>
+                  <%-- 로그인 정보가 없을 경우 --%>
+                  <c:otherwise>
+                      <li><a href="login.jsp">로그인</a></li>
+                      <li><a href="register.jsp">회원가입</a></li>
+                  </c:otherwise>
+              </c:choose>
+          </ul>
+      </nav>
 
         <nav id="nav">
             <ul>
@@ -72,26 +72,26 @@
 
                     <div class="col-9 col-12-medium imp-medium">
                         <div class="content">
-	                     	<button type="button" onclick="location.href='kcalLeft.jsp'" class="button1">식단 칼로리</button> 
-	                        <button type="button" onclick="location.href='kcalHweek.jsp'" class="button1">운동 칼로리</button> <br>
-	                        <button type="button" onclick="location.href='kcalLeft.jsp'"  class="btn3">일</button>
-	                        <button type="button" onclick="Weekkcal('${loginMember.id}')"   class="btn4">주</button>
-	                        <button type="button" onclick="Monthkcal('${loginMember.id}')"  class="btn5">월</button>
+                           <button type="button" onclick="location.href='kcalLeft.jsp'" class="button1">식단 칼로리</button> 
+                           <button type="button" onclick="location.href='kcalHweek.jsp'" class="button1">운동 칼로리</button> <br>
+                           <button type="button" onclick="location.href='kcalLeft.jsp'"  class="btn3">일</button>
+                           <button type="button" onclick="Weekkcal('${loginMember.id}')"   class="btn4">주</button>
+                           <button type="button" onclick="Monthkcal('${loginMember.id}')"  class="btn5">월</button>
                         </div>
-	                     <!-- 주간 -->
-	                     <div id="weeklyCaloriesInfo">
-	                     	<table id="weektb">                   	
-	                     	</table>
-	                     </div>
-	                     <!-- 월간 -->
-	                     <div id="monthlyCaloriesInfo">
-	                        <table id="monthtb">                   	
-	                     	</table>
-	                     </div>
+                        <!-- 주간 -->
+                        <div id="weeklyCaloriesInfo">
+                           <table id="weektb">                      
+                           </table>
+                        </div>
+                        <!-- 월간 -->
+                        <div id="monthlyCaloriesInfo">
+                           <table id="monthtb">                      
+                           </table>
+                        </div>
                      </div>
                                   
-                     <div class="totalkcal">
-                        <span>하루 총 섭취량</span>
+                    <div class="totalkcal" >
+                        <span class="day">하루 총 섭취량</span>
                         <!-- 일간 -->                       
                         <h2 class="total">총 열량 : <span id="totalCalories">0</span> kcal</h2>
                         <h2 class="meal">아침 : <span id="breakfast">0</span> kcal</h2>
@@ -101,11 +101,10 @@
                         <h4 class="meal">탄수화물 : <span id="carbohydrate">0</span></h4>     
                         <h4 class="meal">지방 : <span id="fat">0</span></h4>
                      </div>
-				
 
 
-                            <p class="kcal">칼로리 검색</p>
-                              <div class="line"></div>
+
+                            <p class="kcal">칼로리 검색</p>                         
                            
                             
                         <div class="mid_wrapper">
@@ -116,7 +115,7 @@
                                             <input type="text" class="search_kcal" autocomplete="off" name="food_name" onkeydown="searchOnEnter(event)">
                                         </td>
                                         <td>
-                                            <button type="button" onclick="dataload()">검색</button>
+                                            <button class="search3" type="button" onclick="dataload()">검색</button>
                                         </td>
                                     </tr>
                                 </table>
@@ -125,24 +124,24 @@
                         
                         <div class="nutritionfacts_info">
                             <table id="tb">
-							    <thead>
-							      <tr>
-							        <th>선택</th>
-							        <th>음식이름</th>
-							        <th>칼로리</th>
-							        <th>단백질</th>
-							        <th>탄수화물</th>
-							        <th>지방</th>
-							        <th>단위</th>                  		
-							      </tr>
-							    </thead>
-							    <tbody id="tbd">
-							      <!-- 검색한 음식 정보 출력 -->
-							    </tbody>    
+                         <thead>
+                           <tr>
+                             <th>선택</th>
+                             <th>음식이름</th>
+                             <th>칼로리</th>
+                             <th>단백질</th>
+                             <th>탄수화물</th>
+                             <th>지방</th>
+                             <th>단위</th>                        
+                           </tr>
+                         </thead>
+                         <tbody id="tbd">
+                           <!-- 검색한 음식 정보 출력 -->
+                         </tbody>    
                             </table>
                         </div>
                         
-                        <select name="selectmeal" class="meal">
+                        <select name="selectmeal" class="meal" id="mbn">
                             <option value="1">아침</option>
                             <option value="2">점심</option>
                             <option value="3">저녁</option>
@@ -151,8 +150,8 @@
                         <button type="button" id="deleteDaily" onclick="deleteDailyCalories()">삭제</button>
 <!--                         <button onclick="deleteWeeklyCalories()" class="kcaksend">주간 칼로리 삭제</button>
                         <button onclick="deleteMonthlyCalories()" class="kcaksend">월간 칼로리 삭제</button> -->
-		</div> 
-	</div>
+      </div> 
+   </div>
 <script type="text/javascript">
 
 let selectedRow; // 선택한 열

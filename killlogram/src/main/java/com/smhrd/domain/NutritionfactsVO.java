@@ -14,6 +14,12 @@ public class NutritionfactsVO {
     public NutritionfactsVO() {
     }
 
+	public NutritionfactsVO(String food_name, Float calories) {
+		super();
+		this.food_name = food_name;
+		this.calories = calories;
+	}
+
 	public NutritionfactsVO(int nutri_idx, String food_name, Float calories, Float protein, Float carbohydrate,
 			Float fat, int intake, String unit) {
 		super();

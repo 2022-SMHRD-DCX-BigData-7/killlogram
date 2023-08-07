@@ -14,11 +14,14 @@
 %>
 <html>
 <head>
+
     <title>Left Sidebar(kcal)</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	
 </head>
 <body class="is-preload">
     <div id="page-wrapper">
@@ -63,25 +66,29 @@
         </nav>
 
         <!-- Main -->
-        <section id="main">
+        <section id="main"></section>
             <div class="container">
-                <div class="row">
+                <div class="row"></div>
 
                     <div class="col-9 col-12-medium imp-medium">
                         <div class="content">
-                     	<button type="button" onclick="location.href='kcalLeft.jsp'" class="button1">식단 칼로리</button> 
-                        <button type="button" onclick="location.href='kcalWeek.jsp'" class="button1">운동 칼로리</button> <br>
-                        <button type="button" onclick="location.href='kcalLeft.jsp'"  class="btn3">일</button>
-                        <button type="button" onclick="Weekkcal('${loginMember.id}')"   class="btn4">주</button>
-                        <button type="button" onclick="Monthkcal('${loginMember.id}')"  class="btn5">월</button>
-                        
-                     <!-- 주간 -->
-                     <div id="weeklyCaloriesInfo">
-                     	<table id="weektb">                   	
-                     	</table>
+	                     	<button type="button" onclick="location.href='kcalLeft.jsp'" class="button1">식단 칼로리</button> 
+	                        <button type="button" onclick="location.href='kcalHweek.jsp'" class="button1">운동 칼로리</button> <br>
+	                        <button type="button" onclick="location.href='kcalLeft.jsp'"  class="btn3">일</button>
+	                        <button type="button" onclick="Weekkcal('${loginMember.id}')"   class="btn4">주</button>
+	                        <button type="button" onclick="Monthkcal('${loginMember.id}')"  class="btn5">월</button>
+                        </div>
+	                     <!-- 주간 -->
+	                     <div id="weeklyCaloriesInfo">
+	                     	<table id="weektb">                   	
+	                     	</table>
+	                     </div>
+	                     <!-- 월간 -->
+	                     <div id="monthlyCaloriesInfo">
+	                        <table id="monthtb">                   	
+	                     	</table>
+	                     </div>
                      </div>
-                     <!-- 월간 -->
-                     <div id="monthlyCaloriesInfo"></div>
                                   
                      <div class="totalkcal">
                         <span>하루 총 섭취량</span>
@@ -94,12 +101,12 @@
                         <h4 class="meal">탄수화물 : <span id="carbohydrate">0</span></h4>     
                         <h4 class="meal">지방 : <span id="fat">0</span></h4>
                      </div>
-
+				
 
 
                             <p class="kcal">칼로리 검색</p>
                               <div class="line"></div>
-                            
+                           
                             
                         <div class="mid_wrapper">
                             <form class="aaa">
@@ -118,7 +125,20 @@
                         
                         <div class="nutritionfacts_info">
                             <table id="tb">
-                                        <!-- 검색한 음식 정보 출력 -->
+							    <thead>
+							      <tr>
+							        <th>선택</th>
+							        <th>음식이름</th>
+							        <th>칼로리</th>
+							        <th>단백질</th>
+							        <th>탄수화물</th>
+							        <th>지방</th>
+							        <th>단위</th>                  		
+							      </tr>
+							    </thead>
+							    <tbody id="tbd">
+							      <!-- 검색한 음식 정보 출력 -->
+							    </tbody>    
                             </table>
                         </div>
                         
@@ -131,8 +151,8 @@
                         <button type="button" id="deleteDaily" onclick="deleteDailyCalories()">삭제</button>
 <!--                         <button onclick="deleteWeeklyCalories()" class="kcaksend">주간 칼로리 삭제</button>
                         <button onclick="deleteMonthlyCalories()" class="kcaksend">월간 칼로리 삭제</button> -->
-
-
+		</div> 
+	</div>
 <script type="text/javascript">
 
 let selectedRow; // 선택한 열
@@ -140,7 +160,7 @@ let selectedFood; // 선택한 음식
 let selectedCalories; // 선택한 음식의 칼로리
 let selectedProteins; // 선택한 음식의 단백질
 let selectedCarbohydrates; // 선택한 음식의 탄수화물
-let selectedFat; // 선택한 음식의 지방
+let selectedFats; // 선택한 음식의 지방
 let selectedMeal; // 아침 점심 저녁
 let nutriIdx; // 음식의 고유번호
 let createdAt; // 생성날짜
@@ -197,12 +217,11 @@ $(document).ready(function() {
             dataType: "json",
             success: function (response) {
                 // 테이블 초기화
-                $("#tb").empty();
-                
+                $("#tbd").empty();         
                 if (response.length > 0) {
-                    // 음식 정보 출력
+                    // 음식 정보 출력                 
                 	$.each(response, function (idx, item) {
-                	    row = $("<tr></tr>");
+                		row = $("<tr></tr>");
                 	    // checkbox를 클릭하면 inputMeal 함수 호출
                 	    row.append($("<td><input type='checkbox' onclick='inputMeal(this)'></td>"));
                 	    row.append($("<td></td>").append($("<input type='hidden' name='nutri_idx' value='" + item.nutri_idx + "'>")));                	    
@@ -214,7 +233,7 @@ $(document).ready(function() {
                 	    row.append($("<td></td>").text(item.fat));
                 	    row.append($("<td></td>").text(item.intake));
                 	    row.append($("<td></td>").text(item.unit));
-                	    $("#tb").append(row);
+                	    $("#tbd").append(row);               	  	
                 	});
                 } else {
                     alert("음식 이름이 없습니다.");
@@ -398,10 +417,11 @@ $(document).ready(function() {
            },
            dataType: "json",
            success: function (response) {
-               alert("칼로리 정보 저장에 실패했습니다.");
-           },
-           error: function () {
                alert("칼로리 정보 저장 성공!");
+           },
+           error: function (response) {
+               alert("칼로리 정보 저장에 실패했습니다");
+               console.log(response)
            }
        });
    }
@@ -474,20 +494,18 @@ $(document).ready(function() {
        $("#totalCalories").text("0");
    });
 
-    
-    
-    //주간 칼로리 정보 출력
+    // 주간 칼로리
    function Weekkcal(user_id) {
-	    let userId = "${loginMember.id}";
-	    
-	    $.ajax({
-	        url: "WeekNutriList",
-	        type: "post",
-	        dataType: "json",
-	        data: {
-	            "user_id": userId,
-	        },
-	        success: function (response) {
+	   let userId = "${loginMember.id}";   
+
+	   $.ajax({
+		    url: "WeekNutriList",
+		    type: "post",
+		    dataType: "json",
+		    data: {
+		    	"user_id": userId,
+		    },
+		    success: function (response) {
 	            console.log(response);
 	            $(".totalkcal").empty();
 
@@ -495,7 +513,8 @@ $(document).ready(function() {
 	                // 음식 정보 출력
 	                $.each(response, function (idx, item) {
 	                    var row = $("<tr></tr>");
-	                    row.append($("<td></td>").text(item.nutri_idx));           
+	                    row.append($("<td></td>").text(item.food_name)); 
+	                    row.append($("<td></td>").text(item.calories)); 	                    
                 	    row.append($("<td></td>").text(item.created_at));
 	                    $(".totalkcal").append(row);
 	                });
@@ -506,6 +525,7 @@ $(document).ready(function() {
 	        },
 	    });
 	}
+
     
    //월간 칼로리 정보 출력
    function Monthkcal(user_id) {
@@ -525,8 +545,9 @@ $(document).ready(function() {
 	            if (response.length > 0) {
 	                // 음식 정보 출력
 	                $.each(response, function (idx, item) {
-	                    var row = $("<tr></tr>");
-	                    row.append($("<td></td>").text(item.nutri_idx));           
+	                    var row = $("<tr></tr>");          
+	                    row.append($("<td></td>").text(item.food_name)); 
+	                    row.append($("<td></td>").text(item.calories)); 	                    
                 	    row.append($("<td></td>").text(item.created_at));
 	                    $(".totalkcal").append(row);
 	                });

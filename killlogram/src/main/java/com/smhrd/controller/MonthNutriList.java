@@ -18,23 +18,27 @@ import com.smhrd.domain.MyNutritionfactsVO;
 public class MonthNutriList extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("[MonthNutriList]");
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
 
+        PrintWriter out = response.getWriter();
         String user_id = request.getParameter("user_id");
 
 
-        // 데이터베이스 음식 정보를 조회하기 위해 NutritionfactsDAO 사용
-        MyNutritionfactsDAO mydao = new MyNutritionfactsDAO();
-        List<MyNutritionfactsVO> mylist = mydao.selectWeeklyCalories(user_id);
-
-        Gson gson = new Gson();
-
-        // toJson()으로 만든값은 String타입이다
-        String result = gson.toJson(mylist);
-
-        response.setContentType("application/json");
-        response.setCharacterEncoding("utf-8");
-
-        PrintWriter out = response.getWriter();
-        out.print(result);
+        try {
+            MyNutritionfactsDAO dao = new MyNutritionfactsDAO();
+            List<MyNutritionfactsVO> myMonthNutriList = dao.MonthNutriList(user_id); // userId 전달
+            
+            String food_name = request.getParameter("food_name");
+            String calories = request.getParameter("calories");
+            
+            out.print(new Gson().toJson(myMonthNutriList));
+            out.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            out.print("{\"error\": \"월간 칼로리 정보를 불러오는 데 실패했습니다.\"}");
+            out.flush();
+        }
     }
 }

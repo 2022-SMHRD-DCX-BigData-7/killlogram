@@ -11,14 +11,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-import com.smhrd.domain.MyNutritionfactsDAO;
-import com.smhrd.domain.MyNutritionfactsVO;
+import com.smhrd.domain.ExerciseDAO;
+import com.smhrd.domain.ExerciseVO;
 
-@WebServlet("/WeekNutriList")
-public class WeekNutriList extends HttpServlet {
+
+@WebServlet("/GetExerciseInfo")
+public class GetExerciseInfo extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("[WeekNutriList]");
+        System.out.println("[GetExercise]");
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
@@ -26,18 +27,18 @@ public class WeekNutriList extends HttpServlet {
         String user_id = request.getParameter("user_id"); // userId 파라미터 가져오기
         
         try {
-            MyNutritionfactsDAO dao = new MyNutritionfactsDAO();
-            List<MyNutritionfactsVO> weekNutriList = dao.WeekNutriList(user_id); // userId 전달
+            ExerciseDAO dao = new ExerciseDAO();
+            List<ExerciseVO> getExercise = dao.MyExerciseList(user_id); // userId 전달
             
-            String food_name = request.getParameter("food_name");
-            String calories = request.getParameter("calories");
+            String o2_waste = request.getParameter("o2_waste");
+            String calories_waste = request.getParameter("calories_waste");
             
-            out.print(new Gson().toJson(weekNutriList));
+            out.print(new Gson().toJson(getExercise));
             out.flush();
         } catch (Exception e) {
             e.printStackTrace();
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            out.print("{\"error\": \"주간 칼로리 정보를 불러오는 데 실패했습니다.\"}");
+            out.print("{\"error\": \"운동 칼로리 정보를 불러오는 데 실패했습니다.\"}");
             out.flush();
         }
     }

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smhrd.database.ExerciseMapper">
+
+    <insert id="saveExerciseKcal" parameterType="com.smhrd.domain.ExerciseVO" >
+		insert into EXERCISE_CALORIES_INFO (EXERCISE_IDX, USER_ID, USER_WEIGHT, EXERCISE_TIME, EXERCISE_STRENGTH, CREATED_AT)
+		values (EXERCISE_CALORIES_INFO_SEQ.nextval, #{user_id}, #{user_weight}, #{exercise_time}, #{exercise_strength}, sysdate)
+    </insert>
+    
+    <select id="MyExerciseList" parameterType="java.util.Map" resultType="com.smhrd.domain.ExerciseVO">
+    	<![CDATA[
+			SELECT 
+			    TRUNC(created_at) AS day,
+			    SUM(calories_waste) AS calories_waste
+			FROM
+			    EXERCISE_CALORIES_INFO
+			WHERE 
+			    created_at >= TRUNC(SYSDATE) AND created_at < TRUNC(SYSDATE) + 1 and user_id=#{user_id}
+			GROUP BY 
+			    TRUNC(created_at)
+			ORDER BY 
+			    TRUNC(created_at)
+	    ]]>   	
+    </select>
+    
+    <delete id="DeleteExercise" parameterType="java.lang.String">
+        <![CDATA[
+            DELETE FROM EXERCISE_CALORIES_INFO
+            WHERE CREATED_AT >= TRUNC(SYSDATE) AND CREATED_AT < TRUNC(SYSDATE + 1) AND user_id=#{user_id}
+        ]]>
+    </delete>
+    
+    <select id="WeekExerciseList" parameterType="java.util.Map" resultType="com.smhrd.domain.ExerciseVO">
+    	<![CDATA[
+		    SELECT EXERCISE_IDX, USER_ID, USER_WEIGHT, EXERCISE_TIME, EXERCISE_STRENGTH, O2_WASTE, calories_waste, created_at
+		    FROM EXERCISE_CALORIES_INFO
+		    WHERE created_at >= TRUNC(SYSDATE) - 7 AND user_id=#{user_id}
+		    ORDER BY EXERCISE_IDX, USER_ID, USER_WEIGHT, EXERCISE_TIME, EXERCISE_STRENGTH, O2_WASTE, created_at
+    	]]>
+    </select>
+    
+    <delete id="DeleteWeekExercise" parameterType="java.lang.String">
+        <![CDATA[
+            DELETE FROM EXERCISE_CALORIES_INFO
+			WHERE CREATED_AT >= TRUNC(SYSDATE) - 7 AND user_id=#{user_id}
+        ]]>
+    </delete>
+    
+	<select id="MonthExerciseList" parameterType="java.util.Map" resultType="com.smhrd.domain.ExerciseVO">
+	  <![CDATA[
+	    SELECT EXERCISE_IDX, USER_ID, USER_WEIGHT, EXERCISE_TIME, EXERCISE_STRENGTH, O2_WASTE, calories_waste, created_at
+	    FROM EXERCISE_CALORIES_INFO
+	    WHERE created_at >= TRUNC(SYSDATE) - 30 AND user_id=#{user_id}
+	    ORDER BY EXERCISE_IDX, USER_ID, USER_WEIGHT, EXERCISE_TIME, EXERCISE_STRENGTH, O2_WASTE, created_at
+	  ]]>
+	</select>
+    
+    <delete id="DeleteMonthExercise" parameterType="java.lang.String">
+        <![CDATA[
+            DELETE FROM EXERCISE_CALORIES_INFO
+			WHERE CREATED_AT >= TRUNC(SYSDATE) - 30 AND user_id=#{user_id}
+        ]]>
+    </delete>
+    
+    
+</mapper>

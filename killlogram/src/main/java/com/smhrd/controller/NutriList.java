@@ -27,7 +27,7 @@ public class NutriList extends HttpServlet {
 
         // 데이터베이스 음식 정보를 조회하기 위해 NutritionfactsDAO 사용
         NutritionfactsDAO dao = new NutritionfactsDAO();
-        List<NutritionfactsVO> mlist = dao.selectNutri(food_name);
+        List<NutritionfactsVO> mlist = dao.selectNutriByName(food_name);
 
         Gson gson = new Gson();
 

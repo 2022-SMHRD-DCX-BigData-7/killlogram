@@ -1,5 +1,6 @@
 package com.smhrd.domain;
 
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.smhrd.database.SqlSessionManager;
+
 
 public class MyNutritionfactsDAO {
 	private SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSession();
@@ -50,30 +52,28 @@ public class MyNutritionfactsDAO {
 	    }
 	    return totalDeleted;
 	}
+	
 	// 주간 칼로리 정보 조회
-	public List<MyNutritionfactsVO> selectWeeklyCalories(String user_id) {
-        List<MyNutritionfactsVO> myWeekNutriList = null;
-        try {
-        	if(user_id != null) {
-        		SqlSession sqlSession = sqlSessionFactory.openSession();
-        		myWeekNutriList = sqlSession.selectList("com.smhrd.database.NutritionfactsMapper.selectUserNutritionFacts", user_id);;
-        	}
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return myWeekNutriList;
-    }
+	public List<MyNutritionfactsVO> WeekNutriList(String user_id) throws Exception {
+	    List<MyNutritionfactsVO> weekNutriList = null;
+	    try {
+	        weekNutriList = sqlSession.selectList("WeekNutriList", user_id);
+	       
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        throw new Exception("주간 칼로리 정보를 불러오는 데 실패했습니다.");
+	    }
+	    return weekNutriList;
+	}
 	
 	// 월간 칼로리 정보 조회
-	public List<MyNutritionfactsVO> MonhtselectUserNutritionFacts(String user_id) {
+	public List<MyNutritionfactsVO> MonthNutriList(String user_id) throws Exception {
         List<MyNutritionfactsVO> myMonthNutriList = null;
-        try {
-        	if(user_id != null) {
-        		SqlSession sqlSession = sqlSessionFactory.openSession();
-        		myMonthNutriList = sqlSession.selectList("com.smhrd.database.NutritionfactsMapper.MonhtselectUserNutritionFacts", user_id);;
-        	}
+        try {	
+			myMonthNutriList = sqlSession.selectList("MonthNutriList", user_id);        	
         } catch (Exception e) {
             e.printStackTrace();
+            throw new Exception("월간 칼로리 정보를 불러오는 데 실패했습니다.");
         }
         return myMonthNutriList;
     }

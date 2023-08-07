@@ -11,7 +11,7 @@ public class NutritionfactsDAO {
 	
     private SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSession();
 
-    public List<NutritionfactsVO> selectNutri(String foodName) {
+    public List<NutritionfactsVO> selectNutriByName(String foodName) {
         List<NutritionfactsVO> nutriList = null;
 
         try {

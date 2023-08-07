@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import com.google.gson.Gson;
 import com.smhrd.database.SqlSessionManager;
 import com.smhrd.domain.MyNutritionfactsDAO;
 import com.smhrd.domain.MyNutritionfactsVO;
@@ -25,8 +26,6 @@ public class SaveCaloriesServlet extends HttpServlet {
             throws ServletException, IOException {
         System.out.println("[SaveCaloriesServlet]");
 
-        HttpSession session = request.getSession();
-
         String[] nutriIdxParams = request.getParameterValues("nutri_idx");
 
         // nutriIdx가 null이거나 비어있는지 검사
@@ -36,7 +35,8 @@ public class SaveCaloriesServlet extends HttpServlet {
             String user_id = request.getParameter("user_id");
             Timestamp created_at = new Timestamp(System.currentTimeMillis());
 
-                // insertMyNutritionFactInfo 메서드를 한 번만 호출하여 모든 음식 정보를 DB에 저장
+            MyNutritionfactsVO MNfacts = new MyNutritionfactsVO();
+            
                 SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSession();
                 try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
                     MyNutritionfactsDAO MNdao = new MyNutritionfactsDAO();
@@ -47,7 +47,6 @@ public class SaveCaloriesServlet extends HttpServlet {
                                 int nutriIdx = Integer.parseInt(part);
                                 nutriIdxArray[i] = nutriIdx;
 
-                                MyNutritionfactsVO MNfacts = new MyNutritionfactsVO();
                                 MNfacts.setUser_id(user_id);
                                 MNfacts.setNutri_idx(nutriIdx);
                                 MNfacts.setCreated_at(created_at);
@@ -64,6 +63,15 @@ public class SaveCaloriesServlet extends HttpServlet {
                                 return;
                             }
                         }
+                        // ExerciseVO 객체를 JSON 문자열로 변환
+                	    Gson gson = new Gson();
+                	    String jsonResponse = gson.toJson(MNfacts);
+
+                	    // 응답 Content-Type을 application/json으로 설정
+                	    response.setContentType("application/json");
+
+                	    // JSON 응답을 클라이언트로 반환
+                	    response.getWriter().write(jsonResponse);
                     }
                 }
         }

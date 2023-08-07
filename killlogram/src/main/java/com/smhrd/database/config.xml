@@ -32,5 +32,6 @@
     <mapper resource="com/smhrd/database/likeMapper.xml"/>
    
     <mapper resource="com/smhrd/database/NutritionfactsMapper.xml"/>
+    <mapper resource="com/smhrd/database/ExerciseMapper.xml"/>
   </mappers>
 </configuration>

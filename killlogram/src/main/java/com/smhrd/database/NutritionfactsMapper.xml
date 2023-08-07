@@ -17,19 +17,22 @@
     <delete id="deleteMyNutritionFact" parameterType="int">
     	delete from MY_NUTRITIONFACT_INFO where NUTRI_IDX=#{nutri_idx}
     </delete>
-    
-	<select id="selectUserNutritionFacts" parameterType="java.util.Map" resultType="com.smhrd.domain.MyNutritionfactsVO">
-	    SELECT M.MN_IDX, M.NUTRI_IDX, M.USER_ID, M.CREATED_AT, N.CALORIES
-	    FROM MY_NUTRITIONFACT_INFO M
-	    JOIN NUTRITIONFACTS_INFO N ON M.NUTRI_IDX = N.NUTRI_IDX
-	    WHERE M.CREATED_AT >= TO_CHAR(SYSDATE-7,'YYYYMMDD') AND M.USER_ID = #{user_id}
+
+	<select id="WeekNutriList" parameterType="java.util.Map" resultType="com.smhrd.domain.MyNutritionfactsVO">
+	    SELECT *
+	    FROM MY_NUTRITIONFACT_INFO
+	    INNER JOIN NUTRITIONFACTS_INFO ON MY_NUTRITIONFACT_INFO.NUTRI_IDX = NUTRITIONFACTS_INFO.NUTRI_IDX
+	    WHERE MY_NUTRITIONFACT_INFO.CREATED_AT >= TO_CHAR(SYSDATE-7, 'YYYYMMDD') AND user_id=#{user_id}
 	</select>
 	
-	<select id="MonhtselectUserNutritionFacts" parameterType="java.util.Map" resultType="com.smhrd.domain.MyNutritionfactsVO">
-	    SELECT M.MN_IDX, M.NUTRI_IDX, M.USER_ID, M.CREATED_AT, N.CALORIES
-	    FROM MY_NUTRITIONFACT_INFO M
-	    JOIN NUTRITIONFACTS_INFO N ON M.NUTRI_IDX = N.NUTRI_IDX
-	    WHERE M.CREATED_AT >= TO_CHAR(SYSDATE-30,'YYYYMMDD') AND M.USER_ID = #{user_id}
+	<select id="MonthNutriList" parameterType="java.util.Map" resultType="com.smhrd.domain.MyNutritionfactsVO">
+	    SELECT *
+		FROM MY_NUTRITIONFACT_INFO
+		INNER JOIN NUTRITIONFACTS_INFO ON MY_NUTRITIONFACT_INFO.NUTRI_IDX = NUTRITIONFACTS_INFO.NUTRI_IDX
+		where MY_NUTRITIONFACT_INFO.CREATED_AT >= TO_CHAR(SYSDATE-30,'YYYYMMDD') AND user_id=#{user_id}	
 	</select>
+	
+
+	
     
 </mapper>

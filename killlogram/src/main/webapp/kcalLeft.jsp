@@ -93,6 +93,7 @@
                     <div class="totalkcal" >
                         <span class="day">하루 총 섭취량</span>
                         <!-- 일간 -->                       
+                        <h2 class="foodname">음식 이름 : <span id="foodname"></span></h2>
                         <h2 class="total">총 열량 : <span id="totalCalories">0</span> kcal</h2>
                         <h2 class="meal">아침 : <span id="breakfast">0</span> kcal</h2>
                         <h2 class="meal">점심 : <span id="lunch">0</span> kcal</h2>
@@ -169,6 +170,8 @@ let nutriIdxArray = []; // 음식의 고유번호 배열
 let nutriIdxValue;
 let userId;
 let selectedNutriIdx;
+
+let selectedFoodsArray = [];
 
 $(document).ready(function() {
 	let userId = "${loginMember.id}";
@@ -248,94 +251,74 @@ $(document).ready(function() {
 
  	// 선택한 음식의 칼로리 정보를 저장하고 누적하는 함수
     function inputMeal(checkbox) {
-        selectedRow = $(checkbox).closest("tr");
-        selectedFood = selectedRow.find("td:eq(2)").text();
-        selectedCalories = parseInt(selectedRow.find("td:eq(3)").text());
-        selectedProteins = parseInt(selectedRow.find("td:eq(4)").text());
-        selectedCarbohydrates = parseInt(selectedRow.find("td:eq(5)").text());
-        selectedFats = parseInt(selectedRow.find("td:eq(6)").text());
-        selectedMeal = $("select[name=selectmeal]").val();
-        
-        // 콘솔 창에 선택한 음식 정보와 누적된 칼로리 값을 출력
-        console.log("선택한 음식 : " + selectedFood);
-        console.log("선택한 음식 칼로리 : " + selectedCalories);
-        // 선택한 음식의 칼로리 정보를 각각 아침, 점심, 저녁 칼로리로 누적하거나 초기화
-        if (selectedMeal === "1") {
-            if ($(checkbox).prop("checked")) {
-            	$("#breakfast").text(parseInt($("#breakfast").text()) + selectedCalories);
-            } else {
-            	$("#breakfast").text(parseInt($("#breakfast").text()) - selectedCalories);
-            }
-            // 아침 칼로리 값을 콘솔 창에 출력
-            console.log("아침 칼로리 : " + $("#breakfast").text());
-            
-        } else if (selectedMeal === "2") {
-            if ($(checkbox).prop("checked")) {
-                $("#lunch").text(parseInt($("#lunch").text()) + selectedCalories);
-                $("#lunch").text(parseInt($("#lunch").text()) + selectedProteins);
-                $("#lunch").text(parseInt($("#lunch").text()) + selectedCarbohydrates);
-                $("#lunch").text(parseInt($("#lunch").text()) + selectedFats);
-            } else {
-                $("#lunch").text(parseInt($("#lunch").text()) - selectedCalories);
-                $("#lunch").text(parseInt($("#lunch").text()) - selectedProteins);
-                $("#lunch").text(parseInt($("#lunch").text()) - selectedCarbohydrates);
-                $("#lunch").text(parseInt($("#lunch").text()) - selectedFats);
-            }
-            // 점심 칼로리 값을 콘솔 창에 출력
-            console.log("점심 칼로리 : " + $("#lunch").text());
-        } else if (selectedMeal === "3") {
-            if ($(checkbox).prop("checked")) {
-                $("#dinner").text(parseInt($("#dinner").text()) + selectedCalories);
-                $("#dinner").text(parseInt($("#dinner").text()) + selectedProteins);
-                $("#dinner").text(parseInt($("#dinner").text()) + selectedCarbohydrates);
-                $("#dinner").text(parseInt($("#dinner").text()) + selectedFats);
-            } else {
-                $("#dinner").text(parseInt($("#dinner").text()) - selectedCalories);
-                $("#dinner").text(parseInt($("#dinner").text()) - selectedProteins);
-                $("#dinner").text(parseInt($("#dinner").text()) - selectedCarbohydrates);
-                $("#dinner").text(parseInt($("#dinner").text()) - selectedFats);
-            }
-        	$("#breakfast").text(parseInt($("#breakfast").text()) + selectedProteins);
-        	$("#breakfast").text(parseInt($("#breakfast").text()) + selectedCarbohydrates);
-        	$("#breakfast").text(parseInt($("#breakfast").text()) + selectedFats);
-            // 저녘 칼로리 값을 콘솔 창에 출력
-            console.log("저녁 칼로리 : " + $("#dinner").text());
-        }
-       	if ($(checkbox).prop("checked")){
-	    	$("#protein").text(parseInt($("#protein").text()) + selectedProteins);
-	    	$("#carbohydrate").text(parseInt($("#carbohydrate").text()) + selectedCarbohydrates);
-	    	$("#fat").text(parseInt($("#fat").text()) + selectedFats);
-       	}else {
-       		$("#protein").text(parseInt($("#protein").text()) - selectedProteins);
-	    	$("#carbohydrate").text(parseInt($("#carbohydrate").text()) - selectedCarbohydrates);
-	    	$("#fat").text(parseInt($("#fat").text()) - selectedFats);
-       	}
-      	
-    	// 총 열량 계산하여 출력
-        totalCalories = parseInt($("#breakfast").text()) + parseInt($("#lunch").text()) + parseInt($("#dinner").text());
-        $("#totalCalories").text(totalCalories);
+	    const selectedRow = $(checkbox).closest("tr");
+	    const selectedFood = selectedRow.find("td:eq(2)").text();
+	    const selectedCalories = parseInt(selectedRow.find("td:eq(3)").text());
+	    const selectedProteins = parseInt(selectedRow.find("td:eq(4)").text());
+	    const selectedCarbohydrates = parseInt(selectedRow.find("td:eq(5)").text());
+	    const selectedFats = parseInt(selectedRow.find("td:eq(6)").text());
+	    const selectedMeal = $("select[name=selectmeal]").val();
+	
+	    selectedFoodsArray.push(selectedFood);
+	    
+	    console.log("선택한 음식 : " + selectedFood);
+	    console.log("선택한 음식 칼로리 : " + selectedCalories);
 
-     	// 선택한 음식의 nutri_idx 값을 배열에 추가 또는 제거
-        nutriIdx = parseInt(selectedRow.find("input[name=nutri_idx]").val());
-        if ($(checkbox).prop("checked")) {
-            nutriIdxArray.push(nutriIdx);
-        } else {
-            // 배열에서 해당 nutriIdx를 찾아 제거
-            const index = nutriIdxArray.indexOf(nutriIdx);
-            if (index !== -1) {
-                nutriIdxArray.splice(index, 1);
-            }
-        }
-        // 선택한 메뉴에 따라 체크박스 초기화
-        $("select[name=selectmeal]").on("change", function() {
-            $('input[type="checkbox"]').prop('checked', false);
-            // 총 열량 업데이트
-            updateTotalCalories();
-        });
-        console.log("nutriIdxArray: " + nutriIdxArray);
-        // 총 열량을 콘솔 창에 출력
-        console.log("총 열량 : " + totalCalories);
-    }
+	    let targetMealElement;
+	    if (selectedMeal === "1") {
+	        targetMealElement = $("#breakfast");
+	    } else if (selectedMeal === "2") {
+	        targetMealElement = $("#lunch");
+	    } else if (selectedMeal === "3") {
+	        targetMealElement = $("#dinner");
+	    }
+	
+	    if ($(checkbox).prop("checked")) {
+	    	let index = selectedFoodsArray.indexOf(selectedFood);
+	        if (index !== 1) {
+	            selectedFoodsArray.push();
+	        }
+	        $("#foodname").html("<br>" + selectedFoodsArray.join("<br>"));
+	    	targetMealElement.text(parseInt(targetMealElement.text()) + selectedCalories);
+	        $("#protein").text(parseInt($("#protein").text()) + selectedProteins);
+	        $("#carbohydrate").text(parseInt($("#carbohydrate").text()) + selectedCarbohydrates);
+	        $("#fat").text(parseInt($("#fat").text()) + selectedFats);
+	    } else {
+	    	let index = selectedFoodsArray.indexOf(selectedFood);
+	        if (index !== -1) {
+	        	 selectedFoodsArray.splice(index, 2); 
+	        }
+	        $("#foodname").html("<br>" + selectedFoodsArray.join("<br>"));
+	        
+	        targetMealElement.text(parseInt(targetMealElement.text()) - selectedCalories);
+	        $("#protein").text(parseInt($("#protein").text()) - selectedProteins);
+	        $("#carbohydrate").text(parseInt($("#carbohydrate").text()) - selectedCarbohydrates);
+	        $("#fat").text(parseInt($("#fat").text()) - selectedFats);
+	    }
+	
+	    const totalCalories = parseInt($("#breakfast").text()) + parseInt($("#lunch").text()) + parseInt($("#dinner").text());
+	    $("#totalCalories").text(totalCalories);
+	
+	
+	    const nutriIdx = parseInt(selectedRow.find("input[name=nutri_idx]").val());
+	
+	    $("select[name=selectmeal]").on("change", function() {
+	        $('input[type="checkbox"]').prop('checked', false);
+	        updateTotalCalories();
+	    });
+	
+	    if ($(checkbox).prop("checked")) {
+	        nutriIdxArray.push(nutriIdx);
+	    } else {
+	        const index = nutriIdxArray.indexOf(nutriIdx);
+	        if (index !== -1) {
+	            nutriIdxArray.splice(index, 1);
+	        }
+	    }
+	
+	    console.log("nutriIdxArray: " + nutriIdxArray);
+	    console.log("총 열량 : " + totalCalories);
+	}
 
 
  	// 칼로리 정보를 가져와서 선택한 아침, 점심, 저녁 칼로리를 계산하는 함수
@@ -497,6 +480,7 @@ $(document).ready(function() {
    function Weekkcal(user_id) {
 	   let userId = "${loginMember.id}";   
 
+	   $("#mbn").hide();
 	   $.ajax({
 		    url: "WeekNutriList",
 		    type: "post",
@@ -512,6 +496,7 @@ $(document).ready(function() {
 	                // 음식 정보 출력
 	                $.each(response, function (idx, item) {
 	                    var row = $("<tr></tr>");
+	                    row.append($("<td><input type='checkbox' onclick='inputMeal(this)'></td>"));
 	                    row.append($("<td></td>").text(item.food_name)); 
 	                    row.append($("<td></td>").text(item.calories)); 	                    
                 	    row.append($("<td></td>").text(item.created_at));
@@ -530,6 +515,7 @@ $(document).ready(function() {
    function Monthkcal(user_id) {
 	    let userId = "${loginMember.id}";
 	    
+	    $("#mbn").hide();
 	    $.ajax({
 	        url: "MonthNutriList",
 	        type: "post",
@@ -544,7 +530,8 @@ $(document).ready(function() {
 	            if (response.length > 0) {
 	                // 음식 정보 출력
 	                $.each(response, function (idx, item) {
-	                    var row = $("<tr></tr>");          
+	                    var row = $("<tr></tr>");
+	                    row.append($("<td><input type='checkbox' onclick='inputMeal(this)'></td>"));
 	                    row.append($("<td></td>").text(item.food_name)); 
 	                    row.append($("<td></td>").text(item.calories)); 	                    
                 	    row.append($("<td></td>").text(item.created_at));

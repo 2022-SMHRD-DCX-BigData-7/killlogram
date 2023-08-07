@@ -3,7 +3,9 @@
 
 
 .kcaksend{
-	width: 8%
+	position: absolute;
+    margin: -489px 713px;
+    white-space: nowrap;
 }
 
 input[type="checkbox"]{

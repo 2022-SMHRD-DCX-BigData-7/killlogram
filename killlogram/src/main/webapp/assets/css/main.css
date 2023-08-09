@@ -1,11 +1,35 @@
 @import url("fontawesome-all.min.css");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic|Open+Sans+Condensed:700");
 
+.totalkcal{
+	
+}
+
+.day{
+  position: absolute;
+    margin: -549px -382px;
+    font-weight: bold;
+    font-size: xx-large;
+}
+
+#mbn{
+   position: absolute;
+    margin: -1031px -150px;
+    height: 42px;
+    font-size: 22px;
+    text-align: center;
+    width: 50px;
+}
+
+
+.foodname{
+   position: absolute;
+    margin: -552px 0px;
+    font-size: xx-large;
+}
 
 .kcaksend{
-	position: absolute;
-    margin: -489px 713px;
-    white-space: nowrap;
+	width: 8%
 }
 
 input[type="checkbox"]{
@@ -302,14 +326,14 @@ named upload
     margin: -850px 211px;
     white-space: nowrap;
 }
-#mbn{
+/* #mbn{
    position: absolute;
     margin: -965px -150px;
     height: 42px;
     font-size: 22px;
     text-align: center;
     width: 50px;
-}
+} */
 .kcal{
    position: relative;
     top: -979px;
@@ -344,12 +368,12 @@ named upload
     position: absolute;
     margin: -377px 268px;
 }
-.day{
+/* .day{
    position: absolute;
     margin: -487px -382px;
    font-weight: bold;
    font-size: xx-large;
-}
+} */
 .hday{
    position: absolute;
     margin: -212px -672px;
@@ -364,8 +388,8 @@ named upload
 }
 .totalkcal > .meal {
    position: relative;
-    top: -185px;
-    left: 384px;
+    top: -200px;
+    left: -378px;
     font-size: x-large;
 }
 .total{

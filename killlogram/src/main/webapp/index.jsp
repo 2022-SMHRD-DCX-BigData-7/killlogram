@@ -137,7 +137,7 @@
     
 												<!-- 반복문 출력 !!!! 제목, 내용, 아이디, 파일, 날짜, (좋아요) -->	
 											  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-												<div class="col">
+												<div class="col" style="margin: 0 0 0 -113px">
 												  <div class="card shadow-sm" style="text-align : center;">
 													
 														
@@ -150,10 +150,10 @@
 														
 														 <%for(PostVO post:postList){ %>
 														<tr>
-														<td>작성자 : <%=post.getUser_id() %>님</td>
+														<td style="font-size: 36px">작성자 : <%=post.getUser_id() %>님</td>
 														</tr>
 														<tr>
-														<td><%=post.getPost_title() %></td>
+														<td style="font-size: 24px; padding-top: 14px;"> < <%=post.getPost_title() %> > </td>
 														</tr>
 														<tr>
 														<td><br></td>
@@ -167,7 +167,7 @@
 															if (image!=null && image.getPost_file() != null){ 
 																if (post.getPost_idx() == image.getPost_idx()){
 																	String fName = image.getPost_file().split("\\\\")[image.getPost_file().split("\\\\").length-1];
-																	out.print("<img src='upload/"+fName+"' alt='설정 후 이미지'/>");
+																	out.print("<img src='upload/"+fName+"' alt='설정 후 이미지' style='width: 500px; height: 500px;'/>");
 																}//if1
 																}//if2
 															else{
@@ -183,35 +183,51 @@
 														</td>
 														</tr>
 														
+														<tr>
+														<td><br></td>
+														</tr>
 														<%-- <tr>
 														<td><%=post.getPost_file() %><td>
 														</tr> --%>
 														<tr>
-														<td><%=post.getPost_content() %></td>
+														<td style="font-size: 22px;"><%=post.getPost_content() %></td>
 														</tr>
 														<tr>
 														<td><br></td>
 														</tr>
 														<tr>
-														<td><%=post.getCreated_at() %></td>
+														<td ><%=post.getCreated_at().substring(0,16) %></td>
 														</tr>
-														<!-- 댓글출력 -->
-														<% if (commentList != null && !commentList.isEmpty()) { %>
-														 <%for(CommentVO comment:commentList){ 
-														 if(comment.getPost_idx() == post.getPost_idx()){
-															 
-														 %>
-														 
-														 <tr>
-														 	<td style="width: 422px; padding: 0 760px 0 0px;">ID:<%=comment.getUser_id() %></td>
-                                            				 <td class="com5" style="width: 299px; text-align: left;">내용:<%=comment.getCmt_content() %></td>
-														 </tr>
-														 
-														 <%
-														 }//if끝
-														 } //for끝%>
-														 <%} //if끝%>
+														<tr>
+														<td><br></td>
+														</tr>
+														<tr>
+														<td><h2 class="major"></h2></td>
+														<td id="line"></td>
+														</tr>
 														
+														 <tr>
+														<td><br></td>
+														</tr>
+														
+				                                        
+				                                           <!-- 댓글출력 -->
+                                          <% if (commentList != null && !commentList.isEmpty()) { %>
+                                           <%for(CommentVO comment:commentList){ 
+                                           if(comment.getPost_idx() == post.getPost_idx()){
+                                              
+                                           %>
+                                           
+                                           <tr>
+                                              <td style="font-size:20px; padding: 0 1220px 0 0px; text-align:left" >ID:<%=comment.getUser_id() %></td>
+                                                         <td class="com5" style="width: 299px; text-align: left; font-size: 20px;">내용:<%=comment.getCmt_content() %></td>
+                                           </tr>
+                                           
+                                           <%
+                                           }//if끝
+                                           } //for끝%>
+                                           <%} //if끝%>
+
 														<!-- 댓글 작성 -->
 														<tr>
 														<td>
@@ -223,9 +239,9 @@
  														</form>
 														
 														  <!-- 좋아요 수를 표시할 부분 -->
-				                                           <span id="likeCount_<%= post.getPost_idx() %>"><%= likeDAO.getLikeCountByPostIdx(post.getPost_idx()) %></span>
+				                                        <span class=lc style="font-size: 24px;" id="likeCount_<%= post.getPost_idx() %>"><%= likeDAO.getLikeCountByPostIdx(post.getPost_idx()) %></span>
 				                                           <!-- 좋아요 버튼 -->
-				                                           <button id="likeButton_<%= post.getPost_idx() %>" name="heart" type="button" class="heart-btn" onclick="alert('댓글 등록 완료!')" onclick="likePost(<%= post.getPost_idx() %>)">
+				                                           <button id="likeButton_<%= post.getPost_idx() %>" name="heart" type="button" class="heart-btn"  onclick="likePost(<%= post.getPost_idx() %>), onclick= alert('좋아요♥') ">
 				                                               <img width="30px" height="30px" src="images/heart.png"/>
 				                                           </button>
 				                                             
@@ -325,4 +341,27 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 
+
+		<script>
+             // 좋아요 클릭 시 처리하는 함수
+             function likePost(postIdx) {
+                 $.ajax({
+                     type: "POST",
+                     url: "LikeCon",
+                     data: {
+                         post_idx: postIdx,
+                         user_id: "${loginMember.id}"
+                     },
+                     success: function (data) {
+                         // 서버에서 받아온 좋아요 수를 화면에 반영
+                         $("#likeCount_" + postIdx).text(data.likeCount);
+                         // 좋아요 버튼을 클릭한 경우 비활성화
+                         $("#likeButton_" + postIdx).prop("disabled", true);
+                     },
+                     error: function (xhr, status, error) {
+                         console.error("Error while liking post:", error);
+                     }
+                 });
+             }
+         </script>
 	</body>

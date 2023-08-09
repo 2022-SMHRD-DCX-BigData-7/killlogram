@@ -176,19 +176,19 @@
  
 						 </div>
 					  </div>
-					  <div class="col-3 col-12-medium">
+					  <!-- <div class="col-3 col-12-medium">
 						 <div class="sidebar">
  
-							<!-- Sidebar -->
+							Sidebar
  
-							   <!-- Recent Posts -->
+							   Recent Posts
 								  <section>
 									 <h2 class="major"><span>운동 선택</span></h2>
 									 <ul class="divided">
 										<li>
 										   <label for="topic-select">운동 주제 :</label>
 										   <select id="topic-select" onchange="location.href=(this.value);">
-											<!-- <option style="padding-left: 160px;">카테고리</option> -->
+											<option style="padding-left: 160px;">카테고리</option>
 											  <option class="cardio" value="rankRight.jsp">유산소</option>
 											  <option class="muscle" value="rank_strength.jsp">근력</option>
 										</li>
@@ -201,7 +201,7 @@
 				
  
 	   </div>
- 
+  -->
 	   <!-- Scripts -->
 		  <script src="assets/js/jquery.min.js"></script>
 		  <script src="assets/js/jquery.dropotron.min.js"></script>

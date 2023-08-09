@@ -20,6 +20,9 @@
 
 	   PostDAO postDAO = new PostDAO();
 	   List<PostVO> postList = postDAO.selectPost(); 
+	   
+		// 이미지 파일 이름을 DB에서 가져오는 로직
+		PostVO image = null;
 %>
 
 <html>
@@ -100,7 +103,7 @@
 										<% if (saveList != null && !saveList.isEmpty()) { %>
 												
 													<tr>
-													<td>작성자 : <%=save.getUser_id() %> </td>
+													<td>작성자 : <%=save.getUser_id() %>님 </td>
 													</tr>
 													<tr>
 													<td>제목 : <%=save.getPost_title() %></td>
@@ -109,7 +112,21 @@
 													<td>내용 : <%=save.getPost_content() %> </td>
 													</tr> 
 													<tr>
-													<td>첨부파일 : <%=save.getPost_file() %></td>
+													<td>
+													<% 
+															image = postDAO.selectImage(save.getPost_idx());
+															if (image!=null && image.getPost_file() != null){ 
+																if (save.getPost_idx() == image.getPost_idx()){
+																	String fName = image.getPost_file().split("\\\\")[image.getPost_file().split("\\\\").length-1];
+																	out.print("<img src='upload/"+fName+"' alt='설정 후 이미지' style='width: 500px; height: 500px;'/>");
+																}//if1
+																}//if2
+															else{
+																out.print("파일이 존재하지 않습니다.");
+															}
+															
+															%>
+													</td>
 													</tr>		
 													<tr>
 													<td><h2 class="major"><span></span></h2></td>

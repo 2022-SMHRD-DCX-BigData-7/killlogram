@@ -9,7 +9,7 @@
     <!-- 특정 키워드로 게시물을 검색하는 쿼리 -->
     <select id="searchPostsByKeyword" parameterType="String" resultType="com.smhrd.domain.SearchVO">
     
-        SELECT user_id, post_title, post_content
+        SELECT *
         FROM post_info
         WHERE post_title LIKE '%' || #{keyword} || '%'
         OR post_content LIKE '%' || #{keyword} || '%'

@@ -78,6 +78,8 @@
 <br>
 
 ## 📌 SW유스케이스
+![image](https://github.com/2022-SMHRD-DCX-BigData-7/killlogram/assets/139085512/7c445acb-e7b4-45b3-b45b-550cd4e5d3fb)
+
 <br>
 
 ## 📌 서비스 흐름도

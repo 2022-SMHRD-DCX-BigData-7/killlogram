@@ -6,7 +6,7 @@
 <%@page import="com.smhrd.domain.PostDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="False"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
  
 <!DOCTYPE HTML>
@@ -61,21 +61,23 @@
 				
 				
 					<nav id="nav1">
-					 <ul>
-		        <c:choose>
-		            <%-- 로그인 정보가 있을 경우 --%>
-		            <c:when test="${not empty loginMember}">
-		                <li><a href="chat.jsp">채팅</a></li>
-		                <li><a class="myp" href="mypage.jsp">마이페이지</a></li> 
-		                <li><a class="log" href="LogoutCon">로그아웃</a></li>
-		            </c:when>
-		            <%-- 로그인 정보가 없을 경우 --%>
-		            <c:otherwise>
-		                <li><a href="login.jsp">로그인</a></li>
-		                <li><a href="register.jsp">회원가입</a></li>
-		            </c:otherwise>
-		        </c:choose>
-		    </ul>
+					<ul>
+						
+				 <%-- 로그인 정보가 없으면 로그인 할 수 있도록 --%>
+				 <c:choose>
+			 	<c:when test="${empty loginMember}">
+						<li><a class="log" href="login.jsp">로그인</a></li>
+			 	</c:when>
+			 	
+			 	<c:otherwise>
+			 	
+			 		<li><a href="chat.jsp">채팅</a></li>
+					<li><a class="myp" href="mypage.jsp">마이페이지</a></li> 
+					<li><a class="log" href="LogoutCon">로그아웃</a></li>
+				
+				</c:otherwise>		
+				</c:choose>	 	
+				</ul>
 				</nav>
 		
 
@@ -135,7 +137,7 @@
     
 												<!-- 반복문 출력 !!!! 제목, 내용, 아이디, 파일, 날짜, (좋아요) -->	
 											  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-												<div class="col" style="margin: 0 0 0 -113px">
+												<div class="col" style="margin: 0 0 0 -65px">
 												  <div class="card shadow-sm" style="text-align : center;">
 													
 														
@@ -148,7 +150,7 @@
 														
 														 <%for(PostVO post:postList){ %>
 														<tr>
-														<td style="font-size: 36px">작성자 : <%=post.getUser_id() %>님</td>
+														<td style="font-size: 34px">작성자 : <%=post.getUser_id() %>님</td>
 														</tr>
 														<tr>
 														<td style="font-size: 24px; padding-top: 14px;"> < <%=post.getPost_title() %> > </td>
@@ -188,7 +190,7 @@
 														<td><%=post.getPost_file() %><td>
 														</tr> --%>
 														<tr>
-														<td style="font-size: 22px;"><%=post.getPost_content() %></td>
+														<td style="font-size: 20px;"><%=post.getPost_content() %></td>
 														</tr>
 														<tr>
 														<td><br></td>
@@ -210,21 +212,21 @@
 														
 				                                        
 				                                           <!-- 댓글출력 -->
-                                          <% if (commentList != null && !commentList.isEmpty()) { %>
-                                           <%for(CommentVO comment:commentList){ 
-                                           if(comment.getPost_idx() == post.getPost_idx()){
-                                              
-                                           %>
-                                           
-                                           <tr>
-                                              <td style="font-size:20px; padding: 0 1220px 0 0px; text-align:left" >ID:<%=comment.getUser_id() %></td>
-                                                         <td class="com5" style="width: 299px; text-align: left; font-size: 20px;">내용:<%=comment.getCmt_content() %></td>
-                                           </tr>
-                                           
-                                           <%
-                                           }//if끝
-                                           } //for끝%>
-                                           <%} //if끝%>
+				                                          <% if (commentList != null && !commentList.isEmpty()) { %>
+				                                           <%for(CommentVO comment:commentList){ 
+				                                           if(comment.getPost_idx() == post.getPost_idx()){
+				                                              
+				                                           %>
+				                                           
+				                                           <tr>
+				                                              <td style="font-size:20px; padding: 0 1244px 0 0px; text-align:left" >ID:<%=comment.getUser_id() %></td>
+				                                                         <td class="com5" style="width: 299px; text-align: left; font-size: 20px;"><%=comment.getCmt_content() %></td>
+				                                           </tr>
+				                                           
+				                                           <%
+				                                           }//if끝
+				                                           } //for끝%>
+				                                           <%} //if끝%>
 
 														<!-- 댓글 작성 -->
 														<tr>
@@ -290,38 +292,24 @@
 
 								<!-- About -->
 									<section>
-										<h2 class="major"><span>What's this about?</span></h2>
+										<h2 class="major"><span>Killlogram</span></h2>
 										<p>
-											This is <strong>TXT</strong>, yet another free responsive site template designed by
-											<a href="http://twitter.com/ajlkn">AJ</a> for <a href="http://html5up.net">HTML5 UP</a>. It's released under the
-											<a href="http://html5up.net/license/">Creative Commons Attribution</a> license so feel free to use it for
-											whatever you're working on (personal or commercial), just be sure to give us credit for the design.
-											That's basically it :)
+											건강관리를 보다 쉽게 도와주기 위한 저희 <strong>Killlogram</strong>은, 
+											식단관리와 운동을 통해 체중 감량을 목적으로 하거나, 근력운동을 통한 체중 증량 혹은 전반적인 체력, 
+											건강 관리를 원하는 사람들을 위한 SNS입니다. 
+											다양한 사람들과의 정보를 자유롭게 받아볼 수 있으며 칼로리 저장을 통하여 식단 조절 또는 운동량 조절을 가능하게 해줍니다. 
+											모두 건강하고 즐거운 하루 보내세요 :)
 										</p>
 									</section>
 
 							</div>
-							<div class="col-12">
-
-								<!-- Contact -->
-									<section>
-										<h2 class="major"><span>Get in touch</span></h2>
-										<ul class="contact">
-											<li><a class="icon brands fa-facebook-f" href="#"><span class="label">Facebook</span></a></li>
-											<li><a class="icon brands fa-twitter" href="#"><span class="label">Twitter</span></a></li>
-											<li><a class="icon brands fa-instagram" href="#"><span class="label">Instagram</span></a></li>
-											<li><a class="icon brands fa-dribbble" href="#"><span class="label">Dribbble</span></a></li>
-											<li><a class="icon brands fa-linkedin-in" href="#"><span class="label">LinkedIn</span></a></li>
-										</ul>
-									</section>
-
-							</div>
+							
 						</div>
 
 						<!-- Copyright -->
 							<div id="copyright">
 								<ul class="menu">
-									<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+									<li>&copy; Untitled. All rights reserved</li><li>Developer: 이서하, 김지현, 장예빈, 황종하</a></li>
 								</ul>
 							</div>
 

@@ -48,7 +48,6 @@
 		                <li><a href="chat.jsp">채팅</a></li>
 		                <li><a class="myp" href="mypage.jsp">마이페이지</a></li> 
 		                <li><a class="log" href="LogoutCon">로그아웃</a></li>
-		                <p>아이디 : ${loginMember.id}</p>
 		            </c:when>
 		            <%-- 로그인 정보가 없을 경우 --%>
 		            <c:otherwise>

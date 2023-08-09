@@ -1,6 +1,14 @@
+<%@page import="com.smhrd.domain.KilllogramVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+    pageEncoding="UTF-8" isELIgnored="false" %>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<!DOCTYPE HTML>
+<%
+    // 세션에서 loginMember 가져오기
+    KilllogramVO loginMember = (KilllogramVO) session.getAttribute("loginMember");
+%>
 <html lang="en">
 	<head>
 		<title>Mypage</title>
@@ -30,13 +38,7 @@
 		                <li><a href="chat.jsp">채팅</a></li>
 		                <li><a class="myp" href="mypage.jsp">마이페이지</a></li> 
 		                <li><a class="log" href="LogoutCon">로그아웃</a></li>
-		                <p>아이디 : ${loginMember.id}</p>
 		            </c:when>
-		            <%-- 로그인 정보가 없을 경우 --%>
-		            <c:otherwise>
-		                <li><a href="login.jsp">로그인</a></li>
-		                <li><a href="register.jsp">회원가입</a></li>
-		            </c:otherwise>
 		        </c:choose>
 		    </ul>
 				</nav>

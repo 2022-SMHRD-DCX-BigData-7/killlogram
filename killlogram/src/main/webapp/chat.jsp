@@ -35,7 +35,6 @@
                       <li><a href="chat.jsp">채팅</a></li>
                       <li><a class="myp" href="mypage.jsp">마이페이지</a></li> 
                       <li><a class="log" href="LogoutCon">로그아웃</a></li>
-                      <p>아이디 : ${loginMember.id}</p>
                   </c:when>
                   <%-- 로그인 정보가 없을 경우 --%>
                   <c:otherwise>
@@ -88,47 +87,7 @@
         </section>
     </div>
     <script>
-        let socket = new WebSocket("ws://localhost:8082/websocket");
 
-        socket.onopen = function (e) {
-            console.log('WebSocket connected!');
-        };
-
-        socket.onerror = function (e) {
-            console.error('WebSocket error:', e);
-        };
-
-        socket.onmessage = function (e) {
-            console.log(e.data);
-            let msgContent = document.getElementById('chatContent');
-            let newMsgLine = document.createElement('div');
-            newMsgLine.classList.add('msgLine');
-            let newMsgBox = document.createElement('div');
-            newMsgBox.classList.add('msgBox');
-            newMsgBox.textContent = e.data;
-            newMsgLine.appendChild(newMsgBox);
-            msgContent.appendChild(newMsgLine);
-            // Scroll to bottom
-            msgContent.scrollTop = msgContent.scrollHeight;
-        };
-
-        document.getElementById('myChat').addEventListener('keyup', function (event) {
-            if (event.key === 'Enter') {
-                sendMsg();
-            }
-        });
-
-        document.getElementById('send').addEventListener('click', function () {
-            sendMsg();
-        });
-
-        function sendMsg() {
-            let content = document.getElementById('myChat').value;
-            if (content.trim() !== '') {
-                socket.send(content);
-                document.getElementById('myChat').value = '';
-            }
-        }
     </script>
 </body>
 </html>

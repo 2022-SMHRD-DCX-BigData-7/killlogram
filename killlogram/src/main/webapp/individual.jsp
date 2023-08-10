@@ -143,6 +143,8 @@
 	        if (data.success) {
 	            console.log("메시지 전송 성공");
             	$("#chatContent").append("<p>나 : " + message + "</p>");
+            	$("#chatContent").append("<p>상대 : 안녕하세요 </p>");
+            	
             	$("#myChat").val("");
 	        } else {
 	            console.error("메시지 전송 실패");

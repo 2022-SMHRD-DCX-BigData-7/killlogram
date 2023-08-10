@@ -127,7 +127,7 @@
 프로젝트 진행하는 동안 발생했던 이슈 중 가장 기억에 남았던 문제와 해결 프로세스 나열(2~5가지 정도)
   
 * 문제1<br>
-servlet-mapping error
+servlet-mapping error<br>
 ajax에서 url을 여러개 지정했을 때 동일한 이름의 서블릿을  사용할 수 없다는 에러 발생 ->  servlet-name과 url-pattern의 이름을 다르게 부여해서 해서 해결
  
 * 문제2<br>

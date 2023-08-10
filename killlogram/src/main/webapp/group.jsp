@@ -1,6 +1,14 @@
+<%@page import="com.smhrd.domain.KilllogramVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" %>
-<!DOCTYPE html>
+    pageEncoding="UTF-8" isELIgnored="false" %>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<!DOCTYPE HTML>
+<%
+    // 세션에서 loginMember 가져오기
+    KilllogramVO loginMember = (KilllogramVO) session.getAttribute("loginMember");
+%>
 <html lang="en">
 <head>
     <title>TXT by HTML5 UP</title>
@@ -70,10 +78,8 @@
 											<input type="hidden" name="id" value="${loginMember.id }">
 												<div class="row">
 													
-													<div class="col-12">
-													  
-<!-- 													  .group_name{margin: -20em;}
- -->														방 제목 <input type="text" name="group_title" class="group_name" placeholder="방 제목을 입력해주세요" />
+													<div class="col-12">													  
+														방 제목 <input type="text" name="group_title" class="group_name" placeholder="방 제목을 입력해주세요" />
 															<input class="group_up" href="group.jsp" type="submit" value="그룹 채팅 생성" />
 													</div>
 												</div>
@@ -93,47 +99,7 @@
         </section>
     </div>
     <script>
-        let socket = new WebSocket("ws://localhost:8082/websocket");
-
-        socket.onopen = function (e) {
-            console.log('WebSocket connected!');
-        };
-
-        socket.onerror = function (e) {
-            console.error('WebSocket error:', e);
-        };
-
-        socket.onmessage = function (e) {
-            console.log(e.data);
-            let msgContent = document.getElementById('chatContent');
-            let newMsgLine = document.createElement('div');
-            newMsgLine.classList.add('msgLine');
-            let newMsgBox = document.createElement('div');
-            newMsgBox.classList.add('msgBox');
-            newMsgBox.textContent = e.data;
-            newMsgLine.appendChild(newMsgBox);
-            msgContent.appendChild(newMsgLine);
-            // Scroll to bottom
-            msgContent.scrollTop = msgContent.scrollHeight;
-        };
-
-        document.getElementById('myChat').addEventListener('keyup', function (event) {
-            if (event.key === 'Enter') {
-                sendMsg();
-            }
-        });
-
-        document.getElementById('send').addEventListener('click', function () {
-            sendMsg();
-        });
-
-        function sendMsg() {
-            let content = document.getElementById('myChat').value;
-            if (content.trim() !== '') {
-                socket.send(content);
-                document.getElementById('myChat').value = '';
-            }
-        }
+        
     </script>
 </body>
 </html>

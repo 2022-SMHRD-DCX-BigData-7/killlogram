@@ -76,6 +76,18 @@
    	<description></description>
    	<servlet-class>com.smhrd.controller.SaveExercise</servlet-class>
    </servlet>
+   <servlet>
+   	<servlet-name>SendChatServlet</servlet-name>
+   	<display-name>SendChatServlet</display-name>
+   	<description></description>
+   	<servlet-class>com.smhrd.controller.SendChatServlet</servlet-class>
+   </servlet>
+   <servlet>
+   	<servlet-name>StartChatRoomServlet</servlet-name>
+   	<display-name>StartChatRoomServlet</display-name>
+   	<description></description>
+   	<servlet-class>com.smhrd.controller.StartChatRoomServlet</servlet-class>
+   </servlet>
   
 
   <servlet-mapping>
@@ -125,6 +137,14 @@
   <servlet-mapping>
   	<servlet-name>SaveExercise</servlet-name>
   	<url-pattern>/SaveExercise1</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SendChatServlet</servlet-name>
+  	<url-pattern>/SendChatServlet1</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>StartChatRoomServlet</servlet-name>
+  	<url-pattern>/StartChatRoomServlet1</url-pattern>
   </servlet-mapping>
 
 </web-app>

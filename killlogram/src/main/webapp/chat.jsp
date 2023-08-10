@@ -9,12 +9,14 @@
     // 세션에서 loginMember 가져오기
     KilllogramVO loginMember = (KilllogramVO) session.getAttribute("loginMember");
 %>
-<html lang="en">
+<html>
 <head>
     <title>TXT by HTML5 UP</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
+    
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <div id="page-wrapper">
@@ -49,7 +51,7 @@
             <ul>
                 <li><a href="index.jsp">홈</a></li>
                 <li><a href="search.jsp">검색</a></li>
-                <li><a href="kcal.jsp">칼로리</a></li>
+                <li><a href="kcalLeft.jsp">칼로리</a></li>
                 <li><a href="rankRight.jsp">랭크</a></li>
                 <li><a href="saveRight.jsp">저장됨</a></li>
                 <li><a href="write.jsp">게시물 추가</a></li>
@@ -70,15 +72,15 @@
                                 </header>
                                 <div class="col-12">
                                     <ul class="actions">
-                                        <li><a href="chat.jsp" class="button large">개인채팅</a></li>
-                                        <li><a href="group.jsp" class="button alt large">오픈채팅</a></li>
+                                        <li><a href="individual.jsp" class="button large">채팅</a></li>
+<!--                                         <li><a href="group.jsp" class="button alt large">오픈채팅</a></li> -->
                                     </ul>
                                 </div>
-                                <div id="chatContent">
-                                    <!-- Chat messages will be displayed here -->
+<!--                                 <div id="chatContent">
+                                    Chat messages will be displayed here
                                 </div>
                                 <input placeholder="메시지를 입력하세요." name="message" id="myChat" type="text">
-                                <input type="submit" id="send" value="전송">
+                                <input type="submit" id="send" value="전송"> -->
                             </div>
                         </div>
                     </div>

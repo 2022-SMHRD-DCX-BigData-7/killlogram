@@ -33,5 +33,6 @@
    
     <mapper resource="com/smhrd/database/NutritionfactsMapper.xml"/>
     <mapper resource="com/smhrd/database/ExerciseMapper.xml"/>
+    <mapper resource="com/smhrd/database/ChattingMapper.xml"/>
   </mappers>
 </configuration>

@@ -79,7 +79,7 @@ public class MemberDAO {
 					e.printStackTrace();
 
 				}finally {
-					sqlSession.close();
+					sqlSession.close(); 
 
 				
 			}

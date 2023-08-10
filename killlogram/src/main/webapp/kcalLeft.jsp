@@ -22,6 +22,8 @@
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	
+	<!-- chart.js -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
 </head>
 <body class="is-preload">
     <div id="page-wrapper">
@@ -77,29 +79,23 @@
                            <button type="button" onclick="Weekkcal('${loginMember.id}')"   class="btn4">주</button>
                            <button type="button" onclick="Monthkcal('${loginMember.id}')"  class="btn5">월</button>
                         </div>
-                        <!-- 주간 -->
-                        <div id="weeklyCaloriesInfo">
-                           <table id="weektb">                      
-                           </table>
-                        </div>
-                        <!-- 월간 -->
-                        <div id="monthlyCaloriesInfo">
-                           <table id="monthtb">                      
-                           </table>
-                        </div>
                      </div>
                                   
                     <div class="totalkcal" >
-                        <span class="day">하루 총 섭취량</span>
-                        <!-- 일간 -->                       
-                        <h2 class="foodname">음식 이름 : <span id="foodname"></span></h2>
-                        <h2 class="total">총 열량 : <span id="totalCalories">0</span> kcal</h2>
-                        <h2 class="meal">아침 : <span id="breakfast">0</span> kcal</h2>
-                        <h2 class="meal">점심 : <span id="lunch">0</span> kcal</h2>
-                        <h2 class="meal">저녁 : <span id="dinner">0</span> kcal</h2>
-                        <h4 class="meal">단백질 : <span id="protein">0</span></h4>
-                        <h4 class="meal">탄수화물 : <span id="carbohydrate">0</span></h4>     
-                        <h4 class="meal">지방 : <span id="fat">0</span></h4>
+                    	<div class="kcalinfo" style="display: none;"></div>
+	                        <span class="day">하루 총 섭취량</span>
+	                        <!-- 일간 -->                       
+	                        <h2 class="foodname">음식 이름 : <span id="foodname"></span></h2>
+	                        <h2 class="total">총 열량 : <span id="totalCalories">0</span> kcal</h2>
+	                        <h2 class="meal">아침 : <span id="breakfast">0</span> kcal</h2>
+	                        <h2 class="meal">점심 : <span id="lunch">0</span> kcal</h2>
+	                        <h2 class="meal">저녁 : <span id="dinner">0</span> kcal</h2>
+	                        <h4 class="meal">단백질 : <span id="protein">0</span></h4>
+	                        <h4 class="meal">탄수화물 : <span id="carbohydrate">0</span></h4>     
+	                        <h4 class="meal">지방 : <span id="fat">0</span></h4>
+	                        <div style="width: 400px; height: 400px;">
+							    <canvas id="nutriChart"></canvas>
+							</div>
                      </div>
 
 
@@ -123,22 +119,22 @@
                         </div>
                         
                         <div class="nutritionfacts_info">
-                            <table id="tb">
-                         <thead>
-                           <tr>
-                             <th>선택</th>
-                             <th>음식이름</th>
-                             <th>칼로리</th>
-                             <th>단백질</th>
-                             <th>탄수화물</th>
-                             <th>지방</th>
-                             <th>단위</th>                        
-                           </tr>
-                         </thead>
-                         <tbody id="tbd">
-                           <!-- 검색한 음식 정보 출력 -->
-                         </tbody>    
-                            </table>
+                            <table style="text-align: center;">
+	                           <tr>
+	                             <td>선택</td>
+	                             <td style="width: 350px;">음식이름</td>
+	                             <td>칼로리</td>
+	                             <td>단백질</td>
+	                             <td>탄수화물</td>
+	                             <td>지방</td>
+	                             <td>1회섭취량</td>
+	                             <td>단위</td>                        
+	                           </tr>
+							</table>
+	                         <table id="tb">
+	                           <!-- 검색한 음식 정보 출력 -->
+	                         </table>    
+                            
                         </div>
                         
                         <select name="selectmeal" class="meal" id="mbn">
@@ -169,6 +165,7 @@ let nutriIdxArray = []; // 음식의 고유번호 배열
 let nutriIdxValue;
 let userId;
 let selectedNutriIdx;
+var nutriChart;
 
 let selectedFoodsArray = [];
 
@@ -218,7 +215,7 @@ $(document).ready(function() {
             dataType: "json",
             success: function (response) {
                 // 테이블 초기화
-                $("#tbd").empty();         
+                $("#tb").empty();         
                 if (response.length > 0) {
                     // 음식 정보 출력                 
                 	$.each(response, function (idx, item) {
@@ -226,15 +223,14 @@ $(document).ready(function() {
                 	    // checkbox를 클릭하면 inputMeal 함수 호출
                 	    row.append($("<td><input type='checkbox' onclick='inputMeal(this)'></td>"));
                 	    row.append($("<td></td>").append($("<input type='hidden' name='nutri_idx' value='" + item.nutri_idx + "'>")));                	    
-                	    /* row.append($("<td></td>").text(item.nutri_idx)); */
-                	    row.append($("<td></td>").text(item.food_name));
+                	    row.append($("<td style='text-align: center;'></td>").text(item.food_name));
                 	    row.append($("<td></td>").text(item.calories));
                 	    row.append($("<td></td>").text(item.protein));
                 	    row.append($("<td></td>").text(item.carbohydrate));
                 	    row.append($("<td></td>").text(item.fat));
                 	    row.append($("<td></td>").text(item.intake));
                 	    row.append($("<td></td>").text(item.unit));
-                	    $("#tbd").append(row);               	  	
+                	    $("#tb").append(row);               	  	
                 	});
                 } else {
                     alert("음식 이름이 없습니다.");
@@ -300,7 +296,40 @@ $(document).ready(function() {
 	
 	
 	    const nutriIdx = parseInt(selectedRow.find("input[name=nutri_idx]").val());
+		
+	    
+        // 차트 그리기
+        var ctx = document.getElementById("nutriChart").getContext("2d");
+	    
+        if (nutriChart) {
+            nutriChart.destroy();
+        }
+
+        // 새로운 차트 생성 및 업데이트
+        var ctx = document.getElementById("nutriChart").getContext("2d");
+
+	    if (nutriChart) {
+	        nutriChart.destroy();
+	    }
 	
+	    var totalCaloriesText = 'Total Calories: ' + totalCalories; // 총 칼로리 텍스트 준비
+	
+	    nutriChart = new Chart(ctx, {
+	        type: "pie",
+	        data: {
+	            labels: ["단백질 : " + selectedProteins, 
+	            	"탄수화물 : " + selectedCarbohydrates, 
+	            	"지방 : " + selectedFats,
+	            	"음식이름 : " + selectedFood],
+	            datasets: [{
+	                data: [selectedProteins, selectedCarbohydrates, selectedFats],
+	                backgroundColor: ["#FF5733", "#36A2EB", "#FFCE56"],            
+	            }],
+	        },
+	        options: {
+	        }
+	    });
+	    
 	    $("select[name=selectmeal]").on("change", function() {
 	        $('input[type="checkbox"]').prop('checked', false);
 	        updateTotalCalories();
@@ -480,6 +509,7 @@ $(document).ready(function() {
 	   let userId = "${loginMember.id}";   
 
 	   $("#mbn").hide();
+	   $(".kcalinfo").show();
 	   $.ajax({
 		    url: "WeekNutriList",
 		    type: "post",
@@ -489,7 +519,7 @@ $(document).ready(function() {
 		    },
 		    success: function (response) {
 	            console.log(response);
-	            $(".totalkcal").empty();
+	            $(".kcalinfo").empty();
 
 	            if (response.length > 0) {
 	                // 음식 정보 출력
@@ -499,7 +529,7 @@ $(document).ready(function() {
 	                    row.append($("<td></td>").text(item.food_name)); 
 	                    row.append($("<td></td>").text(item.calories)); 	                    
                 	    row.append($("<td></td>").text(item.created_at));
-	                    $(".totalkcal").append(row);
+	                    $(".kcalinfo").append(row);
 	                });
 	            }
 	        },
@@ -514,6 +544,7 @@ $(document).ready(function() {
    function Monthkcal(user_id) {
 	    let userId = "${loginMember.id}";
 	    
+	    $(".kcalinfo").show();
 	    $("#mbn").hide();
 	    $.ajax({
 	        url: "MonthNutriList",
@@ -524,7 +555,7 @@ $(document).ready(function() {
 	        },
 	        success: function (response) {
 	            console.log(response);
-	            $(".totalkcal").empty();
+	            $(".kcalinfo").empty();
 
 	            if (response.length > 0) {
 	                // 음식 정보 출력
@@ -534,7 +565,7 @@ $(document).ready(function() {
 	                    row.append($("<td></td>").text(item.food_name)); 
 	                    row.append($("<td></td>").text(item.calories)); 	                    
                 	    row.append($("<td></td>").text(item.created_at));
-	                    $(".totalkcal").append(row);
+	                    $(".kcalinfo").append(row);
 	                });
 	            }
 	        },
